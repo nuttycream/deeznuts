@@ -3,8 +3,6 @@ title= "welcome"
 template = "homepage.html"
 +++
 
-### intro
-
 Hello! this is my (John Carter's) personal portfolio, from here you can view my
 super cool projects or go to my about page to get to know me more :)
 

@@ -1,7 +1,7 @@
 +++
 title = "SpaceHaven Save Editor"
 description = "save editor, manipulating raw xml"
-date = "2025-04-20"
+date = "2021-08-10"
 
 [taxonomies]
 tags = ["c#", "dotnet", "oop", "avalonia", "mvvm"]

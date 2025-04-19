@@ -1,8 +1,7 @@
 +++
-title= "Apollo Theme"
+title= "welcome"
 template = "homepage.html"
 +++
 
-Thanks for checking out this theme!
-
-Checkout all the [options you can configure](./posts/configuration) and the [example pages](./tags/example/).
+welcome to my personal portfolio, from here you can view my projects or go to my
+about page to get to know me more :)

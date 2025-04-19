@@ -1,12 +1,10 @@
 base_url = "https://johnnacion.dev"
+title = "johns portfolio"
 theme = "apollo"
-taxonomies = [{ name = "tags" }]
-minify_html = true
 compile_sass = true
 build_search_index = true
-
-[markdown]
-highlight_code = true
+minify_html = true
+taxonomies = [{ name = "tags" }]
 
 [search]
 include_title = true
@@ -14,6 +12,9 @@ include_description = true
 include_path = true
 include_content = true
 index_format = "elasticlunr_json"
+
+[markdown]
+highlight_code = true
 
 [extra]
 toc = true
@@ -27,6 +28,6 @@ menu = [
 ]
 
 socials = [
-    { name = "linkedin", url = "https://twitter.com/not_matthias", icon = "linkedin" },
+    { name = "linkedin", url = "https://www.linkedin.com/in/john-carter-114a57357/", icon = "linkedin" },
     { name = "github", url = "https://github.com/nuttycream", icon = "github" },
 ]

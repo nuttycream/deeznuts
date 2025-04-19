@@ -48,7 +48,7 @@ any three letter agency, since SSgt Baze was augmented as part of
 
 but after a while I knew, that it wasn't something I put all my heart into. I
 mean I don't think it was really _challenging_ so to speak, but rather I found
-the entire idea and my two years time doingit, **extremely boring**...
+the entire idea and my two years time doing it, **extremely boring**...
 
 so, I then moved from Louisiana and back to San Antonio Texas, where I spent my
 entire military career at. I did this because they have a huge NSA compound

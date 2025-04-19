@@ -8,8 +8,6 @@ super cool projects or go to my about page to get to know me more personally :)
 
 ### brief overview
 
-#### personal favourites
-
 I like to explore bleeding edge technologies such as:
 
 - [NixOS](https://nixos.org) -> my current full time operating system
@@ -22,15 +20,9 @@ I like to explore bleeding edge technologies such as:
 - [bevy](https://bevyengine.org) -> favourite game engine
 - [unity](https://unity.com) -> game engine I used the most
 
-### proficiency
-
 While I don't really consider myself fully proficient in these languages. I do
 believe I can understand the _logical flow_ or at least the structure of a
 program written in these languages.
-
-- **advanced beginner** -> grasps the fundementals at a competent level
-- **beginner** -> grasps the fundamentals at a basic level
-- **learning** -> small fundamental knowledge to get started
 
 | language   | skill level       |
 | ---------- | ----------------- |
@@ -44,3 +36,7 @@ program written in these languages.
 | SQL        | beginner          |
 | GoLang     | learning          |
 | Zig        | learning          |
+
+- **advanced beginner** -> grasps the fundementals at a competent level
+- **beginner** -> grasps the fundamentals at a basic level
+- **learning** -> small fundamental knowledge to get started

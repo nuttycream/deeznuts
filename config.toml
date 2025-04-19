@@ -15,4 +15,17 @@ build_search_index = true
 highlight_code = true
 
 [extra]
-# Put all your custom variables here
+toc = true
+use_cdn = false
+theme = "toggle"
+fancy_code = true
+
+menu = [
+    { name = "/projects", url = "/projects", weight = 1 },
+    { name = "/about", url = "/about", weight = 2 },
+]
+
+socials = [
+    { name = "linkedin", url = "https://twitter.com/not_matthias", icon = "linkedin" },
+    { name = "github", url = "https://github.com/nuttycream", icon = "github" },
+]

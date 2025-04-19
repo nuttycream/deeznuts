@@ -17,8 +17,6 @@ index_format = "elasticlunr_json"
 highlight_code = true
 
 [extra]
-toc = true
-use_cdn = false
 theme = "toggle"
 fancy_code = true
 

@@ -1,24 +1,24 @@
 base_url = "https://johnnacion.dev"
 title = "johns portfolio"
-theme = "apollo"
-compile_sass = true
 build_search_index = true
+generate_feeds = true
+compile_sass = true
 minify_html = true
 taxonomies = [{ name = "tags" }]
 
-[search]
-include_title = true
-include_description = true
-include_path = true
-include_content = true
-index_format = "elasticlunr_json"
-
 [markdown]
 highlight_code = true
+highlight_theme = "ayu-light"
 
 [extra]
-theme = "toggle"
+toc = true
+use_cdn = false
+#favicon = "/icon/favicon.png"
+theme = "toggle"              
 fancy_code = true
+dynamic_note = true           
+mathjax = true
+mathjax_dollar_inline_enable = true
 
 menu = [
     { name = "/projects", url = "/projects", weight = 1 },
@@ -28,4 +28,7 @@ menu = [
 socials = [
     { name = "linkedin", url = "https://www.linkedin.com/in/john-carter-114a57357/", icon = "linkedin" },
     { name = "github", url = "https://github.com/nuttycream", icon = "github" },
+]
+
+stylesheets = [
 ]

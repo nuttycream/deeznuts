@@ -37,6 +37,6 @@ program written in these languages.
 | GoLang     | learning          |
 | Zig        | learning          |
 
-- **advanced beginner** -> grasps the fundementals at a competent level
+- **advanced beginner** -> grasps the fundamentals at a competent level
 - **beginner** -> grasps the fundamentals at a basic level
 - **learning** -> small fundamental knowledge to get started

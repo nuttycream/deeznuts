@@ -8,7 +8,7 @@ super cool projects or go to my about page to get to know me more personally :)
 
 ### brief overview
 
-I like to explore bleeding edge technologies such as:
+Some of my most used technologies:
 
 - [NixOS](https://nixos.org) -> my current full time operating system
   - see my [dotfiles](https://github.com/nuttycream/nixxy)
@@ -19,10 +19,6 @@ I like to explore bleeding edge technologies such as:
 - [egui](https://github.com/emilk/egui) -> favourite gui framework
 - [bevy](https://bevyengine.org) -> favourite game engine
 - [unity](https://unity.com) -> game engine I used the most
-
-While I don't really consider myself fully proficient in these languages. I do
-believe I can understand the _logical flow_ or at least the structure of a
-program written in these languages.
 
 | language   | skill level       |
 | ---------- | ----------------- |
@@ -37,6 +33,12 @@ program written in these languages.
 | GoLang     | learning          |
 | Zig        | learning          |
 
-- **advanced beginner** -> grasps the fundamentals at a competent level
-- **beginner** -> grasps the fundamentals at a basic level
-- **learning** -> small fundamental knowledge to get started
+**advanced beginner** -> grasps the fundamentals at a competent level
+
+**beginner** -> grasps the fundamentals at a basic level
+
+**learning** -> small fundamental knowledge to get started
+
+While I don't really consider myself fully proficient in these languages. I do
+believe I can understand the _logical flow_ or at least the structure of a
+program written in these languages.

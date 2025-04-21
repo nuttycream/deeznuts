@@ -31,3 +31,9 @@ socials = [
 
 stylesheets = [
 ]
+
+[extra.analytics]
+enabled = true
+
+[extra.analytics.goatcounter]
+user = "nuttycream"

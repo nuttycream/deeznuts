@@ -1,47 +1,15 @@
 @font-face {
-  font-family: "Jetbrains Mono";
+  font-family: "Maple Mono";
   font-style: normal;
   font-weight: 400;
-  src: url("fonts/JetbrainsMono/JetBrainsMono-Regular.ttf"), local("ttf");
+  src: url("fonts/MapleMono/MapleMonoNormal-Regular.ttf"), local("ttf");
   font-display: swap;
 }
 
 @font-face {
-  font-family: "Jetbrains Mono";
+  font-family: "Maple Mono";
   font-style: normal;
   font-weight: 700;
-  src: url("fonts/JetbrainsMono/JetBrainsMono-Bold.ttf"), local("ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/SpaceGrotesk/SpaceGrotesk-Regular.ttf"), local("ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Space Grotesk";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/SpaceGrotesk/SpaceGrotesk-Bold.ttf"), local("ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Mono";
-  font-style: normal;
-  font-weight: 400;
-  src: url("fonts/GeistMono/GeistMono-Regular.ttf"), local("ttf");
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Geist Mono";
-  font-style: normal;
-  font-weight: 700;
-  src: url("fonts/GeistMono/GeistMono-Bold.ttf"), local("ttf");
+  src: url("fonts/MapleMono/MapleMonoNormal-Bold.ttf"), local("ttf");
   font-display: swap;
 }

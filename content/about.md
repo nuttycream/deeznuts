@@ -1,5 +1,5 @@
 +++
-title = "who am i"
+title = "whoami"
 path = "about"
 +++
 

@@ -3,12 +3,10 @@ title= "welcome"
 template = "homepage.html"
 +++
 
-Hello! this is my (John Carter's) personal portfolio, from here you can view my
+Hello! This is my (John Carter's) personal portfolio, from here you can view my
 super cool projects or go to my about page to get to know me more personally :)
 
-### brief overview
-
-Some of my most used technologies:
+# at a glance
 
 - [NixOS](https://nixos.org) -> my current full time operating system
   - see my [dotfiles](https://github.com/nuttycream/nixxy)

@@ -4,7 +4,7 @@ description = "Raspberry Pi powered three-wheeled omni-directional, line followi
 date = "2025-04-30"
 
 [taxonomies]
-tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc"]
+tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken"]
 
 [extra]
 repo_view = true
@@ -16,17 +16,24 @@ comment = true
 A Raspberry Pi powered three-wheeled omni-directional, line following, obstacle
 avoidance + obstacle tracking robot
 
-"My current _MAGNUS OPUS_ - the best project I have ever been a part of!"
+<p align="center">
+<img src="/images/PXL_20250514_000958905.jpg" alt="chicken" style="width: 35%;">
+    <br>
+"My current MAGNUS OPUS - the best project I have ever been a part of!"
+</p>
 
 ## Meet the team
 
-- Shoaib Perouz [LinkedIn](www.linkedin.com)
-  [GitHub](https://github.com/sperouz) - engineer
-- Yuquan Xu [LinkedIn](www.linkedin.com) [GitHub](https://github.com/yyyuquan) -
-  physics
-- Bryan Yao [LinkedIn](www.linkedin.com) [GitHub](https://github.com/bryao) - 3d
+While we are all programmers, and this is technically a programming computer
+science course, we all specialized in certain aspects. And this is why I believe
+we worked well and complimented each other's skills.
+
+- [Shoaib Perouz](www.linkedin.com) [GitHub](https://github.com/sperouz) -
+  engineer
+- [Yuquan Xu](www.linkedin.com) [GitHub](https://github.com/yyyuquan) - physics
+- [Bryan Yao](www.linkedin.com) [GitHub](https://github.com/bryao) - 3d
   modeler/designer
-- John Carter [LinkedIn](www.linkedin.com/in/john-carter-from-mars)
+- [John Carter](www.linkedin.com/in/john-carter-from-mars)
   [GitHub](https://github.com/nuttycream) - programmer
 
 ## Why?
@@ -66,3 +73,8 @@ yet still functional robot. We wanted to make an impact but not by being the
 fastest, but by just being different. So we stuck to our 3-wheeled
 omnidirectional design, and started coming up with ideas on the shell and how we
 can make it even cooler!
+
+## Initial Design
+
+Ambitions were high for our initial design. The main idea we had to work around
+was a three-wheeled omni-directional robot.

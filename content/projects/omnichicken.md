@@ -4,11 +4,7 @@ description = "Raspberry Pi powered three-wheeled omni-directional, line followi
 date = "2025-04-30"
 
 [taxonomies]
-tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken"]
-
-[extra]
-repo_view = true
-comment = true
+tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken", "minecraft", "jockey", "jack black", "steve"]
 +++
 
 # [The Omni Chicken](https://github.com/nuttycream/omnibot)
@@ -105,31 +101,71 @@ Note the top left one, yea, that was my suggestion. And as you probably already
 know we DEFINITELY did not choose that.
 
 However, from Yuquan's extra doodles, he created something that caught our eye,
-the Minecraft chicken (and also the robot head). Which became our main design
-goal!
+the Minecraft chicken (and also the robot head). An amazing and hilarious idea
+because of both the recent popular Minecraft movie and the arguably even more
+popular dumb [chicken jockey meme](https://www.youtube.com/watch?v=EY4h38NaXwU).
+This now became our main design goal, and something we want to fully commit to.
 
-`Note: Shoaib didn't know we were serious about the chicken until the last 3 weeks`
+`Note: Shoaib didn't know we were serious about the chicken until the last 3 weeks XD`
 
 ## Programming
 
 Now for the meaty part. I'll try to expand on this as much as I can since I
-wrote a decent amount of code, but also Shoaib and Bryan also contributed A LOT,
-in terms of initial bot navigation and obstacle tracking/avoidance - which I'll
+wrote a decent amount of code, but also Shoaib and Bryan contributed A LOT, in
+terms of initial bot navigation and obstacle tracking/avoidance - which I'll
 also attempt to expand on. Also note that I consider myself a huge programming
 noob which is especially true with C.
 
-My criteria
+My design philosophy for how I wanna go about this boils down to:
+
+- Robust: kill on panic, handle errors gracefully, minimal (at the very least)
+  memory leaks
+- Modular: plug and play, use previous assignments, can operate independent of
+  one another
+- Readable: should be able to understand code with minimal documentation
+- Easily Modifiable:
+  - [Flat directory structure](https://i.imgur.com/rMWmbyc.png): no directory
+    hierarchy
+  - Can jump around relatively quickly with neovim
+
+In terms of the architecture, I've made this neat little diagram to help when we
+first started to program it:
+
+<p align="center">
+<img src="/images/excalidraw-architecture.png" alt="chicken" style="width: 75%;">
+    <br>
+Note: this diagram is from an older design but I'm
+too lazy to update it with the new stuff
+</p>
+
+The C program, nicknamed named omnibot manages the whole thing, the control
+surfaces, sensor reading, the whole shebang. That Rust part you see will be
+touched on [later](#omniscient).
 
 ### GPIO Library
 
 My first goal was to create a robust GPIO library based on a
 [Raspberry Pi DRA example](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access)
-I've been using from my previous assignments.
+I've been using from my previous assignments. Modifying this, I got rid of all
+the preprocessor macros - mainly because they were quite frankly unreadable for
+me in that syntax, which is rich coming from a Rust enjoyer.
 
-### Multiple Modes
+Wrapping those bit math macros into MORE useful functions:
 
-### Line Following
+```c
+extern int setup_gpio();
+extern int terminate_gpio();
+extern int toggle_gpio(int gpio_pin); // helper function for quick toggling
+extern int set_gpio_level(int gpio_pin, int gpio_level);
+extern int get_gpio_level(int gpio_pin);
+extern int set_gpio_pull(int gpio_pin, int wait_time, int pull_level);
+```
 
-### Obstacle Tracking
+Now... I'm gonna be honest, it currently does not look like above and we
+currently have some redundant functions like `set_gpio_inp/set_gpio_out`. And
+yes, I can switch it, but I haven't done that here yet, but rather did it for my
+Rust rewrite.
 
-### Obstacle Avoidance
+### Multi Modal
+
+## Omniscient

@@ -13,3 +13,19 @@
   src: url("fonts/IBMPlexSerif/IBMPlexSerif-Bold.ttf"), local("ttf");
   font-display: swap;
 }
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: mono;
+  font-weight: 400;
+  src: url("fonts/MapleMono/MapleMono-Regular.ttf"), local("ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Maple Mono";
+  font-style: mono;
+  font-weight: 700;
+  src: url("fonts/MapleMono/MapleMono-Bold.ttf"), local("ttf");
+  font-display: swap;
+}

@@ -22,7 +22,7 @@ While we are all programmers, and this is technically a programming computer
 science course, we all specialized in certain aspects. And this is why I we
 worked well together and complimented each other's skills.
 
-- [Shoaib Perouz](www.linkedin.com) ([GitHub](https://github.com/sperouz)) -
+- [Shoaib Perouz](https://linkedin.com) ([GitHub](https://github.com/sperouz)) -
   engineer
 - [Yuquan Xu](www.linkedin.com) ([GitHub](https://github.com/yyyuquan)) -
   physics

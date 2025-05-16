@@ -2,4 +2,22 @@
 
 {% block main_content %}
     {{ post_macros::home_page(section=section) }}
+
+    {% set all_tags = get_taxonomy(kind="tags") %}
+    {% if all_tags %}
+    <div class="tag-cloud">
+        <main class="list">
+            <ul class="tags">
+                {% for term in all_tags.items %}
+                    <li>
+                        <a href="{{ term.permalink | safe }}">
+                            {{ term.name }} ({{ term.pages | length }} post{{ term.pages | length | pluralize }})
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </main>
+    </div>
+    {% endif %}
+
 {% endblock main_content %}

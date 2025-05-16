@@ -4,9 +4,12 @@ template = "homepage.html"
 +++
 
 Hello! This is my (John Carter's) personal portfolio, from here you can view my
-super cool projects or go to my about page to get to know me more personally :)
+super cool projects or go to my about page to get to know me more personally. If
+you're just here for my resume, then [click here](assets/resume.pdf).
 
 # at a glance
+
+Some of my favourite tooling:
 
 - [NixOS](https://nixos.org) -> my current full time operating system
   - see my [dotfiles](https://github.com/nuttycream/nixxy)
@@ -17,3 +20,5 @@ super cool projects or go to my about page to get to know me more personally :)
 - [egui](https://github.com/emilk/egui) -> favourite gui framework
 - [bevy](https://bevyengine.org) -> favourite game engine
 - [unity](https://unity.com) -> game engine I used the most
+
+# jump to

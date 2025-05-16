@@ -15,15 +15,17 @@ through ActionScript 2 to then ActionScript 3.
 
 But I found a small niche, making game
 [trainers](https://en.wikipedia.org/wiki/Trainer_(games)) for different flash
-games. It was pretty simple since there was at the time very little security
-around these hobby and small games, but also flash in general.
-
-So my first programming language was a scripting language... which probably
-explains why it took me a while to grasp low-level languages like C.
+games. And no, not the memory manipulation type things you can do with Cheat
+Engine, that was a bit too advanced for me then, but rather decompiling the
+game's *.swf file and attempting to find functions that I can use and create a
+wrapper program around the 'hacks' I would implement. It was pretty simple since
+there was at the time very little security around these hobby and small games,
+but also flash in general.
 
 ### my professional start
 
-College was a really not an affordable goal at the time, and graduating from a
+College was a really not an affordable goal at the time, and graduating High
+School from a
 [small town in Louisiana](https://en.wikipedia.org/wiki/Leesville,_Louisiana),
 not much extra curricular opportunity presents itself there. So the next best
 option was to enlist in the military, particularly the US AirForce.
@@ -37,7 +39,7 @@ However, I did meet an amazing mentor there. SSgt Baze. Bad-ass name, no? He was
 someone I looked up to a lot. Not because of his excellent skill set, but
 because he was an impeccable leader, whenever he would walk into a room, people
 knew that person is someone to truly rely on. He would later influence a lot of
-my decisions after the military.
+my decisions during and after the military.
 
 ### college life
 
@@ -52,12 +54,37 @@ the entire idea and my two years time doing it, **extremely boring**...
 
 So, I then moved from Louisiana and back to San Antonio Texas, where I spent my
 entire military career at. I did this because they have a huge NSA compound
-there and the UTSA was considered a decent university for CyberSecurity or
-Computer adjacent degrees.
+there and the [UTSA](https://www.utsa.edu/) was considered a decent university
+for CyberSecurity or computer science adjacent degrees.
 
-I began my computer science at a community college in the city, to get my grades
-high enough in STEM courses so i can transfer to UTSA.
+I began my computer science at a decent
+[community college](https://www.alamo.edu/nvc/) in the city, to get my grades
+high enough in STEM courses so I can transfer to UTSA.
 
-However... life happens, and ultimately I moved to the bay area with my sister.
-Which coincidentally houses the worlds biggest tech companies. So I'm set,
-right?
+And I gotta say, I was actually horrendous at anything that's not 'general
+programming', as in I was extremely bad at Math. How bad you ask? Part of the
+STEM entrance program they have at the school, we all go through a
+'skill-checks', one of those skill check questions was:
+
+$\sqrt{144}=$
+
+Yes.... I didn't know what the fuck to do there. Now in fairness, I don't know
+if I was just not in the right state of mind to answer that question, but I
+completely blanked on it. A super embarrassing moment for me, which will haunt
+me for a while... The answer is `12` btw.
+
+So they put me in one of the lowest possible Math classes in that college,
+[Elementary Algebra](https://mynvccatalog.alamo.edu/preview_course_nopop.php?catoid=140&coid=67162).
+It was only for half a semester, after passing that class they would move you to
+Intermediate Algebra for the rest of the semester. This was not a good start.
+But at least I get to relearn the fundamentals.
+
+The material for Elementary Algebra was bone dead easy, simple calculations like
+division, order of operations. Intermediate Algebra introduced equations and
+expressions.
+
+Needless to say, I got an A in both of those classes.
+
+Unfortunately, life happens, and ultimately I moved to the bay area with my
+sister. Which coincidentally houses the worlds biggest tech companies. So I'm
+set, right? Surely...

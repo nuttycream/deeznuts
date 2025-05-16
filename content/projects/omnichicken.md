@@ -35,8 +35,8 @@ worked well together and complimented each other's skills.
 
 This all started as a group project for our Embedded Linux programming class by
 SFSU's best professor, Robert Bierman! We got to work by brainstorming a bunch
-of ideas for this robot, specifically on the type of movement it would use and
-some of the more notable ones are:
+of ideas for this robot, specifically on the type of movement we would use and
+some of the more notable ideas are:
 
 - 4 legged spider
 - bipedal walking humanoid
@@ -169,6 +169,10 @@ the object the entire time. On the surface, it sound pretty easy right? Just set
 a point in front of the robot and traverse around it. But in reality, it's not
 so easy...
 
+### Vectoring
+
+### Obstacle Tracking
+
 ## The Code
 
 Note that I consider myself a huge programming noob which is especially true
@@ -196,9 +200,9 @@ first started to program it:
 Note: this diagram is from an older design that's missing a decent amount of 'modules'
 </p>
 
-The C program, nicknamed named omnibot manages the whole thing, the control
-surfaces, sensor reading, the whole shebang. That Rust part you see will be
-touched on [later](#shared-memory).
+The C program, nicknamed omnibot manages the whole thing, the control surfaces,
+sensor reading, the whole shebang. That Rust part you see will be touched on
+[later](#shared-memory).
 
 ### GPIO Library
 

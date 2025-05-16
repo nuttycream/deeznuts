@@ -77,10 +77,19 @@ fastest, but by just being different. So we stuck to our 3-wheeled
 omnidirectional design, and started coming up with ideas on the shell and how we
 can make it even cooler!
 
-## Initial Design
+## Design
 
 Ambitions were high for our initial design. The main idea we had to work around
 was a three-wheeled omni-directional robot. Here are some of Yuquan's sketches:
+
+<p align="center">
+<img src="/images/Omni-Cake_1.png" alt="chicken" style="width: 75%;">
+</p>
+
+This is the very first instance of the bot that we drew up in class. Aptly
+nicknamed the omni-cake, because of our idea of sandwiching components in
+between layers. This served as an initial design idea, along with where to mount
+the sensors, motors, pi along with its components, and how it would traverse.
 
 <p align="center">
 <img src="/images/615_Final_Proj.webp" alt="chicken" style="width: 75%;">
@@ -108,13 +117,63 @@ This now became our main design goal, and something we want to fully commit to.
 
 `Note: Shoaib didn't know we were serious about the chicken until the last 3 weeks XD`
 
-## Programming
+### Version 1
 
-Now for the meaty part. I'll try to expand on this as much as I can since I
-wrote a decent amount of code, but also Shoaib and Bryan contributed A LOT, in
-terms of initial bot navigation and obstacle tracking/avoidance - which I'll
-also attempt to expand on. Also note that I consider myself a huge programming
-noob which is especially true with C.
+<p align="center">
+<img src="/images/IMG_0100.jpg" alt="chicken" style="width: 25%;">
+<img src="/images/IMG_0101.jpg" alt="chicken" style="width: 25%;">
+</p>
+
+Version 1, all parts were sourced by Shoaib and assembled by him. His design was
+meant to be a prototype but was ultimately used as a base for overall robot.
+Note the mechanum omni wheels. Because they weren't true omnidirectional wheels,
+they were a major headache for us. It's a cute little thing though.
+
+### True Omni-Wheels
+
+<p align="center">
+<img src="/images/IMG_5158.jpg" alt="chicken" style="width: 25%;">
+<img src="/images/image-5.png" alt="chicken" style="width: 35%;">
+</p>
+
+Bryan managed to find some TRUE omnidirectional wheels, sourced from
+[robotics](https://robot.com) supplier, it initially costed ~60 bucks for three
+wheels. But because of the tariffs made the price balloon up to 100 USD. They
+were at least kind enough to also provide 3D models of them.
+
+### 3D Printed Chicken Body
+
+<p align="center">
+<img src="/images/chicken-body.jpg" alt="chicken" style="width: 35%;">
+</p>
+
+Professor Bierman, gave every group a chance to have 3D parts printed. And
+because we're pretty damn greedy, we took up a decent amount of both material,
+and time to have our LARGE chicken body printed.
+
+## Physics
+
+Physics was mainly handled by our resident genius Bryan. He came up with not
+only the math needed for vector direction control, but he analyzed and took
+direct inspiration from actual [research papers](#attribution) so we can have
+proper 3 wheeled omnidirectional traversal.
+
+<p align="center">
+<img src="/images/image-3.png" alt="chicken" style="width: 25%;">
+<img src="/images/image-4.png" alt="chicken" style="width: 25%;">
+</p>
+
+Initial sketches for obstacle tracking. Our initial idea was to essentially
+'encircle' the obstacle by strafing around it, keeping the robot's front facing
+the object the entire time. On the surface, it sound pretty easy right? Just set
+a point in front of the robot and traverse around it. But in reality, it's not
+so easy...
+
+## The Code
+
+Note that I consider myself a huge programming noob which is especially true
+with C, so I won't be able to explain a lot of the technical stuff in a good
+way, but I'll try my best.
 
 My design philosophy for how I wanna go about this boils down to:
 
@@ -134,13 +193,12 @@ first started to program it:
 <p align="center">
 <img src="/images/excalidraw-architecture.png" alt="chicken" style="width: 75%;">
     <br>
-Note: this diagram is from an older design but I'm
-too lazy to update it with the new stuff
+Note: this diagram is from an older design that's missing a decent amount of 'modules'
 </p>
 
 The C program, nicknamed named omnibot manages the whole thing, the control
 surfaces, sensor reading, the whole shebang. That Rust part you see will be
-touched on [later](#omniscient).
+touched on [later](#shared-memory).
 
 ### GPIO Library
 
@@ -150,7 +208,7 @@ I've been using from my previous assignments. Modifying this, I got rid of all
 the preprocessor macros - mainly because they were quite frankly unreadable for
 me in that syntax, which is rich coming from a Rust enjoyer.
 
-Wrapping those bit math macros into MORE useful functions:
+Wrapping those bit macros into **more** useful functions:
 
 ```c
 extern int setup_gpio();
@@ -158,14 +216,27 @@ extern int terminate_gpio();
 extern int toggle_gpio(int gpio_pin); // helper function for quick toggling
 extern int set_gpio_level(int gpio_pin, int gpio_level);
 extern int get_gpio_level(int gpio_pin);
-extern int set_gpio_pull(int gpio_pin, int wait_time, int pull_level);
+extern int set_gpio_pull(int gpio_pin, int pull_level);
 ```
 
 Now... I'm gonna be honest, it currently does not look like above and we
 currently have some redundant functions like `set_gpio_inp/set_gpio_out`. And
-yes, I can switch it, but I haven't done that here yet, but rather did it for my
-Rust rewrite.
+yes, I can probably switch it right now... but I haven't done that here yet, and
+only did it for my Rust rewrite.
+
+In terms of robustness, I kinda wish C had the pattern matching Rust had. But
+for the sake of not overcomplicating the code, I just wrote some utility
+functions like `validate_gpio_pin`
+
+Also, I did not realize I wasn't suppose to be using `/dev/mem` - which requires
+`sudo` level access and manually specifying the GPIO address. After learning
+from this
+[pi forums post](https://forums.raspberrypi.com/viewtopic.php?t=167446), I
+switched to `/dev/gpiomem`, and got rid of a function that would look for the
+device address.
 
 ### Multi Modal
 
-## Omniscient
+### Shared Memory
+
+## Attribution

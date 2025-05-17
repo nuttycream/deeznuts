@@ -4,7 +4,7 @@ description = "Raspberry Pi powered three-wheeled omni-directional, line followi
 date = "2025-04-30"
 
 [taxonomies]
-tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken", "minecraft", "jockey", "jack black", "steve"]
+tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken", "minecraft"]
 +++
 
 # [The Omni Chicken](https://github.com/nuttycream/omnibot)
@@ -261,6 +261,57 @@ from this
 switched to `/dev/gpiomem`, and got rid of a function that would look for the
 device address.
 
+From this:
+
+```c
+int find_gpio_addr() {
+    // cat /proc/iomem | grep gpio
+    // ....
+}
+
+int setup_gpio() {
+    int gpio_addr = find_gpio_addr();
+
+    if ((mem_fd = open("/dev/mem", O_RDWR | O_SYNC)) < 0) {
+        // ...
+    }
+
+    gpio_map = mmap(
+        NULL,                   // Any adddress in our space will do
+        BLOCK_SIZE,             // Map length
+        PROT_READ | PROT_WRITE, // Enable reading & writting to mapped memory
+        MAP_SHARED,             // Shared with other processes
+        mem_fd,                 // File to map
+        gpio_addr
+    );
+    // ....
+}
+```
+
+To:
+
+```c
+// no longer need find_gpio_addr
+int setup_gpio() {
+    if (fd = open("/dev/gpiomem", O_RDWR | O_SYNC) < 0) {
+        // ...
+    }
+
+    gpio_map = mmap(
+        NULL,                   // Any adddress in our space will do
+        BLOCK_SIZE,             // Map length
+        PROT_READ | PROT_WRITE, // Enable reading & writting to mapped memory
+        MAP_SHARED,             // Shared with other processes
+        mem_fd,                 // File to map
+        0                       // GPIO address location
+    );
+    // ....
+}
+```
+
+Which felt cleaner, and overall much more safer in terms of giving the program
+`sudo` level access to `/dev/mem`.
+
 ### Multi Modal
 
 One of the architectural design decisions I came up with was to have multiple
@@ -272,7 +323,7 @@ Switching between these modes was handled by a multithreaded terminal controller
 don't know if this is a good idea, but it seems to work, so
 [wynaut](https://pokemondb.net/pokedex/wynaut)?)
 
-Here are what they respectively look like:
+Here are what they look like:
 
 ```c
 // 0 -> line following
@@ -292,6 +343,11 @@ int sensor_mode;
 ```
 
 ### Reading from Sensors
+
+Reading from sensor data is multithreaded, and will continuously while the main
+thread (where all the logic and mode handling is in). Reading from sensors is
+pretty trivial, making it multi-threaded is not that hard, if I may say so
+myself.
 
 ### Shared Memory
 
@@ -353,7 +409,8 @@ struct Shared {
 
 Lucky for me shared memory on rust is pretty straight forward, there exists a
 [crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
-sure uses the *nix and libc crates for linux specific bindings.
+sure uses the [*nix](https://github.com/nix-rust/nix) and
+[libc](https://github.com/rust-lang/libc) crates for linux specific bindings.
 
 To read more about how the Rust side works, you can take a gander at this
 [project post](/projects/omniscient), where I go somewhat more in-depth.
@@ -362,5 +419,9 @@ To read more about how the Rust side works, you can take a gander at this
 
 - [Raspberry Pi GPIO C DRA Example](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access) -
   used as a basis for a custom GPIO C library
-- [WaveShare Motor Driver Hat Demo Code](https://www.waveshare.com/motor-driver-hat.htm) -
+- [WaveShare Motor Driver Hat Demo](https://www.waveshare.com/motor-driver-hat.htm) -
   used for I2C and PWM functionality
+- [Three-Omnidirectional Wheels with PID](https://github.com/Said-taoussi/Three-Omnidirectional-Wheels-with-PID-Control) -
+  used as a cross-reference for PID controls
+- [3-wheel-omni Vectoring Arduino Example](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino) -
+  used as a cross-reference for vector calculations

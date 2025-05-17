@@ -18,17 +18,18 @@ avoidance + obstacle tracking robot
 
 ## Meet the team
 
-While we are all programmers, and this is technically a programming computer
-science course, we all specialized in certain aspects. And this is why I we
-worked well together and complimented each other's skills.
+While we are all programmers, and this is by all means a programming computer
+science course, we all specialized in certain aspects. And this is why I
+strongly believe we worked so well together since we complimented each other's
+skill-sets and specializations.
 
-- [Shoaib Perouz](https://linkedin.com) ([GitHub](https://github.com/sperouz)) -
-  engineer
-- [Yuquan Xu](www.linkedin.com) ([GitHub](https://github.com/yyyuquan)) -
-  physics
+- [Shoaib Perouz](https://www.linkedin.com/in/shoaib-perouz-769329a/)
+  ([GitHub](https://github.com/sperouz)) - engineer
+- [Yuquan Xu](https://www.linkedin.com/in/yuquan-xu-846852149/)
+  ([GitHub](https://github.com/yyyuquan)) - physics
 - [Bryan Yao](www.linkedin.com) ([GitHub](https://github.com/bryao)) - 3d
   modeler/designer
-- [John Carter](www.linkedin.com/in/john-carter-from-mars)
+- [John Carter](https://www.linkedin.com/in/john-carter-from-mars)
   ([GitHub](https://github.com/nuttycream)) - programmer
 
 ## But why?
@@ -112,6 +113,17 @@ This now became our main design goal, and something we want to fully commit to.
 
 `Note: Shoaib didn't know we were serious about the chicken until the last 3 weeks XD`
 
+### Version 0.5
+
+<p align="center">
+<img src="/images/20250415_161605.jpg" alt="chicken" style="width: 50%;">
+</p>
+
+Version 0, all parts were sourced by Shoaib and assembled by him. His design was
+meant to be a prototype but was ultimately used as a base for the overall robot.
+Note the mechanum omni wheels. Because they weren't true omnidirectional wheels,
+they were a major headache for us. It's a cute little thing though.
+
 ### Version 1
 
 <p align="center">
@@ -119,10 +131,11 @@ This now became our main design goal, and something we want to fully commit to.
 <img src="/images/IMG_0101.jpg" alt="chicken" style="width: 25%;">
 </p>
 
-Version 1, all parts were sourced by Shoaib and assembled by him. His design was
-meant to be a prototype but was ultimately used as a base for overall robot.
-Note the mechanum omni wheels. Because they weren't true omnidirectional wheels,
-they were a major headache for us. It's a cute little thing though.
+Version 1, parts added by Shoaib to include the raspberry pi top plate, making
+effectively a _cake_. This 3 plate design carried us pretty far, but it started
+to become pretty heavy and constrained in terms of space and structural
+rigidity. So we had to get a little _creative_ in terms of how the components
+and wiring it all up.
 
 ### True Omni-Wheels
 
@@ -144,7 +157,21 @@ were at least kind enough to also provide 3D models of them.
 
 Professor Bierman, gave every group a chance to have 3D parts printed. And
 because we're pretty damn greedy, we took up a decent amount of both material,
-and time to have our LARGE chicken body printed.
+and time to have our LARGE chicken body printed. The total cost of the print was
+around ~$30. But Professor Bierman, gave it to us for free! Which was honestly a
+pretty sweet deal considering how big and how long it took to print.
+
+### Version 2
+
+<p align="center">
+<img src="/images/20250513_202837.jpg" alt="chicken" style="width: 50%;">
+</p>
+
+Now... I know what you're thinking... That's a whole lotta wires! But trust me
+it's completely functional. Cable management is obviously not our specialty but
+cleaning it all up could come later. At this point the bot was completely
+functional, it was missing some _optional_ features that I wanted to implement,
+but it could line-follow and avoid an obstacle at this point in time.
 
 ## Physics
 
@@ -176,17 +203,17 @@ way, but I'll try my best.
 
 My design philosophy for how I wanna go about this boils down to:
 
-- Robust: kill on panic, handle errors gracefully, minimal (at the very least)
-  memory leaks
+- Robust: kill on panic, handle errors gracefully, zero (no promises) memory
+  leaks
 - Modular: plug and play, use previous assignments, can operate independent of
   one another
 - Readable: should be able to understand code with minimal documentation
 - Easily Modifiable:
   - [Flat directory structure](https://i.imgur.com/rMWmbyc.png): no directory
     hierarchy
-  - Can jump around relatively quickly with neovim
+  - Can jump around relatively quickly within neovim
 
-In terms of the architecture, I've made this neat little diagram to help when we
+In terms of the architecture, I've made this initial diagram to help when we
 first started to program it:
 
 <p align="center">
@@ -223,9 +250,9 @@ currently have some redundant functions like `set_gpio_inp/set_gpio_out`. And
 yes, I can probably switch it right now... but I haven't done that here yet, and
 only did it for my Rust rewrite.
 
-In terms of robustness, I kinda wish C had the pattern matching Rust had. But
+In terms of readability, I kinda wish C had the pattern matching Rust had. But
 for the sake of not overcomplicating the code, I just wrote some utility
-functions like `validate_gpio_pin`
+functions like `validate_gpio_pin` for robustness(?).
 
 Also, I did not realize I wasn't suppose to be using `/dev/mem` - which requires
 `sudo` level access and manually specifying the GPIO address. After learning
@@ -236,6 +263,73 @@ device address.
 
 ### Multi Modal
 
+One of the architectural design decisions I came up with was to have multiple
+modes for not only the bot itself but obstacle modes, sensor modes, and
+traversal modes.
+
 ### Shared Memory
+
+Remember that Rust web server in the architecture diagram? Yeah, so I decided to
+have some EXTRA bit of fun and create a web server that can monitor the status
+of the bot while it was running it's doing _bot stuff_. I did a fair amount of
+research to try and find the most optimal way to communicate between the C
+program and the Rust web server. I went through the rabbit hole of
+[ipc](https://en.wikipedia.org/wiki/Inter-process_communication). From unix
+sockets and message queues, the most straightforward to me was
+[shared memory](https://en.wikipedia.org/wiki/Shared_memory). Since it used
+[mmap](https://www.man7.org/linux/man-pages/man2/mmap.2.html) and I've already
+somewhat learned about how to use `mmap` from my work on modifying GPIO direct
+registry access library.
+
+<p align="center">
+<img src="/images/image.png" alt="chicken" style="width: 50%;">
+</p>
+
+There's probably a more optimal way of doing shared memory but for the sake of
+my sanity, I went with a simple option to just throw everything in a struct to
+pass around. What that looks like:
+
+In C:
+
+```c
+typedef struct {
+    int ver;
+    int direction;
+    int motor_power[3];
+    int bot_mode;
+    int obstacle;
+    int obstacle_mode;
+    int go_left;
+    int go_right;
+    int sensor_mode;
+    int sensors[5];
+} Shared;
+```
+
+In Rust:
+
+```rust
+#[repr(C)]
+#[derive(Debug, Clone, Copy)]
+struct Shared {
+    ver: i32,
+    direction: i32,
+    motor_power: [i32; 3],
+    bot_mode: i32,
+    obstacle: i32,
+    obstacle_mode: i32,
+    go_left: i32,
+    go_right: i32,
+    sensor_mode: i32,
+    sensors: [i32; 5],
+}
+```
+
+Lucky for me shared memory on rust is pretty straight forward, there exists a
+[crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
+sure uses the *nix and libc crates for linux specific bindings.
+
+To read more about how this works, you can take a gander at this
+[project post](/projects/omniscient), where I go somewhat more in-depth.
 
 ## Attribution

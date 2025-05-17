@@ -11,7 +11,7 @@
                 {% for term in all_tags.items %}
                     <li>
                         <a href="{{ term.permalink | safe }}">
-                            {{ term.name }} ({{ term.pages | length }} post{{ term.pages | length | pluralize }})
+                            {{ term.name }} ({{ term.pages | length }} project{{ term.pages | length | pluralize }})
                         </a>
                     </li>
                 {% endfor %}

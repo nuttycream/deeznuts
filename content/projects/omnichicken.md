@@ -171,7 +171,7 @@ Now... I know what you're thinking... That's a whole lotta wires! But trust me
 it's completely functional. Cable management is obviously not our specialty but
 cleaning it all up could come later. At this point the bot was completely
 functional, it was missing some _optional_ features that I wanted to implement,
-but it could line-follow and avoid an obstacle at this point in time.
+but it could line-follow and avoid an obstacle at this point in our project.
 
 ## Physics
 
@@ -234,7 +234,7 @@ I've been using from my previous assignments. Modifying this, I got rid of all
 the preprocessor macros - mainly because they were quite frankly unreadable for
 me in that syntax, which is rich coming from a Rust enjoyer.
 
-Wrapping those bit macros into **more** useful functions:
+Wrapping those macros into **more** useful functions:
 
 ```c
 extern int setup_gpio();
@@ -245,10 +245,10 @@ extern int get_gpio_level(int gpio_pin);
 extern int set_gpio_pull(int gpio_pin, int pull_level);
 ```
 
-Now... I'm gonna be honest, it currently does not look like above and we
+Now... I'm gonna be honest, it does not complete look like above and we
 currently have some redundant functions like `set_gpio_inp/set_gpio_out`. And
-yes, I can probably switch it right now... but I haven't done that here yet, and
-only did it for my Rust rewrite.
+yes, I can probably switch those right now... but I haven't done that here yet,
+and only did it for my [Rust rewrite](https://github.com/nuttycream/pipin).
 
 In terms of readability, I kinda wish C had the pattern matching Rust had. But
 for the sake of not overcomplicating the code, I just wrote some utility
@@ -267,11 +267,37 @@ One of the architectural design decisions I came up with was to have multiple
 modes for not only the bot itself but obstacle modes, sensor modes, and
 traversal modes.
 
+Switching between these modes was handled by a multithreaded terminal controller
+`term.h` that modified the [shared memory struct](#shared-memory). (I honestly
+don't know if this is a good idea, but it seems to work, so
+[wynaut](https://pokemondb.net/pokedex/wynaut)?)
+
+Here are what they respectively look like:
+
+```c
+// 0 -> line following
+// 1 -> obstacle mode
+// 2 -> manual control
+// 3 -> wander mode
+int bot_mode;
+
+// 0 -> obstacle tracking
+// 1 -> obstacle avoidance
+int obstacle_mode;
+
+// 0 -> four sensor mapped logic
+// 1 -> five sensor weighted average
+// 2 -> two sensor simple mode
+int sensor_mode;
+```
+
+### Reading from Sensors
+
 ### Shared Memory
 
 Remember that Rust web server in the architecture diagram? Yeah, so I decided to
 have some EXTRA bit of fun and create a web server that can monitor the status
-of the bot while it was running it's doing _bot stuff_. I did a fair amount of
+of the bot while it was running and doing _bot stuff_. I did a fair amount of
 research to try and find the most optimal way to communicate between the C
 program and the Rust web server. I went through the rabbit hole of
 [ipc](https://en.wikipedia.org/wiki/Inter-process_communication). From unix
@@ -329,7 +355,12 @@ Lucky for me shared memory on rust is pretty straight forward, there exists a
 [crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
 sure uses the *nix and libc crates for linux specific bindings.
 
-To read more about how this works, you can take a gander at this
+To read more about how the Rust side works, you can take a gander at this
 [project post](/projects/omniscient), where I go somewhat more in-depth.
 
 ## Attribution
+
+- [Raspberry Pi GPIO C DRA Example](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access) -
+  used as a basis for a custom GPIO C library
+- [WaveShare Motor Driver Hat Demo Code](https://www.waveshare.com/motor-driver-hat.htm) -
+  used for I2C and PWM functionality

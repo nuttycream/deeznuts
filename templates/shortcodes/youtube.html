@@ -1,0 +1,13 @@
+<figure class="youtube-figure">
+  {% if caption %}
+    <h4>{{ caption }}</h4>
+  {% endif %}
+  <div class="youtube">
+    <iframe
+      src="https://www.youtube.com/embed/{{id}}{% if autoplay %}?autoplay=1{% endif %}"
+      webkitallowfullscreen
+      mozallowfullscreen
+      allowfullscreen>
+    </iframe>
+  </div>
+</figure>

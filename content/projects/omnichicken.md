@@ -13,7 +13,7 @@ A Raspberry Pi powered three-wheeled omni-directional, line following, obstacle
 avoidance + obstacle tracking robot
 
 <p align="center">
-<img src="/images/PXL_20250514_000958905.jpg" alt="chicken" style="width: 35%;">
+<img src="/images/PXL_20250514_000958905.jpg" alt="chicken" style="width: 50%;">
 </p>
 
 ## Meet the team
@@ -47,12 +47,7 @@ some of the more notable ideas are:
 We finally settled on a three-wheeled omnidirectional robot HEAVILY inspired by
 this video by [maker.moekoe](https://www.youtube.com/@makermoekoe):
 
-<p align="center" >
-    <a href="https://www.youtube.com/watch?v=OIdMkZyhx7E">
-<img src="https://img.youtube.com/vi/OIdMkZyhx7E/maxresdefault.jpg"
-         alt="chicken" style="width: 75%;">
-    </a>
-</p>
+{{ youtube(id="OIdMkZyhx7E")}}
 
 This design was not only fairly unique in the hobby space (at least from what
 I've seen) but also never been done in our Professor's class yet.

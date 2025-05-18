@@ -20,8 +20,8 @@ avoidance + obstacle tracking robot
 
 While we are all programmers, and this is by all means a programming computer
 science course, we all specialize in certain aspects. This is why I strongly
-believe we worked so well together; we complemented each other's skill sets and
-specializations.
+believe we worked so well together because we complemented each other's skill
+sets and specializations.
 
 - [Shoaib Perouz](https://www.linkedin.com/in/shoaib-perouz-769329a/)
   ([GitHub](https://github.com/sperouz)) - engineer
@@ -37,7 +37,7 @@ specializations.
 This all started as a group project for our Embedded Linux programming class by
 SFSU's best professor, Robert Bierman! We got to work by brainstorming a bunch
 of ideas for this robot, specifically on the type of movement we would use, and
-Some of the more notable ideas are:
+Some of the more notable ideas were:
 
 - 4-legged spider
 - bipedal walking humanoid
@@ -45,13 +45,13 @@ Some of the more notable ideas are:
 - crab
 - snake
 
-We finally settled on a three-wheeled omnidirectional robot HEAVILY inspired by
-this video by [maker.moekoe](https://www.youtube.com/@makermoekoe):
+We finally settled on a three-wheeled omnidirectional robot HEAVILY inspired
+from this video by [maker.moekoe](https://www.youtube.com/@makermoekoe):
 
 {{ youtube(id="OIdMkZyhx7E")}}
 
-This design was not only fairly unique in the hobby space (at least from what
-I've seen) but also never been done in our Professor's class yet.
+This design was not only fairly simple (at least on the surface) but also never
+been done in our Professor's class yet.
 
 You see, while the Professor planned to give extra points to those who could
 finish the fastest, there were some things that I was wary of if we were to go
@@ -72,6 +72,8 @@ still functional robot. We wanted to make an impact, but not by being the
 fastest, but by just being different. So we stuck to our 3-wheeled
 omnidirectional design, and started coming up with ideas on the shell and how we
 can make it even cooler!
+
+> I also learned later on that the Professor gives extra points for creativity!
 
 ## Design
 
@@ -112,7 +114,8 @@ popular dumb [chicken jockey meme](https://www.youtube.com/watch?v=EY4h38NaXwU).
 This has now become our main design goal, and something we want to fully commit
 to.
 
-`Note: Shoaib didn't know we were serious about the chicken until the last 3 weeks XD`
+> Shoaib didn't know we were serious about the chicken until we were a month
+> into our project XD
 
 ### Version 0.5
 
@@ -120,10 +123,11 @@ to.
 <img src="/images/20250415_161605.jpg" alt="chicken" style="width: 50%;">
 </p>
 
-Version 0, all parts were sourced by Shoaib and assembled by him. His design was
-meant to be a prototype but was ultimately used as a base for the overall robot.
-Note the mechanum omni wheels. Because they weren't true omnidirectional wheels,
-they were a major headache for us. It's a cute little thing, though.
+Our very first build, all parts were sourced by Shoaib and assembled by him. His
+design was meant to be a prototype but was ultimately used as a base for the
+overall robot. Note the mechanum omni wheels. Because they weren't true
+omnidirectional wheels, they were a major headache for us. It's a cute little
+thing, though.
 
 ### Version 1
 
@@ -145,10 +149,10 @@ and wiring it all up.
 <img src="/images/image-5.png" alt="chicken" style="width: 35%;">
 </p>
 
-Bryan managed to find some TRUE omnidirectional wheels, sourced from
+Bryan managed to find some **true** omnidirectional wheels, sourced from
 [robotics](https://robot.com) supplier, which initially cost ~60 bucks for three
-wheels. But because of the tariffs made the price ballooned to 100 USD. They
-were at least kind enough to also provide 3D models of them.
+wheels. But because of the tariffs, the price ballooned to 100 USD. They were at
+least kind enough to also provide 3D models of them.
 
 ### 3D Printed Chicken Body
 
@@ -350,6 +354,17 @@ thread (where all the logic and mode handling is). Reading from sensors is
 pretty trivial, making it multi-threaded is not that hard, if I may say so
 myself.
 
+```c
+// 0 - no
+// 1 - yes
+extern volatile int go_left;
+extern volatile int go_right;
+extern volatile int obstacle_detected;
+
+void *detect_obstacle(void *args);
+void *detect_line(void *args);
+```
+
 ### Shared Memory
 
 Remember the Rust web server in the architecture diagram? Yeah, so I decided to
@@ -411,7 +426,8 @@ struct Shared {
 Lucky for me, shared memory on Rust is pretty straightforward, there exists a
 [crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
 sure uses the [*nix](https://github.com/nix-rust/nix) and
-[libc](https://github.com/rust-lang/libc) crates for Linux-specific bindings.
+[libc](https://github.com/rust-lang/libc) crates for Linux-specific sys calls
+like mmap().
 
 To read more about how the Rust side works, you can take a gander at this
 [project post](/projects/omniscient), where I go somewhat more in-depth.

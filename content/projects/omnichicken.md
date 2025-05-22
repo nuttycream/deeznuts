@@ -13,7 +13,7 @@ A Raspberry Pi-powered three-wheeled omnidirectional, line following, obstacle
 avoidance + obstacle tracking robot
 
 <p align="center">
-<img src="/images/PXL_20250514_000958905.jpg" alt="chicken" style="width: 50%;">
+<img src="/images/chicken.jpg" alt="chicken" style="width: 50%;">
 </p>
 
 ## Meet the team
@@ -90,7 +90,7 @@ between layers. This served as an initial design idea, along with where to mount
 the sensors, motors, pi along with its components, and how it would traverse.
 
 <p align="center">
-<img src="/images/615_Final_Proj.webp" alt="chicken" style="width: 75%;">
+<img src="/images/615_Final_Proj.png" alt="chicken" style="width: 75%;">
 </p>
 
 As you can see, we initially thought of going for a Da Vinci Tank, which seemed
@@ -101,7 +101,7 @@ Another suggestion, by yours truly, was to make it similar to the shape of a...
 Yeah, you'll see here in a moment.
 
 <p align="center">
-<img src="/images/615_Final_Proj_2.webp" alt="chicken" style="width: 75%;">
+<img src="/images/615_Final_Proj_2.png" alt="chicken" style="width: 75%;">
 </p>
 
 Note the top left one, yeah, that was my suggestion. And as you probably already
@@ -351,7 +351,7 @@ int sensor_mode;
 
 Reading from sensor data is multithreaded, and will continue while the main
 thread (where all the logic and mode handling is). Reading from sensors is
-pretty trivial, making it multi-threaded is not that hard, if I may say so
+pretty trivial, and making it multi-threaded is not that hard if I may say so
 myself.
 
 ```c
@@ -359,6 +359,8 @@ myself.
 // 1 - yes
 extern volatile int go_left;
 extern volatile int go_right;
+extern volatile int found_line;
+
 extern volatile int obstacle_detected;
 
 void *detect_obstacle(void *args);

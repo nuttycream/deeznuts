@@ -90,7 +90,7 @@ between layers. This served as an initial design idea, along with where to mount
 the sensors, motors, pi along with its components, and how it would traverse.
 
 <p align="center">
-<img src="/images/615_Final_Proj.png" alt="chicken" style="width: 75%;">
+<img src="/images/615_Final_Proj.PNG" alt="chicken" style="width: 75%;">
 </p>
 
 As you can see, we initially thought of going for a Da Vinci Tank, which seemed
@@ -101,7 +101,7 @@ Another suggestion, by yours truly, was to make it similar to the shape of a...
 Yeah, you'll see here in a moment.
 
 <p align="center">
-<img src="/images/615_Final_Proj_2.png" alt="chicken" style="width: 75%;">
+<img src="/images/615_Final_Proj_2.PNG" alt="chicken" style="width: 75%;">
 </p>
 
 Note the top left one, yeah, that was my suggestion. And as you probably already
@@ -195,10 +195,6 @@ Initial sketches for obstacle tracking. Our initial idea was to essentially
 the object the entire time. On the surface, it sounds pretty easy, right? Just
 set a point in front of the robot and traverse around it. But in reality, it's
 not so easy...
-
-### Vectoring
-
-### Obstacle Tracking
 
 ## The Code
 

@@ -185,16 +185,67 @@ only the math needed for vector direction control, but he analyzed and took
 direct inspiration from actual [research papers](#attribution) so we can have
 proper 3-wheeled omnidirectional traversal.
 
+**Preface**\
+During Bryan's research, the general control scheme goes as follows:\
+trajectory planning -> inverse kinematics -> and then to PID/error control. This
+general control scheme is supported and outlined in these
+[research papers](#attribution).
+
+### Intro
+
+**TODO: Insert Why We Started on Inverse Kinematics**
+
 <p align="center">
-<img src="/images/image-3.png" alt="chicken" style="width: 25%;">
+<img src="/images/image-3.png" alt="chicken" style="width: 30%;">
 <img src="/images/image-4.png" alt="chicken" style="width: 25%;">
 </p>
 
-Initial sketches for obstacle tracking. Our initial idea was to essentially
-'encircle' the obstacle by strafing around it, keeping the robot's front facing
-the object the entire time. On the surface, it sounds pretty easy, right? Just
-set a point in front of the robot and traverse around it. But in reality, it's
-not so easy...
+These are initial sketches for obstacle tracking. Our initial idea was to
+essentially 'encircle' the obstacle by strafing around it, keeping the robot's
+front facing the object the entire time. On the surface, it sounds pretty easy,
+right? Just set a point in front of the robot and traverse around it. But in
+practice, it's not so easy...
+
+The original idea was to simply, trace a circle around the object with $X$
+radius away from the center of the car. For that specific part, we needed
+_Inverse Kinematics_.
+
+### Inverse Kinematics
+
+In simple terms, the conversion from $(X, Y, \theta)$ coordinates into angular
+velocities of the motor (AKA, how fast the wheels should spin). Which allows us
+to control the omni-directional movement of the chicken.
+
+For Example:
+
+<p align="center">
+    <img src="/images/kinematics.webp" alt="chicken" style="width: 50%;">
+</p>
+
+From the image, to traverse from point $A$ to point $B$ with a desired rotation,
+to illustrate that we break it down to the components of $X, Y$ and $\theta$.
+Where the $X$, $Y$ is the distance the distance and $\theta$ would be the
+rotation. Thus, the $IK$ gives us the angular velocities: $ \omega_A$, $
+\omega_B$, $ \omega_C$ we need to achieve point $B$.
+
+> TLDR: We go from a distance & rotation to the speeds the wheels need to spin
+> at.
+
+<p align="center">
+    <img src="/images/inverseKinematicsOmnip1.png" alt="chicken" style="width: 25%;">
+    <img src="/images/inverseKinematicsOmnip2.png" alt="chicken" style="width: 25%;">
+</p>
+
+This gives you an idea of how the inverse kinematics is calculated but
+**WARNING** these sketches/formulae are our draft versions and do not reflect
+our final matrix calculation for the $IK$. Read more about it
+[here](#attribution).
+
+### Error Correction
+
+$$
+p := (\sum_{k∈I}{c_k.v_k} + \delta_v.t(x))·(\sum_{k∈I}{c_k.w_k} + \delta_w.t(x)) − (\sum_{k∈I}{c_k.y_k} + \delta_y.t(x))
+$$
 
 ## The Code
 
@@ -440,3 +491,4 @@ To read more about how the Rust side works, you can take a gander at this
   used as a cross-reference for PID controls
 - [3-wheel-omni Vectoring Arduino Example](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino) -
   used as a cross-reference for vector calculations
+- [^2Evaluation of the Path-Tracking Accuracy....](https://www.mdpi.com/1424-8220/21/21/7216)

@@ -27,8 +27,7 @@ sets and specializations.
   ([GitHub](https://github.com/sperouz)) - engineer
 - [Yuquan Xu](https://www.linkedin.com/in/yuquan-xu-846852149/)
   ([GitHub](https://github.com/yyyuquan)) - physics
-- [Bryan Yao](www.linkedin.com) ([GitHub](https://github.com/bryao)) - 3d
-  modeler/designer
+- Bryan Yao ([GitHub](https://github.com/bryao)) - 3d modeler/designer
 - [John Carter](https://www.linkedin.com/in/john-carter-from-mars)
   ([GitHub](https://github.com/nuttycream)) - programmer
 
@@ -193,7 +192,12 @@ general control scheme is supported and outlined in these
 
 ### Intro
 
-**TODO: Insert Why We Started on Inverse Kinematics**
+**But why?** We are started on $IK$ for the reason because, it was essential to
+it. It is the part that is the most tricky. But... but this is usually me
+thinking about it. Because the trajectory mapping part, is simply tracing a
+circle uhh using x y z which is semi trivial so then we move to the next step of
+the general control scheme which is the IK uhhmmm which is about how we actually
+translate x y z into the actual motion of the robot.
 
 <p align="center">
 <img src="/images/image-3.png" alt="chicken" style="width: 30%;">
@@ -201,7 +205,7 @@ general control scheme is supported and outlined in these
 </p>
 
 These are initial sketches for obstacle tracking. Our initial idea was to
-essentially 'encircle' the obstacle by strafing around it, keeping the robot's
+essentially _encircle_ the obstacle by strafing around it, keeping the robot's
 front facing the object the entire time. On the surface, it sounds pretty easy,
 right? Just set a point in front of the robot and traverse around it. But in
 practice, it's not so easy...
@@ -232,8 +236,8 @@ rotation. Thus, the $IK$ gives us the angular velocities: $ \omega_A$, $
 > at.
 
 <p align="center">
-    <img src="/images/inverseKinematicsOmnip1.png" alt="chicken" style="width: 25%;">
-    <img src="/images/inverseKinematicsOmnip2.png" alt="chicken" style="width: 25%;">
+    <img src="/images/inverseKinematicsOmnip1.png" alt="chicken" style="width: 35%;">
+    <img src="/images/inverseKinematicsOmnip2.png" alt="chicken" style="width: 35%;">
 </p>
 
 This gives you an idea of how the inverse kinematics is calculated but
@@ -241,11 +245,72 @@ This gives you an idea of how the inverse kinematics is calculated but
 our final matrix calculation for the $IK$. Read more about it
 [here](#attribution).
 
+<p align="center">
+    <img src="/images/ikmatrix.webp" alt="chicken" style="width: 25%;">
+    <img src="/images/omni_transformation_2.jpg" alt="chicken" style="width: 35%;">
+</p>
+
+This is the formula that was derived courtesy of this
+[research paper](#attribution).
+
 ### Error Correction
 
+The idea of the _Error Correction_ is once we calculated the desired angular
+velocities the wheels should spin at, we need to measure and compare that to the
+actual angular velocity of what the wheels are currently spinning at. This
+difference from the desired angular velocity and actual angular velocity is the
+_Error_. We correct for this _Error_ using the PID (Proportional Integral
+Derivative) controller.
+
+> Simply put, PID corrects for change over time. There are values you can tweak
+> to change how fast that is implemented. You can also tweak the behavior of
+
+<p align="center">
+    <img src="/images/des-curr.webp" alt="chicken" style="width: 25%;">
+    <img src="/images/des-state.webp" alt="chicken" style="width: 50%;">
+</p>
+
+When tweaked, other variants of the graph might look like these:
+
+<p align="center">
+    <img src="/images/des-curr2.webp" alt="chicken" style="width: 35%;">
+    <img src="/images/des-curr3.webp" alt="chicken" style="width: 35%;">
+</p>
+
+Theoretical formula:
+
 $$
-p := (\sum_{k∈I}{c_k.v_k} + \delta_v.t(x))·(\sum_{k∈I}{c_k.w_k} + \delta_w.t(x)) − (\sum_{k∈I}{c_k.y_k} + \delta_y.t(x))
+\begin{equation}
+u(t) = K_p e(t) + K_i \int_0^t e(\tau)\,d\tau + K_d \frac{d}{dt}e(t)
+\end{equation}
 $$
+
+Basically ripped straight from this
+[video](https://youtu.be/dynSWBXu9aA?si=aCsEhEJlpOnzeJ2w) that explains it in
+great detail.
+
+The general idea is that we read from the motor encoder to get the amount of
+ticks, and from that we can calculate the speed of the motor - that is the value
+we are going to compare with the calculated $IK$ value.
+
+An example of getting and reading the speed from the motor:
+
+```c
+int lastCountA = 0;
+#define PULSES_PER_REV 540.0
+#define PI 3.141592654
+#define WHEEL_RADIUS 6.5
+
+for (int j = 0; j < 20; j++) {
+    int resultA = readLS7336RCounter(SPI0_CE0);
+    double revsPerSecA = ((resultA-lastCountA)/(4PULSES_PER_REV));
+    double speedA = revsPerSecA (2* PI * WHEEL_RADIUS);
+    printf ("Count: %d, Revolutions: %f, Speed: %f, delta: %d\n", 
+            resultA, revsPerSecA, speedA, resultA-lastCountA);
+    lastCountA = resultA;
+    sleep (1);
+}
+```
 
 ## The Code
 
@@ -263,7 +328,7 @@ My design philosophy for how I wanna go about this boils down to:
 - Easily Modifiable:
   - [Flat directory structure](https://i.imgur.com/rMWmbyc.png): no directory
     hierarchy
-  - Can jump around relatively quickly within Neovim
+  - Can jump around relatively quickly within NeoVim
 
 In terms of the architecture, I've made this initial diagram to help when we
 First started to program it:
@@ -385,6 +450,7 @@ Here are what they look like:
 int bot_mode;
 
 // 0 -> obstacle tracking
+
 // 1 -> obstacle avoidance
 int obstacle_mode;
 
@@ -491,4 +557,6 @@ To read more about how the Rust side works, you can take a gander at this
   used as a cross-reference for PID controls
 - [3-wheel-omni Vectoring Arduino Example](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino) -
   used as a cross-reference for vector calculations
-- [^2Evaluation of the Path-Tracking Accuracy....](https://www.mdpi.com/1424-8220/21/21/7216)
+- [Evaluation of the Path-Tracking Accuracy....](https://www.mdpi.com/1424-8220/21/21/7216) -
+  used for the $IK$ formulae.
+- [Inverse Kinematics](https://github.com/manav20/3-wheel-omni)

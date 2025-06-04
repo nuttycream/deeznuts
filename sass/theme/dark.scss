@@ -4,7 +4,7 @@ $bg-0: #000000;
 $bg-1: lighten($bg-0, 5%);
 $bg-2: lighten($bg-1, 10%);
 
-$text-0: lighten($bg-0, 87%);
+$text-0: white; //lighten($bg-0, 87%);
 $text-1: lighten($bg-0, 60%);
 
 :root.dark {

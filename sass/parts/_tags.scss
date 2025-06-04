@@ -18,9 +18,11 @@
     background-color: var(--primary-color);
   }
 
+  /*
   a::before {
-    content: "🏷 "; /* Ensure there's a space after the emoji for spacing */
+    //content: "🚀 "; // Ensure there's a space after the emoji for spacing 
     display: inline;
     white-space: nowrap !important;
   }
+  */
 }

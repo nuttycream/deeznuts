@@ -6,3 +6,5 @@ date = "2025-05-31"
 [taxonomies]
 tags = ["rust", "axum", "shared memory", "raspberry pi", "ipc"]
 +++
+
+todo write ignore date

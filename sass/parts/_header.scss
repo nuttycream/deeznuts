@@ -132,35 +132,39 @@ h4,
 h5,
 h6 {
   font-size: 1.2rem;
-  margin-top: 2em;
+  margin-top: 1.5em;
+}
+
+h1:before,
+h2:before,
+h3:before,
+h4:before,
+h5:before,
+h6:before {
+  font-size: 1.5rem;
+  color: var(--primary-color);
 }
 
 h1::before {
-  color: var(--primary-color);
-  content: "# ";
+  content: "→ ";
 }
 
 h2::before {
-  color: var(--primary-color);
-  content: "## ";
+  content: "→ ";
 }
 
 h3::before {
-  color: var(--primary-color);
-  content: "### ";
+  content: "⇀ ";
 }
 
 h4::before {
-  color: var(--primary-color);
-  content: "#### ";
+  content: "↝ ";
 }
 
 h5::before {
-  color: var(--primary-color);
-  content: "##### ";
+  //content: "##### ";
 }
 
 h6::before {
-  color: var(--primary-color);
-  content: "###### ";
+  //content: "###### ";
 }

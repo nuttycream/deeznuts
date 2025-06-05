@@ -10,6 +10,7 @@
 @import "parts/_mermaid.scss";
 @import "parts/_search.scss";
 @import "parts/_youtube.scss";
+@import "parts/_posts.scss";
 
 :root {
   /* Used for: block comment, hr, ... */
@@ -17,7 +18,7 @@
 
   /* Fonts */
   --text-font: "IBM Plex Serif";
-  --header-font: "IBM Plex Serif", "Helvetica", sans-serif;
+  --header-font: "IBM Plex Serif", sans-serif;
   --code-font: "Maple Mono";
 }
 
@@ -25,26 +26,26 @@ html {
   background-color: var(--bg-0);
   color: var(--text-0);
   font-family: var(--text-font);
-  line-height: 1.6em;
+  line-height: 1.4em;
 }
 
 .content {
   max-width: 1000px;
   margin: 0 auto;
-  padding: 0 75px;
+  padding: 0 100px;
   //padding: 50px;
   word-wrap: break-word;
 }
 
 @media all and (min-width: 640px) {
   html {
-    font-size: 16.5px;
+    font-size: 15px;
   }
 }
 
 @media all and (min-width: 720px) {
   html {
-    font-size: 17px;
+    font-size: 16px;
   }
 }
 

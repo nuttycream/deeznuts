@@ -1,45 +1,10 @@
 +++
 title = "omniscient"
-description = "self contained rust web application to 'strictly' observe a Raspberry Pi three wheeled omnidirectional bot"
-date = "2025-04-25"
-
-[taxonomies]
-tags = ["rust", "axum", "shared memory", "raspberry pi", "ipc"]
+description = "Self contained rust web application to 'strictly' observe a Raspberry Pi powered three wheeled omnidirectional bot."
+weight = 1
 
 [extra]
-repo_view = true
-comment = true
+remote_image = "https://camo.githubusercontent.com/0a86b7462b79d420c774f20d4db1a106fbb4955aefb3edb9499d2535e1853caa/68747470733a2f2f692e696d6775722e636f6d2f476c4a776174632e706e67"
+image_position = "0 25%"
+link_to = "https://github.com/nuttycream/omniscient"
 +++
-
-[GitHub](https://github.com/nuttycream/omniscient)
-
-# omniscient
-
-A pair program for the OmniBot that uses IPC and WebSockets to give us near
-real-time updates from our bot
-
-## what does it do?
-
-the premise of this web app, is to read from shared memory from the bot
-
-```mermaid
-flowchart TD
-    A[omnibot] -->|write| B[SharedMemory]
-    C[omniscient] -->|read| B
-```
-
-## shared memory structure
-
-```c
-typedef struct {
-    int ver;
-    int direction;
-    int motor_power[3];
-    int obstacle;
-
-    int go_left;
-    int go_right;
-
-    int sensors[4];
-} Shared;
-```

@@ -1,0 +1,29 @@
+.post-item {
+  margin-left: 1.5em;
+  padding-bottom: 1em;
+}
+
+.post-date {
+  display: inline; 
+  font-size: 0.9em;
+  margin-left: 0.5em; 
+}
+
+.post-title {
+  display: inline;
+  font-size: 1.1em;
+  font-weight: bold;
+  color: var(--text-0);
+  text-decoration: none; 
+}
+
+.post-title:hover {
+  color: var(--hover-color);
+  text-decoration: none;
+}
+
+.post-description {
+  display: block;
+  font-size: 0.9em;
+  color: var(--text-1);
+  margin-top: 0.3em;}

@@ -5,6 +5,7 @@
     padding-left: 20px; // Space for the arrow
 
     &:before {
+      font-size: 0.7em;
       content: "▼"; // Down arrow
       position: absolute;
       left: 0;

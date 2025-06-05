@@ -24,10 +24,10 @@ believe we worked so well together because we complemented each other's skill
 sets and specializations.
 
 - [Shoaib Perouz](https://www.linkedin.com/in/shoaib-perouz-769329a/)
-  ([GitHub](https://github.com/sperouz)) - engineer
+  ([GitHub](https://github.com/sperouz)) - mechanics/electrical engineer
 - [Yuquan Xu](https://www.linkedin.com/in/yuquan-xu-846852149/)
-  ([GitHub](https://github.com/yyyuquan)) - physics
-- Bryan Yao ([GitHub](https://github.com/bryao)) - 3d modeler/designer
+  ([GitHub](https://github.com/yyyuquan)) - 3d modeler/designer
+- Bryan Yao ([GitHub](https://github.com/bryao)) - physics/calculations
 - [John Carter](https://www.linkedin.com/in/john-carter-from-mars)
   ([GitHub](https://github.com/nuttycream)) - programmer
 
@@ -36,11 +36,11 @@ sets and specializations.
 This all started as a group project for our Embedded Linux programming class by
 SFSU's best professor, Robert Bierman! We got to work by brainstorming a bunch
 of ideas for this robot, specifically on the type of movement we would use, and
-Some of the more notable ideas were:
+some of the more notable ideas were:
 
 - 4-legged spider
 - bipedal walking humanoid
-- Two-wheeled self-balancing humanoid
+- two-wheeled self-balancing humanoid
 - crab
 - snake
 
@@ -182,7 +182,7 @@ line-follow and avoid an obstacle at this point in our project.
 Physics was mainly handled by our resident genius, Bryan. He came up with not
 only the math needed for vector direction control, but he analyzed and took
 direct inspiration from actual [research papers](#attribution) so we can have
-proper 3-wheeled omnidirectional traversal.
+proper 3-wheeled omnidirectional traversal. He'll take it over from here.
 
 **Preface**\
 During Bryan's research, the general control scheme goes as follows:\
@@ -192,12 +192,11 @@ general control scheme is supported and outlined in these
 
 ### Intro
 
-**But why?** We are started on $IK$ for the reason because, it was essential to
-it. It is the part that is the most tricky. But... but this is usually me
-thinking about it. Because the trajectory mapping part, is simply tracing a
-circle uhh using x y z which is semi trivial so then we move to the next step of
-the general control scheme which is the IK uhhmmm which is about how we actually
-translate x y z into the actual motion of the robot.
+**But why?** I started on $IK(Inverse\hspace{5px}Kinematics)$, because that is
+the most part foreign and tricky part about the control scheme. The trajectory
+planning part just seemed like vector math which was something I was familiar
+with. The IK the was function was this first step of this crucial interlayer of
+going from digital controls to physical elements.
 
 <p align="center">
 <img src="/images/image-3.png" alt="chicken" style="width: 30%;">
@@ -216,9 +215,9 @@ _Inverse Kinematics_.
 
 ### Inverse Kinematics
 
-In simple terms, the conversion from $(X, Y, \theta)$ coordinates into angular
-velocities of the motor (AKA, how fast the wheels should spin). Which allows us
-to control the omni-directional movement of the chicken.
+In simple terms, it is the conversion from $(X, Y, \theta)$ coordinates into
+angular velocities of the motor (AKA, how fast the wheels should spin). Which
+allows us to control the omni-directional movement of the chicken.
 
 For Example:
 
@@ -242,33 +241,63 @@ rotation. Thus, the $IK$ gives us the angular velocities: $ \omega_A$, $
 
 This gives you an idea of how the inverse kinematics is calculated but
 **WARNING** these sketches/formulae are our draft versions and do not reflect
-our final matrix calculation for the $IK$. Read more about it
-[here](#attribution).
+our final matrix calculation for the $IK$.
 
 <p align="center">
-    <img src="/images/ikmatrix.webp" alt="chicken" style="width: 25%;">
-    <img src="/images/omni_transformation_2.jpg" alt="chicken" style="width: 35%;">
+    <img src="/images/ik.webp" alt="chicken" style="width: 50%;">
 </p>
 
-This is the formula that was derived courtesy of this
-[research paper](#attribution).
+This is the formula taken adapted from this
+[research paper](https://www.mdpi.com/1424-8220/21/21/7216). If you want to
+learn how this formula was derive check out the motion system of the mobile
+robot APR described in
+[Moreno et al](https://www.mdpi.com/1424-8220/16/10/1658).
+
+First we set
+
+$$ \delta_a = 30^{\circ}$$
+
+$$\delta_b = 150^{\circ}$$
+
+$$\delta_c = 270^{\circ} $$
+
+Then we multiply by the $X, Y$ and $\theta$ to get our velocities and then
+recall that:
+
+$$ V = R\omega $$
+
+$$ \omega = \frac{V}{R} $$
+
+Applying this to all 3 wheel, in the matrix notion:
+
+<p align="center">
+    <img src="/images/velocity.webp" alt="chicken" style="width: 50%;">
+</p>
 
 ### Error Correction
 
 The idea of the _Error Correction_ is once we calculated the desired angular
-velocities the wheels should spin at, we need to measure and compare that to the
-actual angular velocity of what the wheels are currently spinning at. This
-difference from the desired angular velocity and actual angular velocity is the
-_Error_. We correct for this _Error_ using the PID (Proportional Integral
+velocities the wheels should spin at, we then need to measure and compare that
+to the actual angular velocity of what the wheels are currently spinning at.
+This difference from the desired angular velocity and actual angular velocity is
+the _Error_. We correct for this _Error_ using the PID (Proportional Integral
 Derivative) controller.
 
 > Simply put, PID corrects for change over time. There are values you can tweak
-> to change how fast that is implemented. You can also tweak the behavior of
+> to change how fast that is implemented. You can also tweak the behavior of the
+> correction
 
 <p align="center">
     <img src="/images/des-curr.webp" alt="chicken" style="width: 25%;">
     <img src="/images/des-state.webp" alt="chicken" style="width: 50%;">
 </p>
+
+I like to think of the PID control as like a spring. As you release the spring
+from the stretched length, it will oscillate and eventually approach resting
+position. Similarly the robot/robotic arm can do this where it might overshoot a
+bit then needing to correct for this. But all of this can be controlled for by
+the $K_p$ , $K_d$ , $K_i$. Which you can think of as dampening and how fast it
+approaches the desired result.
 
 When tweaked, other variants of the graph might look like these:
 
@@ -288,6 +317,8 @@ $$
 Basically ripped straight from this
 [video](https://youtu.be/dynSWBXu9aA?si=aCsEhEJlpOnzeJ2w) that explains it in
 great detail.
+
+### Motor encoder
 
 The general idea is that we read from the motor encoder to get the amount of
 ticks, and from that we can calculate the speed of the motor - that is the value
@@ -312,11 +343,42 @@ for (int j = 0; j < 20; j++) {
 }
 ```
 
+### Trajectory Planning
+
+John, gave commands devising semi-circular orbiting trajectory for the chicken.
+This will not only make it more realistic according to Minecraft cannon when a
+player holds a seeds but it provides the added benefit of as quoted
+
+<p align="center">
+"sick as f*ck" - John
+</p>
+
+as described.
+
+This was achieved by having a half circular path with sub-divided point to be
+later interpolated
+
+> Note: Interpolation is the generation of path/function that would cross the to
+> points.
+
+Here is my schizo interpretation the diagram
+
+<p align="center">
+    <img src="/images/maniac.webp" alt="chicken" style="width: 75%;">
+    <img src="/images/less-schizo.webp" alt="chicken" style="width: 35%;">
+</p>
+
+I chose this method because it seems the most straight forward for our use case.
+
+<!-- ### Resulting
+_insert video here_ -->
+
 ## The Code
 
-Note that I consider myself a huge programming noob which is especially true
-with C, so I won't be able to explain a lot of the technical stuff in a good
-way, but I'll try my best.
+Now for the juicy part, this was all handled mostly by me (John) as part of
+partitioning our work load. Note that I consider myself a huge programming noob
+which is especially true with C, so I won't be able to explain a lot of the
+technical stuff in a good way, but I'll try my best.
 
 My design philosophy for how I wanna go about this boils down to:
 
@@ -499,8 +561,8 @@ direct registry access library.
 </p>
 
 There's probably a more optimal way of doing shared memory, but for the sake of
-my sanity, I went with a simple option to just throw everything in a struct to
-pass around. What that looks like:
+my sanity, I went with a simple option to just throw everything in a shared data
+struct to pass around. Here's what that looks like:
 
 In C:
 
@@ -541,7 +603,7 @@ struct Shared {
 Lucky for me, shared memory on Rust is pretty straightforward, there exists a
 [crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
 sure uses the [*nix](https://github.com/nix-rust/nix) and
-[libc](https://github.com/rust-lang/libc) crates for Linux-specific sys calls
+[libc](https://github.com/rust-lang/libc) crates for Linux-specific system calls
 like mmap().
 
 To read more about how the Rust side works, you can take a gander at this
@@ -549,14 +611,64 @@ To read more about how the Rust side works, you can take a gander at this
 
 ## Attribution
 
-- [Raspberry Pi GPIO C DRA Example](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access) -
-  used as a basis for a custom GPIO C library
-- [WaveShare Motor Driver Hat Demo](https://www.waveshare.com/motor-driver-hat.htm) -
-  used for I2C and PWM functionality
-- [Three-Omnidirectional Wheels with PID](https://github.com/Said-taoussi/Three-Omnidirectional-Wheels-with-PID-Control) -
-  used as a cross-reference for PID controls
-- [3-wheel-omni Vectoring Arduino Example](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino) -
-  used as a cross-reference for vector calculations
-- [Evaluation of the Path-Tracking Accuracy....](https://www.mdpi.com/1424-8220/21/21/7216) -
-  used for the $IK$ formulae.
-- [Inverse Kinematics](https://github.com/manav20/3-wheel-omni)
+### GPIO & Hardware Interface
+
+- [**Raspberry Pi GPIO C DRA Example**](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access)\
+  Used as a basis for a custom GPIO C library for direct register access.
+
+- [**WaveShare Motor Driver Hat Demo**](https://www.waveshare.com/motor-driver-hat.htm)\
+  Used for I2C communication and PWM motor control implementation.
+
+### PID Control & Motion Tuning
+
+- [**Three-Omnidirectional Wheels with PID**](https://github.com/Said-taoussi/Three-Omnidirectional-Wheels-with-PID-Control)\
+  Used as a reference for implementing PID control on a 3-wheel omni-directional
+  robot.
+
+### Kinematics & Vector Calculations
+
+- [**3-wheel-omni Vectoring Arduino Example**](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino)\
+  Used as a cross-reference for omni-wheel vector calculations.
+
+- [**Inverse Kinematics GitHub Example**](https://github.com/manav20/3-wheel-omni)\
+  Used as a basis for deriving and simulating inverse kinematics equations.
+
+### Scientific & Academic References
+
+- [**Evaluation of the Path-Tracking Accuracy... (MDPI, 2021)**](https://www.mdpi.com/1424-8220/21/21/7216)\
+  Used for inverse kinematics ($IK$) formulae and path tracking evaluation.
+
+- [**APR Mobile Robot Motion System (MDPI, 2016)**](https://www.mdpi.com/1424-8220/16/10/1658)\
+  Referenced for derivation and explanation of the motion system used in similar
+  omni-robots.
+
+- [**Kinematics and Control of a 3-Wheel Omni Robot (ResearchGate)**](https://www.researchgate.net/publication/383780115_Kinematics_and_Control_A_Three-wheeled_Mobile_Robot_with_Omni-directional_Wheels)\
+  Cross-referenced for control models and system dynamics.
+
+- [**Appl. Sci. – Omniwheel Robot Kinematics (MDPI, 2018)**](https://www.mdpi.com/2076-3417/8/2/231)\
+  Used for further validation of omni-directional robot kinematic formulations.
+
+- [**Movement Control of Three Omni-Wheels Robot using Pole Placement and PID (ResearchGate)**](https://www.researchgate.net/publication/377764131_Movement_Control_of_Three_Omni-Wheels_Robot_using_Pole_Placement_State_Feedback_and_PID_Control)\
+  Referenced for PID and state feedback techniques applied to omni-wheeled robot
+  motion control.
+
+- [**Aerodynamics Study (ResearchGate)**](https://www.researchgate.net/publication/322530755_Analysis_and_Qualitative_Effects_of_Large_Breasts_on_Aerodynamic_Performance_and_Wake_of_a_Miss_Kobayashi's_Dragon_Maid_Character)\
+  Included for academic completeness and unique approach to aerodynamic modeling
+  in animated figures.
+
+- [**Path Tracking Simulation of a Robot with Mecanum Wheels (ResearchGate)**](https://www.researchgate.net/publication/346658720_Path_Tracking_Simulation_of_a_Wheeled_Mobile_Robot_with_Three_Mecanum_Wheels)\
+  Used for simulation insights into Mecanum-style robot motion and control.
+
+- [**SSRG IJEEE: Omni Wheel Robot Implementation (PDF)**](https://www.internationaljournalssrg.org/IJEEE/2019/Volume6-Issue12/IJEEE-V6I12P101.pdf)\
+  A compact study on 3-wheel omni-directional robot design and results.
+
+- [**Control Allocation and Tracking for Omni Robots (ScienceDirect)**](https://www.sciencedirect.com/science/article/abs/pii/S0094114X20301798)\
+  A comprehensive paper on optimal control strategies for omni-directional
+  robots.
+
+- [**Omni-Wheel Mobile Robot Design and Control (Springer)**](https://link.springer.com/article/10.1007/s40313-019-00439-0)\
+  Technical research article discussing the design, kinematics, and control
+  methodology of omni-wheel robots.
+
+- [**YouTube: Aerodynamic Simulation Clip**](https://www.youtube.com/watch?v=NcOT9hOsceE)\
+  Visual representation accompanying aerodynamic studies mentioned above.

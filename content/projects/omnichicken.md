@@ -1,7 +1,7 @@
 +++
 title = "omnichicken"
 description = "Raspberry Pi powered three-wheeled omni-directional, line following, obstacle avoidance and obstacle tracking minecraft chicken."
-weight = 1
+weight = 2
 
 [extra]
 local_image = "images/comp-chicken.jpg"

@@ -1,5 +1,5 @@
 +++
-title = "A College Masterpiece"
+title = "My Academic Magnum Opus"
 description = "Turning a simple school project into a minecraft chicken inspired robot."
 date = "2025-05-25"
 
@@ -30,6 +30,9 @@ sets and specializations.
 - Bryan Yao ([GitHub](https://github.com/bryao)) - physics/calculations
 - [John Carter](https://www.linkedin.com/in/john-carter-from-mars)
   ([GitHub](https://github.com/nuttycream)) - programmer
+
+This write-up was co-authored with the group as a whole, with individual
+sections written by those who specialized in those areas.
 
 ## But why?
 
@@ -168,7 +171,7 @@ pretty sweet deal considering how big and how long it took to print.
 ### Version 2
 
 <p align="center">
-<img src="/images/20250513_202837.jpg" alt="chicken" style="width: 50%;">
+ <img src="/images/20250513_202837.jpg" alt="chicken" style="width: 50%;">
 </p>
 
 Now... I know what you're thinking... That's a whole lotta wires! But trust me,
@@ -176,6 +179,39 @@ it's completely functional. Cable management is not our specialty, but cleaning
 it all up could come later. At this point, the bot was completely functional; it
 was missing some _optional_ features that I wanted to implement, but it could
 line-follow and avoid an obstacle at this point in our project.
+
+I have to admit though, it did bring up a lot of headaches down the line. Mainly
+because of our exotic setup. This is a draft of our initial hardware diagram -
+excuse the errors, we drew this haphazardly.
+
+<p align="center">
+ <img src="/images/hw-diagram.png" alt="chicken" style="width: 60%;">
+</p>
+
+As you can see, it's not the prettiest in terms of diagramming, we did manage to
+clean up a lot of it towards the end - at least shortening the amount of jumps
+wires would need to take by directly connecting them to the GPIO pin-out. But
+the hardware needed to communicate with Pi somehow right? And while it's ugly,
+it works - which is what matters the most, considering our deadline is coming
+up.
+
+### The Final Version
+
+<p align="center">
+    <img src="/images/comp-chicken.jpg" alt="chicken" style="width: 70%;">
+</p>
+
+The
+[crème de la crème](https://dictionary.cambridge.org/dictionary/english/creme-de-la-creme)
+of all the versions, the completed robot that ran the full course. A sight to
+behold to say the least. It ran damn near perfectly in terms of the
+line-following, there were some hiccups in the obstacle avoidance/tracking, but
+that was due to our sensors failing or giving us horrendous readings.
+
+We did have to make a couple of concessions. First, we sadly couldn't use the 3D
+printed body Prof. Bierman printed out for us. Luckily, Yuquan had made a spare
+body crafted out of used Amazon shipping boxes - it proved light and rigid
+enough to install the 3D printed chicken head.
 
 ## Physics
 
@@ -185,7 +221,7 @@ direct inspiration from actual [research papers](#attribution) so we can have
 proper 3-wheeled omnidirectional traversal. He'll take it over from here.
 
 **Preface**\
-During Bryan's research, the general control scheme goes as follows:\
+During my research, the general control scheme goes as follows:\
 trajectory planning -> inverse kinematics -> and then to PID/error control. This
 general control scheme is supported and outlined in these
 [research papers](#attribution).
@@ -261,8 +297,8 @@ $$\delta_b = 150^{\circ}$$
 
 $$\delta_c = 270^{\circ} $$
 
-Then we multiply by the $X, Y$ and $\theta$ to get our velocities and then
-recall that:
+Then we multiply by the $X, Y$ and $\theta$ to get our velocities then recall
+that:
 
 $$ V = R\omega $$
 
@@ -347,53 +383,68 @@ for (int j = 0; j < 20; j++) {
 
 John, gave commands devising semi-circular orbiting trajectory for the chicken.
 This will not only make it more realistic according to Minecraft cannon when a
-player holds a seeds but it provides the added benefit of as quoted
+player holds a seeds but it provides the added benefit of being as quoted
 
 <p align="center">
-"sick as f*ck" - John
+"it'll look sick as f*ck" - John
 </p>
 
 as described.
 
-This was achieved by having a half circular path with sub-divided point to be
-later interpolated
+To achieve this, we created a trajectory by having a half circular path with
+sub-divided point to be later interpolated
 
 > Note: Interpolation is the generation of path/function that would cross the to
 > points.
 
-Here is my schizo interpretation the diagram
+Here is my schizo drawings for the diagram and planning phase
 
 <p align="center">
-    <img src="/images/maniac.webp" alt="chicken" style="width: 75%;">
-    <img src="/images/less-schizo.webp" alt="chicken" style="width: 35%;">
+    <img src="/images/trajectory-draft.png" alt="chicken" style="width: 50%;">
+    <img src="/images/maniac.webp" alt="chicken" style="width: 50%;">
+    <img src="/images/less-schizo.webp" alt="chicken" style="width: 25%;">
 </p>
 
+Without overcomplicating it all, I simply generated an arc path from a start
+position and target position, then traversed using time-based interpolation
+along a continuous curve around the object. Each point generated by this
+trajectory feeds directly into the inverse kinematics equations, where the
+$(X, Y, \theta)$ coordinates get converted to individual wheel velocities using
+the matrix calculations I detailed earlier.
+
 I chose this method because it seems the most straight forward for our use case.
+And now instead of boring straight-line pathing, we now have dynamic, arcing
+trajectories that make the robot feel more unique and visually COOL. And that
+pretty much concludes the physics portion, the most tedious and arduous portion
+that involved the most research and gruelling testing (to fine-tune sweet
+spots).
 
 <!-- ### Resulting
 _insert video here_ -->
 
 ## The Code
 
-Now for the juicy part, this was all handled mostly by me (John) as part of
-partitioning our work load. Note that I consider myself a huge programming noob
-which is especially true with C, so I won't be able to explain a lot of the
-technical stuff in a good way, but I'll try my best.
+Now back to me (John) for the juicy coding section which was handled mostly by
+me as part of partitioning our work load. Note that I consider myself a huge
+programming noob which is especially true with C, so I won't be able to explain
+a lot of the technical stuff in the best way, but I'll try my best.
 
-My design philosophy for how I wanna go about this boils down to:
+A couple things to get out of the way first. My design philosophy for how I
+wanna go about this boils down to:
 
 - Robust: kill on panic, handle errors gracefully, zero (no promises) memory
-  leaks
-- Modular: plug and play, use previous assignments, can operate independently of
-  one another
-- Readable: should be able to understand code with minimal documentation
+  leaks.
+- Modular: plug and play, be able to use previous assignments, code can operate
+  independently of one another.
+- Readable: code should be able to read quickly and understand code with minimal
+  documentation
 - Easily Modifiable:
   - [Flat directory structure](https://i.imgur.com/rMWmbyc.png): no directory
     hierarchy
   - Can jump around relatively quickly within NeoVim
 
-In terms of the architecture, I've made this initial diagram to help when we
-First started to program it:
+In terms of the architecture, I've made an initial diagram to help when we first
+started to program it:
 
 <p align="center">
 <img src="/images/excalidraw-architecture.png" alt="chicken" style="width: 75%;">
@@ -608,6 +659,14 @@ like mmap().
 
 To read more about how the Rust side works, you can take a gander at this
 [project post](/projects/omniscient), where I go somewhat more in-depth.
+
+## Final Thoughts
+
+This was truly an endeavour to say the least, it was arguably the most fun I've
+ever working on a project. Our team worked so well together and we managed to
+make the most unique robot that happened to also be relatively quick (thanks to
+the omni-directional wheels provided by Bryan). Working on this project opened a
+completely un-opened side of me - a love for embedded projects and robotics.
 
 ## Attribution
 

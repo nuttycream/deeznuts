@@ -6,5 +6,5 @@ weight = 1
 [extra]
 local_image = "images/comp-chicken.jpg"
 image_position = "0 25%"
-link_to = "../posts/a-college-masterpiece"
+link_to = "../posts/my-academic-magnum-opus"
 +++

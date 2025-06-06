@@ -3,7 +3,7 @@ title = "whoami"
 path = "about"
 +++
 
-### early life
+# early life
 
 I started programming when I was around 12 years old, in late 2011. At the time
 I was experimenting with flash games, specifically games made with
@@ -22,7 +22,7 @@ wrapper program around the 'hacks' I would implement. It was pretty simple since
 there was at the time very little security around these hobby and small games,
 but also flash in general.
 
-### my professional start
+# my professional start
 
 College was a really not an affordable goal at the time, and graduating High
 School from a
@@ -41,7 +41,7 @@ because he was an impeccable leader, whenever he would walk into a room, people
 knew that person is someone to truly rely on. He would later influence a lot of
 my decisions during and after the military.
 
-### college life
+# college life
 
 After the military, I was feeling that gung-ho high for a while and actually
 started as a criminal justice major at LSU. Seeing as though I wanted to join
@@ -63,8 +63,9 @@ high enough in STEM courses so I can transfer to UTSA.
 
 And I gotta say, I was actually horrendous at anything that's not 'general
 programming', as in I was extremely bad at Math. How bad you ask? Part of the
-STEM entrance program they have at the school, we all go through a
-'skill-checks', one of those skill check questions was:
+STEM entrance program they have at the school, is a system where we all go
+through what are essentially 'skill-checks'. And one of those skill check
+questions was:
 
 $\sqrt{144}=$
 
@@ -77,14 +78,14 @@ So they put me in one of the lowest possible Math classes in that college,
 [Elementary Algebra](https://mynvccatalog.alamo.edu/preview_course_nopop.php?catoid=140&coid=67162).
 It was only for half a semester, after passing that class they would move you to
 Intermediate Algebra for the rest of the semester. This was not a good start.
-But at least I get to relearn the fundamentals.
+But at least I get to relearn the fundamentals - which I desperately needed.
 
 The material for Elementary Algebra was bone dead easy, simple calculations like
-division, order of operations. Intermediate Algebra introduced equations and
-expressions.
+division, order of operations, etc. Intermediate Algebra introduced equations
+and expressions.
 
 Needless to say, I got an A in both of those classes.
 
-Unfortunately, life happens, and ultimately I moved to the bay area with my
+Unfortunately, life happens, and ultimately I moved to the Bay Area with my
 sister. Which coincidentally houses the worlds biggest tech companies. So I'm
 set, right? Surely...

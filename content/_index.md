@@ -19,6 +19,7 @@ Some of my favourite _stuff_
 - [Rust](/tags/rust) → favourite language
 - [C](/tags/c) → second favourite language
 - [C#](/tags/c#) → third favourite language
+- [zola](https://www.getzola.org) → _this_ website's SSG
 - [HTMX](https://htmx.org) → favourite _frontend_ web framework
 - [axum](https://github.com/tokio-rs/axum) → favourite backend web framework
 - [egui](https://github.com/emilk/egui) → favourite gui framework

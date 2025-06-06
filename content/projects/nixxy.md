@@ -1,6 +1,6 @@
 +++
 title = "nixxy"
-description = "NixOS dotfiles/flake: `not great, not terrible` - my attempt at a declarative and functional system config"
+description = "NixOS dotfiles/flake: `not great, not terrible` - my attempt at a declarative and functional system config."
 weight = 1
 
 [extra]

@@ -62,7 +62,7 @@ for speed:
 1. The track was laid out in a cloth, making grip difficult (especially with our
    wheels)
 2. The ground was also uneven, with too many bumps and debris that may launch
-   our bot Up if we go too fast
+   our bot up if we go too fast - and lose track of the line
 3. and lastly, there was another group, a VERY VERY talented group who were
    aiming to have the fastest time.
 
@@ -87,9 +87,10 @@ was a three-wheeled omnidirectional robot. Here are some of Yuquan's sketches:
 </p>
 
 This is the very first instance of the bot that we drew up in class. Aptly
-nicknamed the omni-cake, because of our idea of sandwiching components in
-between layers. This served as an initial design idea, along with where to mount
-the sensors, motors, pi along with its components, and how it would traverse.
+nicknamed the _omni-cake_, because of the sandwiching components in between
+layers. This served as an initial design idea, along with where to mount the
+sensors, motors, pi and its components. You can also see how we started drafting
+ideas on how it would traverse.
 
 <p align="center">
 <img src="/images/615_Final_Proj.PNG" alt="chicken" style="width: 75%;">
@@ -655,10 +656,10 @@ Lucky for me, shared memory on Rust is pretty straightforward, there exists a
 [crate](https://github.com/elast0ny/shared_memory) just for it, which I'm pretty
 sure uses the [*nix](https://github.com/nix-rust/nix) and
 [libc](https://github.com/rust-lang/libc) crates for Linux-specific system calls
-like mmap().
+like `mmap()`.
 
 To read more about how the Rust side works, you can take a gander at this
-[project post](/projects/omniscient), where I go somewhat more in-depth.
+[project post](/posts/look-at-chicken), where I go somewhat more in-depth.
 
 ## Final Thoughts
 

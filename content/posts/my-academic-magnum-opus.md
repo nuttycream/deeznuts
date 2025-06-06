@@ -659,7 +659,7 @@ sure uses the [*nix](https://github.com/nix-rust/nix) and
 like `mmap()`.
 
 To read more about how the Rust side works, you can take a gander at this
-[project post](/posts/look-at-chicken), where I go somewhat more in-depth.
+[project post](/posts/observe-bot), where I go somewhat more in-depth.
 
 ## Final Thoughts
 

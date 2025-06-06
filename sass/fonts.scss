@@ -15,6 +15,22 @@
 }
 
 @font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 400;
+  src: url("fonts/IBMPlexSans/IBMPlexSans-Regular.ttf"), local("ttf");
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "IBM Plex Sans";
+  font-style: normal;
+  font-weight: 700;
+  src: url("fonts/IBMPlexSans/IBMPlexSans-Bold.ttf"), local("ttf");
+  font-display: swap;
+}
+
+@font-face {
   font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 400;

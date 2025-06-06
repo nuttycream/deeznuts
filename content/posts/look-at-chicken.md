@@ -21,7 +21,7 @@ So I had a bright idea to create something ridiculously complex and unneeded - a
 self-contained observer for the robot where I can monitor what the robot is
 doing at a given moment.
 
-# The Plan
+# Front-End Overview
 
 Now, I already learned a thing or two while drafting up my initial
 [pipin](https://github.com/nuttycream/pipin) web server, so I could at least use
@@ -43,20 +43,62 @@ async fn serve_html() -> Html<&'static str> {
 Repeat that process for any other assets I want to _embed_: `styles.css`, and
 `script.js`.
 
-I'm doing raw JavaScript this time around since I don't want to deal with with
-the HTMX stuff I had to write through in the pipin project.
+From what I gather, this pretty much converts whatever is passed inside the
+`include_str!()` macro into a string literal during comp-time. The string is
+then rendered based on whatever `header::CONTENT_TYPE` we set to.
 
+For the `serve_html()` function above, it's already a built-in from Axum so it
+can literally just infer that specific content type. For others however, I need
+to specify the content type as well as return with a `IntoResponse` trait.
+
+```rust
+async fn serve_js() -> impl IntoResponse {
+    let js = include_str!("./assets/script.js");
+    ([(header::CONTENT_TYPE, "application/javascript")], js)
+}
 ```
-.
-├── Cargo.lock
-├── Cargo.toml
-└── src
-    ├── assets
-    │   ├── index.html
-    │   ├── script.js
-    │   └── style.css
-    ├── main.rs
-    └── sound.rs
+
+Also, I'm doing raw JavaScript this time around since I don't want to deal with
+the HTMX stuff I had to wad through in the pipin project. That means I'll be
+processing `JSON` instead, which in my opinion is much easier, especially with
+[serde_json](https://github.com/serde-rs/json).
+
+Setting up the WebSocket client for the front-end JavaScript side was pretty
+trivial. There's a shit ton of tutorials out there and I went with the
+relatively simple
+[Mozilla Dev Docs](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API/Writing_WebSocket_client_applications).
+Client connection looked like so:
+
+```javascript
+const protocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const ws_url = `${protocol}//${window.location.host}/ws`;
+
+socket = new WebSocket(ws_url);
+
+socket.addEventListener("open", (_) => {
+  console.log("Connected to WebSocket server");
+});
+
+socket.addEventListener("message", (event) => {
+  const message = event.data;
+  process_msg(message);
+});
+
+socket.addEventListener("close", (_) => {
+  console.log("Disconnected from WebSocket server");
+});
+```
+
+It was extremely straightforward in terms of the JavaScript receiving side, I'll
+go over the sending side (Rust back-end) later on. But I basically get a giant
+blob of `JSON` and just parse that message, it's as simple as:
+
+```javascript
+const data = JSON.parse(msg);
+
+document.getElementById("mem").textContent = data.shared_mem;
+document.getElementById("bot-mode").textContent = data.bot_mode;
+// repeat for the other important data ...
 ```
 
 # Shared Memory
@@ -110,3 +152,4 @@ TODO
 
 - [axum](https://github.com/tokio-rs/axum)
 - [pipin](https://github.com/nuttycream/pipin)
+- [websockets](https://developer.mozilla.org/en-US/docs/Web/API/WebSocket)

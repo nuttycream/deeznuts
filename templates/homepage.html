@@ -6,7 +6,7 @@
     {% set projects_section = get_section(path="projects/_index.md") %}
     <h1>cool projects</h1>
     {% if projects_section %}
-        {{ post_macros::cards_posts(pages=projects_section.pages) }}
+        {{ post_macros::cards_posts(pages=projects_section.pages | slice(end=4)) }}
     {% endif %}
 
     {% set posts_section = get_section(path="posts/_index.md") %}

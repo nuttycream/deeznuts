@@ -194,11 +194,21 @@ here, having the same order, size, and type padding for fields is probably a
 really good thing when accessing that same piece of memory that the C code
 writes to.
 
-### Writing the Shared Memory in C
+Another thing to note is the `ver` variable, which I'll expand on later but
+basically this is what's being used to tell the Rust program that a change
+happened, and to read the rest of the data.
+
+## Writing the Shared Memory in C
+
+Here's what creating and writing to shared memory looks like, ripped straight
+from our Minecraft chicken bot:
 
 {% note(clickable=true, hidden=true, header="Expand To View") %}
 
 ```c
+#define MEM_NAME "omnigod"
+static void *shared_mem_ptr = NULL;
+
 int create_shared(Shared *shared) {
     int fd = shm_open(MEM_NAME, O_CREAT | O_RDWR, 0644);
     if (fd < 0) {
@@ -225,25 +235,24 @@ int create_shared(Shared *shared) {
 }
 
 int update_shared(int fd, Shared *shared) {
-    void *mem = mmap(NULL, MEM_SIZE, PROT_READ | PROT_WRITE, MAP_SHARED, fd, 0);
-    if (mem == MAP_FAILED) {
-        fprintf(stderr, "error: mmap failed\n");
+    if (shared_mem_ptr == NULL) {
+        fprintf(stderr, "error: shared_mem is null\n");
         return -1;
     }
 
     shared->ver++;
 
     memcpy(mem, shared, MEM_SIZE);
-
-    if (munmap(mem, MEM_SIZE) != 0) {
-        fprintf(stderr, "error: munmap failed\n");
-        return -1;
-    }
-
     return 0;
 }
 
 int terminate_shared(int fd) {
+    if (shared_mem_ptr && munmap(shared_mem_ptr, MEM_SIZE) != 0) {
+        fprintf(stderr, "error: munmap failed during terminate\n");
+    }
+
+    shared_mem_ptr = NULL;
+
     close(fd);
     return shm_unlink(MEM_NAME);
 }
@@ -251,7 +260,30 @@ int terminate_shared(int fd) {
 
 {% end %}
 
-Example usage:
+Yeah, yeah I know, using
+[geeks for geeks](https://www.geeksforgeeks.org/posix-shared-memory-api/) as a
+source is questionable, but it provided a pretty straight forward implementation
+that I adapted from.
+
+I'd like to point out though, I already have experience with using `mmap()` from
+the GPIO C to Rust rewrite, so that's not a problem.
+
+The main contention I have with this current implementation is that I'm going to
+be calling `update_shared()` multiple times within the core loop of the program,
+which runs every tick. What you don't see is that at first I was calling
+`mmap()` within `update_shared()`.
+
+This created a huge bottleneck within the program, and we noticed that overtime,
+our bot would start to slowly get bogged down as in - instructions were not
+being executed fast enough. Our sensors were on a separate thread that were
+updating `volatile` variables constantly, and the loop wasn't finishing fast
+enough to use those variables.
+
+Fortunately, what you see from the snippet above is the current version, where I
+just store the `shared_mem_ptr` as a struct member (hopefully this isn't also
+bad), then just `memcpy()` the new data onto the `shmem`.
+
+Here's an example of how it was being created and updated:
 
 ```c
 Shared shared = {
@@ -262,11 +294,25 @@ Shared shared = {
 
 shared_fd = create_shared(&shared);
 
-// updating it
-update_shared(shared_fd, &shared);
+while (true) {
+    shared.direction++;
+    // updating it
+    update_shared(shared_fd, &shared);
+}
 ```
 
 ## Reading the Shared Memory in Rust
+
+For the Rust part of this, I used the
+[shared_memory](https://github.com/elast0ny/shared_memory) crate which from what
+I can tell is just a wrapper around the [nix](https://github.com/nix-rust/nix) -
+which has *nix API bindings.
+
+I could've probably hand rolled my own by just using the `nix` crate since my
+implementation was gonna be pretty simple. But I was starting to get pressed for
+time, and while the crate hasn't been updated in a while, it seems to work.
+
+Here's what the two functions for opening and reading the `shmem` looked like:
 
 ```rust
 fn open_shared_mem() -> Result<Shmem, Box<dyn Error>> {
@@ -283,6 +329,16 @@ fn read_shared_mem(mem: &Shmem) -> Shared {
     unsafe { ptr.read() }
 }
 ```
+
+It's pretty straight forward right?
+
+The only real part that needs some explaining is:
+`let ptr = mem.as_ptr() as *const Shared`. And this is because `mem.as_ptr()`
+returns a raw reference to a `mut u8` pointer, and for us to actually be able to
+read from it, it first needs to be casted to a `Shared` struct. And since we
+only need to read from it, it can stay as a `const`.
+
+I still had to use `unsafe` Rust for reading, and that's OK for this use case.
 
 # ALSA and Cross-Compiling
 

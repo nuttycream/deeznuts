@@ -4,8 +4,8 @@ template = "homepage.html"
 +++
 
 Hello! This is my (John Carter's) personal portfolio, from here you can view my
-super cool projects, ramblings or go to my [about](/about) page to get to know
-me more personally. If you're just here for my resume, then
+super cool projects, [ramblings](/posts) or go to my [about](/about) page to get
+to know me more personally. If you're just here for my resume, then
 [click here](assets/resume.pdf).
 
 # at a glance

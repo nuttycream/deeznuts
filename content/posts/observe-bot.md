@@ -305,8 +305,8 @@ while (true) {
 
 For the Rust part of this, I used the
 [shared_memory](https://github.com/elast0ny/shared_memory) crate which from what
-I can tell is just a wrapper around the [nix](https://github.com/nix-rust/nix) -
-which has *nix API bindings.
+I can tell is just a wrapper around the [nix](https://github.com/nix-rust/nix)
+crate - which has *nix API bindings.
 
 I could've probably hand rolled my own by just using the `nix` crate since my
 implementation was gonna be pretty simple. But I was starting to get pressed for
@@ -332,21 +332,139 @@ fn read_shared_mem(mem: &Shmem) -> Shared {
 
 It's pretty straight forward right?
 
-The only real part that needs some explaining is:
+The only real part that probably needs some explaining is:
 `let ptr = mem.as_ptr() as *const Shared`. And this is because `mem.as_ptr()`
 returns a raw reference to a `mut u8` pointer, and for us to actually be able to
 read from it, it first needs to be casted to a `Shared` struct. And since we
 only need to read from it, it can stay as a `const`.
 
-I still had to use `unsafe` Rust for reading, and that's OK for this use case.
+I still had to use `unsafe` Rust for reading but that's OK for this use case.
+
+## Integrating WebSockets
+
+Another key point in having this program observe, is to make it near real-time.
+I'm already using `shmem` for speed, so how can we make our updates to the UI
+fast as well. And that's where `Axum` web sockets come in. Truthfully, the
+documentation and the
+[example](https://github.com/tokio-rs/axum/tree/main/examples/websockets) were
+good enough for me. As they provided pretty much an extensive explanation on how
+to send and receive web socket messages - so kudos to the `axum` team.
+
+But there was some complications, specifically because of the `shared_memory`
+crate. The Rust side needed to continuously poll the shared memory and send
+updates to connected clients. Since the crate doesn't implement the `Send`
+trait, I had to use spawn_blocking to run the memory reading in a separate
+thread:
+
+```rust
+let read_task = task::spawn_blocking(move || {
+    let mut mem_available = false;
+    let mut mem = None;
+    let mut last_ver = -1;
+
+    loop {
+        if !mem_available {
+            match open_shared_mem() {
+                Ok(opened_mem) => {
+                    println!("opened shared mem");
+                    mem = Some(opened_mem);
+                    mem_available = true;
+                }
+                Err(e) => {
+                    println!("waiting for shared memory: {e}");
+                    sleep(Duration::from_secs(5));
+                    continue;
+                }
+            }
+        }
+
+        if let Ok(shared) = read_shared_mem(shared_mem) {
+            if shared.ver != last_ver {
+                last_ver = shared.ver;
+                // convert to JSON and send via channel
+                let msg = SocketMsg {  
+                    // ...  
+                    // read from shared data here
+                };
+                let json = serde_json::to_string(&msg).unwrap_or_default();
+                tx.blocking_send(json);
+            }
+        }
+
+        sleep(Duration::from_millis(100));
+    }
+});
+```
+
+And if you remember from before, the version field `ver` acts as a simple change
+detection mechanism - where the C code increments it on every update, and Rust
+only sends WebSocket messages when it detects a new version.
 
 # ALSA and Cross-Compiling
 
-TODO
+One of the more frustrating parts was getting audio to work using the
+[rodio](https://github.com/RustAudio/rodio) crate on the Raspberry Pi. The
+project plays random chicken sounds because why the hell not? But this required
+cross-compiling ALSA libraries.
 
-# As a system daemon
+This was a huge pain in the ass, because I'm relatively new to developing in
+Rust, but also creating developer environments in NixOS as well. So trying to
+create a cross compile config for this project was genuinely annoying to say the
+least. I even thought about just giving up and going back to arch, eventually I
+stuck through it and tried a funky work-around.
 
-TODO
+I used Nix `flakes` to manage the cross-compilation environment. The key was
+setting up the correct environment variables for the aarch64 target:
+
+```nix
+aarch64-cc = "${aarch64-pkgs.stdenv.cc}/bin/aarch64-unknown-linux-gnu-cc";
+
+AARCH64_CC = aarch64-cc;
+AARCH64_PKG_CONFIG_PATH = "/usr/lib/aarch64-linux-gnu/pkgconfig";
+AARCH64_RUSTFLAGS = "-C link-args=-Wl,--dynamic-linker=/lib/ld-linux-aarch64.so.1";
+```
+
+Now, what you don't see is me struggling to get this working. I tried using
+`podman` and `docker` to build the project - which was my first time ever
+writing `dockerfiles`. That still didn't work.This took me a while to figure out
+and time was dwindling down as I was also the main programmer for the
+[chicken](/posts/my-academic-magnum-opus) - which needed precedence over this
+simple observer program.
+
+Ultimately, I found out that I was meant to be using `gnu` instead of `musl`
+because `musl` apparently didn't have the static libraries needed for `ALSA` and
+`libaudio` to work. Here's a snippet from the abomination that's in my
+`Makefile`:
+
+```Makefile
+release:
+    PKG_CONFIG_ALLOW_CROSS=1 \
+    PKG_CONFIG_PATH=$(AARCH64_PKG_CONFIG_PATH) \
+    PKG_CONFIG_LIBDIR=$(AARCH64_PKG_CONFIG_LIBDIR) \
+    CARGO_TARGET_AARCH64_UNKNOWN_LINUX_GNU_LINKER=$(AARCH64_CC) \
+    RUSTFLAGS="$(AARCH64_RUSTFLAGS)" \
+    cargo build --release --target $(TARGET_ARCH)
+
+qemu-release: release
+    qemu-aarch64 -L /usr/aarch64-linux-gnu $(ROOTNAME
+```
+
+Eventually I got it to finally work - quite frankly I probably introduced
+problems I don't see yet but time is time, and I needed something.
+
+# Final Thoughts
+
+I got skill-issued so hard trying to figure out cross compilation on nix, that
+for a moment I was genuinely thinking of nuking my Nix dotfiles and just
+re-installing Arch. Luckily, my addiction of Nix won the battle and I just stuck
+to it.
+
+I learned a decent amount when it came to `shared memory`. If I were to do it
+all over again, I would've probably hand-rolled my own `shmem` wrapper for the
+nix crate. I could've also ripped existing cross compilation `flakes` from
+GitHub, seeing as I need to use their search feature more often. Anyways, thanks
+for the read. Hopefully I made you cringe all the way through seeing all this
+crappy code - bye now.
 
 # Attribution
 

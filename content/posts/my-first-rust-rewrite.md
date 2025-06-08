@@ -379,7 +379,7 @@ unsafe {
 }
 ```
 
-### Complete Rust Rewrite
+## Complete Rust Rewrite
 
 Ripped straight from [pipin](https://github.com/nuttycream/pipin), I might've
 accidentally stripped important shit, but you should be able to get the general

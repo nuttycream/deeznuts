@@ -1,7 +1,7 @@
 +++
 title = "My First C to Rust Rewrite"
 description = "Rewrite it in Rust lives! My first Rust rewrite from a GPIO C DRA Library."
-date = "2025-06-05"
+date = "2025-06-01"
 
 [taxonomies]
 tags = ["rust","unsafe", "c", "RIIR", "dra", "gpio", "raspberry pi", "mmap"]

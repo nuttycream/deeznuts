@@ -671,64 +671,19 @@ completely un-opened side of me - a love for embedded projects and robotics.
 
 ## Attribution
 
-### GPIO & Hardware Interface
-
-- [**Raspberry Pi GPIO C DRA Example**](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access)\
-  Used as a basis for a custom GPIO C library for direct register access.
-
-- [**WaveShare Motor Driver Hat Demo**](https://www.waveshare.com/motor-driver-hat.htm)\
-  Used for I2C communication and PWM motor control implementation.
-
-### PID Control & Motion Tuning
-
-- [**Three-Omnidirectional Wheels with PID**](https://github.com/Said-taoussi/Three-Omnidirectional-Wheels-with-PID-Control)\
-  Used as a reference for implementing PID control on a 3-wheel omni-directional
-  robot.
-
-### Kinematics & Vector Calculations
-
-- [**3-wheel-omni Vectoring Arduino Example**](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino)\
-  Used as a cross-reference for omni-wheel vector calculations.
-
-- [**Inverse Kinematics GitHub Example**](https://github.com/manav20/3-wheel-omni)\
-  Used as a basis for deriving and simulating inverse kinematics equations.
-
-### Scientific & Academic References
-
-- [**Evaluation of the Path-Tracking Accuracy... (MDPI, 2021)**](https://www.mdpi.com/1424-8220/21/21/7216)\
-  Used for inverse kinematics ($IK$) formulae and path tracking evaluation.
-
-- [**APR Mobile Robot Motion System (MDPI, 2016)**](https://www.mdpi.com/1424-8220/16/10/1658)\
-  Referenced for derivation and explanation of the motion system used in similar
-  omni-robots.
-
-- [**Kinematics and Control of a 3-Wheel Omni Robot (ResearchGate)**](https://www.researchgate.net/publication/383780115_Kinematics_and_Control_A_Three-wheeled_Mobile_Robot_with_Omni-directional_Wheels)\
-  Cross-referenced for control models and system dynamics.
-
-- [**Appl. Sci. – Omniwheel Robot Kinematics (MDPI, 2018)**](https://www.mdpi.com/2076-3417/8/2/231)\
-  Used for further validation of omni-directional robot kinematic formulations.
-
-- [**Movement Control of Three Omni-Wheels Robot using Pole Placement and PID (ResearchGate)**](https://www.researchgate.net/publication/377764131_Movement_Control_of_Three_Omni-Wheels_Robot_using_Pole_Placement_State_Feedback_and_PID_Control)\
-  Referenced for PID and state feedback techniques applied to omni-wheeled robot
-  motion control.
-
-- [**Aerodynamics Study (ResearchGate)**](https://www.researchgate.net/publication/322530755_Analysis_and_Qualitative_Effects_of_Large_Breasts_on_Aerodynamic_Performance_and_Wake_of_a_Miss_Kobayashi's_Dragon_Maid_Character)\
-  Included for academic completeness and unique approach to aerodynamic modeling
-  in animated figures.
-
-- [**Path Tracking Simulation of a Robot with Mecanum Wheels (ResearchGate)**](https://www.researchgate.net/publication/346658720_Path_Tracking_Simulation_of_a_Wheeled_Mobile_Robot_with_Three_Mecanum_Wheels)\
-  Used for simulation insights into Mecanum-style robot motion and control.
-
-- [**SSRG IJEEE: Omni Wheel Robot Implementation (PDF)**](https://www.internationaljournalssrg.org/IJEEE/2019/Volume6-Issue12/IJEEE-V6I12P101.pdf)\
-  A compact study on 3-wheel omni-directional robot design and results.
-
-- [**Control Allocation and Tracking for Omni Robots (ScienceDirect)**](https://www.sciencedirect.com/science/article/abs/pii/S0094114X20301798)\
-  A comprehensive paper on optimal control strategies for omni-directional
-  robots.
-
-- [**Omni-Wheel Mobile Robot Design and Control (Springer)**](https://link.springer.com/article/10.1007/s40313-019-00439-0)\
-  Technical research article discussing the design, kinematics, and control
-  methodology of omni-wheel robots.
-
-- [**YouTube: Aerodynamic Simulation Clip**](https://www.youtube.com/watch?v=NcOT9hOsceE)\
-  Visual representation accompanying aerodynamic studies mentioned above.
+- [Raspberry Pi GPIO C DRA Example](https://elinux.org/RPi_GPIO_Code_Samples#Direct_register_access)
+- [WaveShare Motor Driver Hat Demo](https://www.waveshare.com/motor-driver-hat.htm)
+- [Three-Omnidirectional Wheels with PID](https://github.com/Said-taoussi/Three-Omnidirectional-Wheels-with-PID-Control)
+- [3-wheel-omni Vectoring Arduino Example](https://github.com/manav20/3-wheel-omni/blob/master/Vectoring/Vectoring.ino)
+- [Inverse Kinematics GitHub Example](https://github.com/manav20/3-wheel-omni)
+- [Evaluation of the Path-Tracking Accuracy... (MDPI, 2021)](https://www.mdpi.com/1424-8220/21/21/7216)
+- [APR Mobile Robot Motion System (MDPI, 2016)](https://www.mdpi.com/1424-8220/16/10/1658)
+- [Kinematics and Control of a 3-Wheel Omni Robot (ResearchGate)](https://www.researchgate.net/publication/383780115_Kinematics_and_Control_A_Three-wheeled_Mobile_Robot_with_Omni-directional_Wheels)
+- [Appl. Sci. – Omniwheel Robot Kinematics (MDPI, 2018)](https://www.mdpi.com/2076-3417/8/2/231)
+- [Movement Control of Three Omni-Wheels Robot using Pole Placement and PID (ResearchGate)](https://www.researchgate.net/publication/377764131_Movement_Control_of_Three_Omni-Wheels_Robot_using_Pole_Placement_State_Feedback_and_PID_Control)
+- [Aerodynamics Study (ResearchGate)](https://www.researchgate.net/publication/322530755_Analysis_and_Qualitative_Effects_of_Large_Breasts_on_Aerodynamic_Performance_and_Wake_of_a_Miss_Kobayashi's_Dragon_Maid_Character)
+- [Path Tracking Simulation of a Robot with Mecanum Wheels (ResearchGate)](https://www.researchgate.net/publication/346658720_Path_Tracking_Simulation_of_a_Wheeled_Mobile_Robot_with_Three_Mecanum_Wheels)
+- [SSRG IJEEE: Omni Wheel Robot Implementation (PDF)](https://www.internationaljournalssrg.org/IJEEE/2019/Volume6-Issue12/IJEEE-V6I12P101.pdf)
+- [Control Allocation and Tracking for Omni Robots (ScienceDirect)](https://www.sciencedirect.com/science/article/abs/pii/S0094114X20301798)
+- [Omni-Wheel Mobile Robot Design and Control (Springer)](https://link.springer.com/article/10.1007/s40313-019-00439-0)
+- [YouTube: Aerodynamic Simulation Clip](https://www.youtube.com/watch?v=NcOT9hOsceE)

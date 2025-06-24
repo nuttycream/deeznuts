@@ -19,7 +19,6 @@ Some of my favorite _stuff_
 - [Rust](/tags/rust) → favorite language
 - [C](/tags/c) → second favorite language
 - [C#](/tags/c#) → third favorite language
-- [HTMX](https://htmx.org) → favorite _frontend_ web framework
 - [axum](https://github.com/tokio-rs/axum) → favorite backend web framework
 - [egui](https://github.com/emilk/egui) → favorite GUI framework
 - [bevy](https://bevyengine.org) → favorite game engine

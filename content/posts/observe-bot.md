@@ -11,8 +11,8 @@ tags = ["c", "rust", "axum", "shared memory", "raspberry pi", "ipc"]
 
 [Omniscient](https://github.com/nuttycream/omniscient) is a relatively small
 project, but a project I learned A LOT from. Specifically, how
-[IPC (Interprocess Communication Works)](https://en.wikipedia.org/wiki/Inter-process_communication)
-and Linux `shmem()` - shared memory works.
+[IPC](https://en.wikipedia.org/wiki/Inter-process_communication) and Linux
+`shmem()` - shared memory works.
 
 This started because I wanted to do something **EXTRA** for the programming
 portion of me and my group's [omnichicken](/posts/my-academic-magnum-opus).

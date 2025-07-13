@@ -92,7 +92,7 @@ I need to get the ball rolling.
 
 Why these two programs you might ask?
 
-- `neovim`: I DO NOT want to use nano for editing text/configs
+- `neovim`: I **DO NOT** want to use nano for editing text
 - `git`: To clone a system `flake.nix` example from GitHub
 
 # what was hard
@@ -106,3 +106,14 @@ to be part of the cool kids club.
 
 It's simple really, I have _nixified_ my entire workflow both for personal and
 work.
+
+# resources
+
+- [NixOS](https://nixos.org/)
+- [nix.dev tutorials](https://nix.dev/tutorials/first-steps/)
+- [nix options](https://search.nixos.org/options)
+- [nix packages](https://search.nixos.org/packages)
+- [official nixos wiki](https://wiki.nixos.org/wiki/NixOS_Wiki)
+- [misterio77's starter configs](https://github.com/Misterio77/nix-starter-configs)
+- [sodiboos setup](https://github.com/sodiboo/system)
+- [my setup](https://github.com/nuttycream/nixxy)

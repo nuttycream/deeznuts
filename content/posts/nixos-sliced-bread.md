@@ -35,19 +35,19 @@ Here was how my initial journey went...
 I wanted a pure and clean set-up so I went with the `minimal` preset.
 
 > You can choose between the different desktop environment presets like 'Gnome',
-> 'KDE', or other popular tiling window managerother popular tiling window
-> managers.
+> 'KDE', or other popular tiling window managers.
 
 The `minimal` preset boots you into a `TTY` session, no window manager, no login
-daemon, nothing - which is what I like to see coming from my small arch
-endeavour.
+daemon, nothing - which is what I like to see coming from my previous arch
+endeavours.
 
-I had the wiki open on another monitor though and quickly scanned through the
-documentation and connected my network wifi through `nmcli`.
+I had the wiki open on my phone and quickly scanned through the documentation to
+connect my wifi through `nmcli`.
 
 I then hit my first road bump. How do I install anything here? I'm used to just
 doing a good ol `sudo dnf install <package>` but now I obviously don't have
-`dnf`. This is where Nix differs from traditional distros and package managers.
+`dnf`. And this is where Nix differs from traditional distros and package
+managers.
 
 Everything I wanted to do on the system, involved rewriting a configuration
 file. Since this was the initial setup, the config file was found in
@@ -94,8 +94,6 @@ Why these two programs you might ask?
 
 - `neovim`: I DO NOT want to use nano for editing text/configs
 - `git`: To clone a system `flake.nix` example from GitHub
-
-Why
 
 # what was hard
 

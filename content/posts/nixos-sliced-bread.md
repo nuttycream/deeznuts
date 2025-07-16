@@ -2,6 +2,7 @@
 title = "I use nix btw"
 description = "NixOS is the greatest thing since sliced bread"
 date = "2025-07-10"
+draft = true
 
 [taxonomies]
 tags = ["nix", "linux"]
@@ -10,7 +11,7 @@ tags = ["nix", "linux"]
 # some background
 
 I've been a [GNU/Linux](https://stallman-copypasta.github.io/) enthusiast for
-quite a while. My first foray into Linux was around 2011, when I installed
+quite a while. My first foray into Linux was awhile back, when I installed
 Ubuntu back when it was using Unity as its default DE.
 
 I don't entirely remember why I installed it, but if I had to guess it was
@@ -95,12 +96,30 @@ Why these two programs you might ask?
 - `neovim`: I **DO NOT** want to use nano for editing text
 - `git`: To clone a system `flake.nix` example from GitHub
 
+Emphasis on cloning an example system `flake.nix`. You see, while you can edit
+the `configuration.nix` in `/etc/nixos/` for your system config, it gets kinda
+messy if you want to replicate it elsewhere. That's where `flakes` come in.
+
+A _flake_, according to [zero-to-nix](https://zero-to-nix.com/concepts/flakes/)
+is a directory that outputs nix expressions to build, run, create dev
+environments, or even entire systems. FYI, you'll be using this pretty
+frequently to make reproducible dev environments for your projects.
+
+This single _flake_ directory can be pushed to something like GitHub to make it
+where I can host my entire system online. And if I have a new system, I can
+simply clone my setup and run `sudo nixos rebuild switch --flake`.
+
+_Bada bing bada boom_ my entire setup, with my preferred configs/programs are
+now installed into a new system - giving me the reproducible aspect of NixOS.
+
 # what was hard
 
 The `Nix` language was not easy for me to understand at first. Probably because
 I had very little experience with functional languages like `Nix` or `Haskell`.
-Luckily, I was extremely motivated to learn, why you may ask? Because I wanted
-to be part of the cool kids club.
+Luckily, I was extremely motivated to learn, why you may ask? So I can tell
+everyone _'I use nix btw'_.
+
+The idea is
 
 # now what?
 
@@ -111,6 +130,7 @@ work.
 
 - [NixOS](https://nixos.org/)
 - [nix.dev tutorials](https://nix.dev/tutorials/first-steps/)
+- [zero to nix](https://zero-to-nix.com/concepts/flakes/)
 - [nix options](https://search.nixos.org/options)
 - [nix packages](https://search.nixos.org/packages)
 - [official nixos wiki](https://wiki.nixos.org/wiki/NixOS_Wiki)

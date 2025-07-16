@@ -8,11 +8,11 @@ draft = true
 tags = ["nix", "linux"]
 +++
 
-# some background
+# Background
 
 I've been a [GNU/Linux](https://stallman-copypasta.github.io/) enthusiast for
-quite a while. My first foray into Linux was awhile back, when I installed
-Ubuntu back when it was using Unity as its default DE.
+quite a while. My first foray into Linux was when I installed Ubuntu back when
+it was using Unity as its default DE.
 
 I don't entirely remember why I installed it, but if I had to guess it was
 around my script kiddie days and I probably wanted to be an _1337_h4xor_ (elite
@@ -24,7 +24,7 @@ into it because I was bored of the same old windows.
 
 > I had a pretty sick Windows config back then with a custom rainmeter skin
 
-# what was easy
+# What was easy
 
 Getting initially started is actually pretty straightforward compared to other
 distros like Arch, Gentoo, etc. Mainly because the NixOS org have an official
@@ -112,19 +112,31 @@ simply clone my setup and run `sudo nixos rebuild switch --flake`.
 _Bada bing bada boom_ my entire setup, with my preferred configs/programs are
 now installed into a new system - giving me the reproducible aspect of NixOS.
 
-# what was hard
+# What was hard
 
 The `Nix` language was not easy for me to understand at first. Probably because
 I had very little experience with functional languages like `Nix` or `Haskell`.
 Luckily, I was extremely motivated to learn, why you may ask? So I can tell
 everyone _'I use nix btw'_.
 
-The idea is
+There are a decent amount of ways you can learn the language, there's the
+[nix-tour](https://nixcloud.io/tour/?id=introduction/nix) for more of an
+interactive learning experinece, if that's more of your thing. I chose the
+simpler route of just diving head first into the language.
 
-# now what?
+By using the starter configs and other example configs. I learned how a `.nix`
+file is evaluated. Now please take my explanations with a grain of salt. I don't
+expect to get everything right here, so if there's anything wrong with my
+understanding please let me know. I'm going to attempt to explain how the
+language works and the cool way I'm using it in my system config.
+
+# Now what?
 
 It's simple really, I have _nixified_ my entire workflow both for personal and
-work.
+work. Truthfully, it's an _**annoying operating system**_ that gets in the way
+more often than other distros. But its the philosophy and the way of thinking
+that makes it different. Having directory specific packages + dependencies makes
+it easier to manage projects, create reproducibility, and reliability.
 
 # resources
 

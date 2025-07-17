@@ -574,12 +574,9 @@ int obstacle_mode;
 int sensor_mode;
 ```
 
-### Reading from Sensors
-
 Reading from sensor data is multithreaded, and will continue while the main
-thread (where all the logic and mode handling is). Reading from sensors is
-pretty trivial, and making it multi-threaded is not that hard if I may say so
-myself.
+thread (where all the logic and mode handling is). Reading from them is pretty
+trivial, and making it multi-threaded is not that hard if I may say so myself.
 
 ```c
 // 0 - no
@@ -593,6 +590,192 @@ extern volatile int obstacle_detected;
 void *detect_obstacle(void *args);
 void *detect_line(void *args);
 ```
+
+How this integrates with the multi-modal system is self-explanatory. Each mode
+doesn't really care about where the data is coming from. It acts on the
+`volatile ints`.
+
+Here is a simplified version of that from the main `while` loop:
+
+```c
+if (shared.bot_mode == MANUAL_CTRL_MODE) {
+    ...
+} else if (shared.bot_mode == LINE_FOLLOWING_MODE) {
+
+    if (obstacle_detected == 1) {
+
+        // simple avoidance
+        // go right until no object detected
+        if (shared.obstacle_mode == OBSTACLE_AVOIDANCE_MODE) {
+            ...
+            continue;
+
+        } else if (shared.obstacle_mode == OBSTACLE_TRACKING_MODE) {
+            // pause and
+            // enter confirmation loop
+            // this will break once the
+            // timer reaches 2 seconds
+            // this is to confirm whether or
+            // not an obstacle is truly there
+            int timer = 0;
+            while (timer < 2) {
+                if (obstacle_detected == 0) {
+                    break;
+                } else {
+                    timer++;
+                }
+                sleep(1);
+            }
+
+            if (timer == 2) {
+                // note
+                // this will keep running as we are
+                // in obstacle mode
+                // until the edge sensors
+                // re pick up the line
+
+                // high level overview
+                // keep distance within margin of error +-1
+                // strafe/avoid
+                // SAFE_DISTANCE_CM
+                obstacle_tracking();
+            }
+        }
+    }
+
+    // handle color detection before the line
+    // detection logic
+    if (shared.allow_rgb == 1 && found_line == 0) {
+        // if red then stop, this will continue
+        // to stop unless we stop the program.
+        // otherwise do whatever
+        // should we add a delay to confirm?
+        // similar to object detection
+        //
+        if (check_color() == RED) {
+            ...
+            return EXIT_SUCCESS;
+        }
+    }
+
+    // handle line following
+    ...
+
+} else if (shared.bot_mode == WANDER_MODE) {
+    wander_mode();
+}
+```
+
+#### Handling Line Navigation
+
+We did not want to do the omni-directionaly movement for the line following
+part, mainly because we need to have the _chicken head_ be facing the correct
+position as it traversed the track.
+
+Here's how we did that:
+
+```c
+// handle CORRECTING FOR LOST LINE ON LEFT
+// Rotate towards left
+if (go_left == 1 && go_right == 0) {
+    stop_motor(MOTORA);
+    run_motor(MOTORB, MAX_SPEED, FORWARD);
+    run_motor(MOTORC, MAX_SPEED, BACKWARD);
+}
+// handle correcting FOR LOST LINE ON RIGHT
+// Rotate towards right
+else if (go_right == 1 && go_left == 0) {
+    run_motor(MOTORA, MAX_SPEED, FORWARD);
+    stop_motor(MOTORB);
+    run_motor(MOTORC, MAX_SPEED, FORWARD);
+}
+// otherwise go forward
+else if (go_right == 0 && go_left == 0) {
+    run_motor(MOTORA, MAX_SPEED, FORWARD);
+    run_motor(MOTORB, MAX_SPEED, FORWARD);
+    stop_motor(MOTORC);
+}
+```
+
+`go left` and `go_right` were being modified in another thread using this
+`detect_line` that runs and updates those `volatile ints` in parallel.
+
+```c
+void *detect_line(void *args) {
+
+    Shared *shared = args;
+    while (keep_running) {
+
+        if (shared->sensor_mode == 0) {
+            // helper for storing it in shared
+            // sensors
+            // might refactor who knows
+            int four_vals[4];
+            for (int i = 0; i < 4; i++) {
+                four_vals[i] = get_gpio(four_sensors[i]);
+                shared->sensors[i] = four_vals[i];
+            }
+            mapped_logic_mode(four_vals);
+        } else if (shared->sensor_mode == 1) {
+            weighted_average_mode(shared);
+        } else if (shared->sensor_mode == 2) {
+            two_sensor_mode();
+        }
+
+        shared->go_left = go_left;
+        shared->go_right = go_right;
+    }
+
+    return NULL;
+}
+```
+
+Most of this so far is pretty self explanatory. But I wanna dive deeper into our
+most important mode, the `weighted_average_mode()` function/mode.
+
+```c
+// handle explicitly for 5 sensors
+void weighted_average_mode(Shared *shared) {
+
+    int weighted_sum = 0;
+    int total_active = 0;
+    int weights[5] = {-2, -1, 0, 1, 2};
+
+    for (int i = 0; i < 4; i++) {
+        int val = get_gpio(five_sensors[i]);
+        weighted_sum += val * weights[i];
+        total_active += val;
+        shared->sensors[i] = val;
+    }
+
+    int average = total_active == 0 ? 999 : weighted_sum / total_active;
+
+    // this is going to be mainly used
+    // by the rgb detection
+    // so when we lose the line
+    // we can also check for a color
+    if (total_active > 0) {
+        found_line = 1;
+    } else {
+        found_line = 0;
+    }
+
+    if (average == 999) {
+        // no line found?
+    } else if (average == 0) {
+        go_left = 0;
+        go_right = 0;
+    } else if (average > 0) {
+        go_right = 1;
+    } else if (average < 0) {
+        go_left = 1;
+    }
+}
+```
+
+This is the `Proportional` part of `PID`, where we average out the weights from
+the the sum of all binary values of each of the sensors since the sensors would
+output a 0/1.
 
 ### Shared Memory
 

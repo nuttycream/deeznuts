@@ -15,12 +15,13 @@
 {% endmacro %}
 
 {% macro list_posts(pages) %}
+<p>If you somehow happen to accidentally wander here, due note that none of these are peer-reviewed. Just mostly my thoughts after getting bored.</p> 
     <ul>
         {%- for page in pages %}
             <li class="list-item">
                 <section>
                     <div class="post-header">
-                        <!--<time>{{ page.date | date(format="%Y-%m-%d") }}</time> -->
+                        <time>{{ page.date | date(format="%Y-%m-%d") }}</time>
 
                         <div>
                             <h1 class="title">
@@ -108,6 +109,9 @@
                 {{ post_macros::page_header(title=page.title) }}
 
                 <div class="meta">
+                    {% if page.date %}
+                        <time>{{ page.date | date(format="%Y-%m-%d") }}</time> :: 
+                    {% endif %}
                     {% if page.description %}
                         {{ page.description }} <br>
                     {% endif %}

@@ -15,7 +15,7 @@
     {% for post in posts_section.pages %}
     <div class="post-item">
         <a href="{{ post.permalink | safe }}" class="post-title">{{ post.title }}</a>
-        <!-- <time class="post-date">{{ post.date | date(format="%m-%d") }}</time> -->
+         <time class="post-date">{{ post.date | date(format="%m-%d") }}</time> 
         {% if post.description %}
         <div class="post-description">{{ post.description }}</div>
         {% elif post.summary %}

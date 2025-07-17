@@ -2,7 +2,6 @@
 title = "I use nix btw"
 description = "NixOS is the greatest thing since sliced bread"
 date = "2025-07-10"
-draft = true
 
 [taxonomies]
 tags = ["nix", "linux"]
@@ -122,23 +121,103 @@ everyone _'I use nix btw'_.
 There are a decent amount of ways you can learn the language, there's the
 [nix-tour](https://nixcloud.io/tour/?id=introduction/nix) for more of an
 interactive learning experinece, if that's more of your thing. I chose the
-simpler route of just diving head first into the language.
+simpler route of just diving head first into the language. By using the starter
+configs and other example configs. I learned how a `.nix` file is evaluated.
 
-By using the starter configs and other example configs. I learned how a `.nix`
-file is evaluated. Now please take my explanations with a grain of salt. I don't
-expect to get everything right here, so if there's anything wrong with my
-understanding please let me know. I'm going to attempt to explain how the
-language works and the cool way I'm using it in my system config.
+I thought about trying to explain you the basics of what the language has, but I
+feel like I'd be unintentionally mis-informing you, since I myself am a noob at
+it. So instead I'll go over my own system config and how I made it.
+
+The basis for my flake.nix was straight up ripped from
+[sodiboo's](https://github.com/sodiboo/system) config so special thanks to them.
+You should also visit their repo for a better grasp of how this setup works.
+
+From my understanding, the flake scans for `.mod.nix` files and loads them
+through the `mapAttrsToList()` function where each module is loaded through
+`import("${mod_file}")`, and saves me the trouble of explicitly specifying the
+module. Each `.mod.nix` file can also define configs for different systems or
+inherit different _layers_.
+
+The key thing I definitely wanted is how inheritance is handled. Specifically
+configurations found in `_inheritance.mod.nix` and what it exactly its being
+used for. That's all handled by Sodiboo's merge function:
+
+```nix
+merge = prev: this: {
+    modules = prev.modules or [] ++ this.modules or [];
+    home_modules = prev.home_modules or [] ++ this.home_modules or [];
+} // (optionalAttrs (prev ? system || this ? system) {
+    system = prev.system or this.system;
+});
+```
+
+Too be clear, I'm pretty sure this sort of combines configs rather than create
+inheritance. And when they are merged, the `modules` and `home_modules` arrays
+are concatted as well as the system specific config, I believe this is what
+`optionalAttrs` handles.
+
+The setup also uses `zipAttrsWith` to automatically combine all modules by
+machine name. So if multiple .mod.nix files define configs for the same machine
+like _desky_, they get automatically combined using the merge function through
+folding.
+
+This all sort of lets me use a _layered_ config setup where machines can inherit
+the configs they would need, I can also specify a config on a per machine level.
+
+In practice, this is what it would look like:
+
+```nix
+desky = merge configs.universal configs.personal
+lappy = merge configs.universal configs.personal
+```
+
+This automatically creates and combines configs as like so:
+
+- modules -> `universal.modules ++ personal.modules`
+- home_modules -> `universal.home_modules ++ personal.home_modules`
+
+To put it all together, declaring a new module is as simple as:
+
+```nix
+# some.mod.nix
+
+{...} : {
+    universal.modules = [
+        ({pkgs, lib, ...} : {
+            # ...
+        });
+    ];
+    
+    # and/or
+    personal.modules = [{
+        # ...
+    }];
+    
+    # for specific hosts
+    lappy.modules = [];
+    desky.modules = [];
+    
+    # same goes for home_modules
+    universal.home_modules = [];
+    personal.home_modules = [];
+    lappy.home_modules = [];
+}
+```
 
 # Now what?
 
 It's simple really, I have _nixified_ my entire workflow both for personal and
-work. Truthfully, it's an _**annoying operating system**_ that gets in the way
-more often than other distros. But its the philosophy and the way of thinking
-that makes it different. Having directory specific packages + dependencies makes
-it easier to manage projects, create reproducibility, and reliability.
+work. I've been `nix'd` on January of 2025 and haven't looked back since.
 
-# resources
+Truthfully, it's an _**annoying operating system**_ that gets in the way more
+often than any other distro. But its the philosophy and the way of thinking that
+makes it different. Having directory specific packages + dependencies makes it
+easier to manage projects, create reproducibility, and reliability.
+
+Quite frankly, it would be an understatement to say that I'm addicted. In fact I
+get a _dopamine_ rush whenever I have to fiddle with my configs.
+
+# Resources
 
 - [NixOS](https://nixos.org/)
 - [nix.dev tutorials](https://nix.dev/tutorials/first-steps/)

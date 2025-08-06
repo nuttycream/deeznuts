@@ -7,7 +7,7 @@ taxonomies = [{ name = "tags" }]
 
 [markdown]
 highlight_code = true
-highlight_theme = "ayu-light"
+highlight_theme = "boron"
 
 [extra]
 toc = true

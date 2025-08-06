@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function () {
         pre.style.position = 'relative'; // Ensure parent `pre` can contain absolute elements
 
         // Create and append the copy button
-        const copyBtn = document.createElement('button');
+        /* const copyBtn = document.createElement('button');
         copyBtn.className = 'clipboard-button';
         copyBtn.innerHTML = copyIcon;
         copyBtn.setAttribute('aria-label', 'Copy code to clipboard');
@@ -76,16 +76,16 @@ document.addEventListener('DOMContentLoaded', function () {
                 console.error('Failed to copy text: ', error);
                 changeIcon(copyBtn, false); // Show error icon
             }
-        });
+        }); */
 
         const langClass = codeBlock.className.match(/language-(\w+)/);
         const lang = langClass ? langClass[1] : 'default';
 
         // Create and append the label
-        const label = document.createElement('span');
+        /* const label = document.createElement('span');
         label.className = 'code-label label-' + lang; // Use the specific language class
         label.textContent = lang.toUpperCase(); // Display the language as label
-        pre.appendChild(label);
+        pre.appendChild(label); */
 
         let ticking = false;
         pre.addEventListener('scroll', () => {

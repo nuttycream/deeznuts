@@ -130,7 +130,6 @@ $language-colors: (
 code {
   background-color: var(--bg-primary);
   padding: 0.1rem 0.2rem;
-  border-radius: 5px;
   border: 1px solid var(--border-color);
   font-family: var(--code-font);
   font-size: 0.9rem;
@@ -139,11 +138,10 @@ code {
 
 pre {
   background-color: var(--bg-primary) !important;
-  border-radius: 5px;
   border: 1px solid var(--border-color);
   line-height: 1.3;
   overflow-x: auto;
-  margin: 1rem;
+  //margin: 1rem;
   padding: 0.5em;
   position: relative;
 

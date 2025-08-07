@@ -6,8 +6,12 @@ minify_html = true
 taxonomies = [{ name = "tags" }]
 
 [markdown]
+extra_syntaxes_and_themes = [
+    "syntaxes",
+    "syntaxes/cyberdream"
+]
 highlight_code = true
-highlight_theme = "boron"
+highlight_theme = "cyberdream"
 
 [extra]
 toc = true

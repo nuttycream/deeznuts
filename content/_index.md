@@ -1,12 +1,12 @@
 +++
-title= "welcome"
+title= "Welcome"
 template = "homepage.html"
 +++
 
-Hello! This is my (John Carter's) personal portfolio, from here you can view my
-super cool projects, [ramblings](/posts) or go to my [about](/about) page to get
-to know me more personally. If you're just here for my resume, then
-[click here](assets/resume.pdf).
+Hello! This is my (John Carter's) personal website, from here you can view my
+super cool [projects](/projects), [ramblings](/posts) or go to my
+[about](/about) page to get to know me more personally. If you're just here for
+my resume, then [click here](assets/resume.pdf).
 
 # Some of my favorite _stuff_
 
@@ -17,4 +17,4 @@ to know me more personally. If you're just here for my resume, then
 - [Rust](/tags/rust) → favorite language
 - [C](/tags/c) → second favorite language
 - [zola](https://www.getzola.org) → _this_ website's SSG
-- [IBM Plex](https://www.ibm.com/plex/) → favorite font
+- [IBM Plex](https://www.iwbm.com/plex/) → favorite font

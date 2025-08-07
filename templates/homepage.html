@@ -4,13 +4,13 @@
     {{ post_macros::home_page(section=section) }}
 
     {% set projects_section = get_section(path="projects/_index.md") %}
-    <h1>cool projects</h1>
+    <h1>Cool projects</h1>
     {% if projects_section %}
         {{ post_macros::cards_posts(pages=projects_section.pages) }}
     {% endif %}
 
     {% set posts_section = get_section(path="posts/_index.md") %}
-    <h1>recent ramblings</h1>
+    <h1>Recent ramblings</h1>
     {% if posts_section %}
     {% for post in posts_section.pages %}
     <div class="post-item">
@@ -26,7 +26,7 @@
     {% endif %}
 
     {% set all_tags = get_taxonomy(kind="tags") %}
-    <h1>jump to</h1>
+    <h1>Taxonomies</h1>
     {% if all_tags %}
         {% for term in all_tags.items %}
             <a href="{{ term.permalink | safe }}">{{ term.name }}</a>{% if not loop.last %}, {% endif %}

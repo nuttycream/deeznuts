@@ -7,7 +7,7 @@ date = "2025-05-25"
 tags = ["c", "gpio", "omni-directional", "raspberry pi", "ipc", "chicken", "minecraft"]
 +++
 
-# [The Omni Chicken](https://github.com/nuttycream/omnibot)
+## [The Omni Chicken](https://github.com/nuttycream/omnibot)
 
 A Raspberry Pi-powered three-wheeled omnidirectional, line following, obstacle
 avoidance and obstacle tracking robot. Built with love and C.

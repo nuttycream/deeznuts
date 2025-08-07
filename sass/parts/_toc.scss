@@ -1,25 +1,22 @@
 .toc-container {
   .toc-title {
-    cursor: pointer;
-    position: relative;
-    padding-left: 20px; // Space for the arrow
-
     &:before {
-      font-size: 0.7em;
-      content: "▼"; // Down arrow
-      position: absolute;
-      left: 0;
-      transition: transform 0.3s ease; // Smooth transformation
-    }
-
-    &:hover:before,
-    &.expanded:before {
-      transform: rotate(180deg); // Arrow points up when expanded or on hover
+      content: "↳";
     }
   }
 
   .toc-list {
-    display: block; // ToC is hidden by default
-    // Removed transition on display, not effective
+    display: block;
+    padding-left: 10px;
+    list-style: none;
+
+    li {
+      list-style: none;
+
+      >a {
+        border-bottom: none;
+      }
+
+    }
   }
 }

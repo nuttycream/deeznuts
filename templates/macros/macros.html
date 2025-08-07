@@ -15,7 +15,8 @@
 {% endmacro %}
 
 {% macro list_posts(pages) %}
-<p>If you somehow happen to accidentally wander here, due note that none of these are peer-reviewed. Just mostly my thoughts after getting bored.</p> 
+<p>If you somehow happen to accidentally wander here, due note that none of these are peer-reviewed and are probably horrendously incorrect. 
+Please email me so I can correct my stupidity <a href="mailto:johnnacion@protonmail.com">johnnacion@protonmail.com</a></p>
     <ul>
         {%- for page in pages %}
             <li class="list-item">
@@ -122,19 +123,9 @@
 
                     {% if page.extra.read_time %}:: <time>{{ page.reading_time }}</time> Min Read{% endif %}
 
-                    {% if page.word_count %}{{ page.word_count }} Words{% endif %}
+                    {#{% if page.word_count %}{{ page.word_count }} Words{% endif %}}
 
                     {# Inline display of tags directly after the date #}
-                    {% if page.taxonomies and page.taxonomies.tags %}
-                        <span class="tags-label">→ </span>
-                        <span class="tags">
-                            {%- for tag in page.taxonomies.tags %}
-                                <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) }}"
-                                   class="post-tag">{{ tag }}</a>
-                                {% if not loop.last %},{% endif %}
-                            {% endfor %}
-                        </span>
-                    {% endif %}
 
                     {# View the page on GitHub #}
                     {% if page.extra.repo_view | default(value=config.extra.repo_view) | default(value=false) %}
@@ -169,7 +160,7 @@
             {% if config.extra.toc | default(value=false) %}
                 {% if page.toc %}
                     <div class="toc-container">
-                        <h1 class="toc-title">Table of Contents</h1>
+                        <h1 class="toc-title">jump to</h1>
                         <ul class="toc-list">
                             {% for h1 in page.toc %}
                                 <li>
@@ -203,6 +194,18 @@
             <section class="body">
                 {{ page.content | safe }}
             </section>
+
+            {% if page.taxonomies and page.taxonomies.tags %}
+            <br>
+            <span class="tags-label">tags → </span>
+            <span class="tags">
+                {%- for tag in page.taxonomies.tags %}
+                <a href="{{ get_taxonomy_url(kind='tags', name=tag, lang=page.lang) }}"
+                   class="post-tag">{{ tag }}</a>
+                {% if not loop.last %},{% endif %}
+                {% endfor %}
+            </span>
+            {% endif %}
         </article>
     </main>
 {% endmacro content %}

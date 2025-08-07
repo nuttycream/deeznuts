@@ -12,12 +12,16 @@ extra_syntaxes_and_themes = [
 ]
 highlight_code = true
 highlight_theme = "cyberdream"
+highlight_themes_css = [
+  { theme = "cyberdream", filename = "syntax-theme-dark.css" },
+  { theme = "cyberdream-light", filename = "syntax-theme-light.css" },
+]
 
 [extra]
 toc = true
 use_cdn = true
 #favicon = "/icon/favicon.png"
-theme = "toggle"              
+theme = "dark"              
 fancy_code = true
 dynamic_note = true 
 mathjax = true

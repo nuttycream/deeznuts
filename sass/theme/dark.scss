@@ -2,7 +2,7 @@ $bg-0: #000000;
 
 // Dark theme needs a bigger contrast compared to the white theme.
 $bg-1: lighten($bg-0, 5%);
-$bg-2: lighten($bg-1, 10%);
+$bg-2: lighten($bg-1, 25%);
 
 $text-0: white; //lighten($bg-0, 87%);
 $text-1: lighten($bg-0, 60%);
@@ -20,7 +20,7 @@ $text-1: lighten($bg-0, 60%);
   --primary-color: #48ff0a;
   --hover-color: black;
 
-  .social > img {
+  .social>img {
     filter: invert(1);
   }
 }

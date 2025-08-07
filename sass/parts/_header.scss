@@ -108,7 +108,8 @@ header .socials {
 }
 
 .meta {
-  color: #999;
+  margin-top: 16px;
+  color: var(--text-1);
   display: flexbox;
   /* This changes the meta class to use flexbox, which ensures inline display */
   align-items: center;
@@ -130,9 +131,10 @@ h3,
 h4,
 h5,
 h6 {
+  font-weight: normal;
   font-size: 1.2rem;
-  margin-top: 1.5em;
-  margin-left: -0.8em;
+  margin-top: 1.2em;
+  margin-left: -1em;
 }
 
 h1:before,
@@ -141,30 +143,7 @@ h3:before,
 h4:before,
 h5:before,
 h6:before {
-  font-size: 1.5rem;
+  content: "→ ";
+  font-size: 1rem;
   color: var(--primary-color);
-}
-
-h1::before {
-  content: "→ ";
-}
-
-h2::before {
-  content: "→ ";
-}
-
-h3::before {
-  content: "⇀ ";
-}
-
-h4::before {
-  content: "↝ ";
-}
-
-h5::before {
-  //content: "##### ";
-}
-
-h6::before {
-  //content: "###### ";
 }

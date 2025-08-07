@@ -33,14 +33,15 @@ hr {
 }
 
 blockquote {
+  background-color: var(--bg-1);
   border-left: 3px solid var(--primary-color);
-  color: #737373;
+  color: var(--text-1);
   margin: 0;
   padding-left: 1em;
 }
 
 a {
-  border-bottom: 1.5px solid var(--primary-color);
+  border-bottom: 1px solid var(--primary-color);
   color: inherit;
   text-decoration: none;
 
@@ -57,10 +58,6 @@ a.zola-anchor {
 a:hover {
   background-color: var(--primary-color);
   color: var(--hover-color);
-}
-
-time {
-  color: grey;
 }
 
 /* Remove post list padding */

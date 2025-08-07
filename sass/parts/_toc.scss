@@ -1,13 +1,17 @@
 .toc-container {
+  margin-bottom: 2rem;
+
   .toc-title {
     &:before {
-      content: "↳";
+      content: "↳ ";
     }
   }
 
   .toc-list {
     display: block;
+    color: var(--text-1);
     padding-left: 10px;
+    font-size: 90%;
     list-style: none;
 
     li {
@@ -17,6 +21,9 @@
         border-bottom: none;
       }
 
+      ul {
+        margin-left: -0.8rem;
+      }
     }
   }
 }

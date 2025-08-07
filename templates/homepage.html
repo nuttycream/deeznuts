@@ -25,12 +25,14 @@
         {% endfor %}
     {% endif %}
 
+    <br>
     {% set all_tags = get_taxonomy(kind="tags") %}
-    <h1>Taxonomies</h1>
+    <div class="tags">
     {% if all_tags %}
         {% for term in all_tags.items %}
             <a href="{{ term.permalink | safe }}">{{ term.name }}</a>{% if not loop.last %}, {% endif %}
         {% endfor %}
+    </>
     {% endif %}
 
 {% endblock main_content %}

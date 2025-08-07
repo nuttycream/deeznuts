@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function () {
         /* const label = document.createElement('span');
         label.className = 'code-label label-' + lang; // Use the specific language class
         label.textContent = lang.toUpperCase(); // Display the language as label
-        pre.appendChild(label); */
+        pre.appendChild(label); 
 
         let ticking = false;
         pre.addEventListener('scroll', () => {
@@ -98,6 +98,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 ticking = true;
             }
         });
-
+        */
     });
 });

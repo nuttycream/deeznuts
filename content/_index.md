@@ -3,8 +3,8 @@ title= "Welcome"
 template = "homepage.html"
 +++
 
-Hello! This is my (John Carter's) personal website, from here you can view my
-super cool [projects](/projects), [ramblings](/posts) or go to my
+Hello! This is my (John Carter/Nacion's) personal website, from here you can
+view my super cool [projects](/projects), [ramblings](/posts) or go to my
 [about](/about) page to get to know me more personally. If you're just here for
 my resume, then [click here](assets/resume.pdf).
 

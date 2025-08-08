@@ -9,6 +9,7 @@
         {{ post_macros::cards_posts(pages=projects_section.pages) }}
     {% endif %}
 
+    <!--
     {% set posts_section = get_section(path="posts/_index.md") %}
     <h1>Recent ramblings</h1>
     {% if posts_section %}
@@ -25,8 +26,8 @@
         {% endfor %}
     {% endif %}
 
-    <br>
     {% set all_tags = get_taxonomy(kind="tags") %}
+    <h1>Tags</h1>
     <div class="tags">
     {% if all_tags %}
         {% for term in all_tags.items %}
@@ -34,5 +35,6 @@
         {% endfor %}
     </>
     {% endif %}
+    -->
 
 {% endblock main_content %}

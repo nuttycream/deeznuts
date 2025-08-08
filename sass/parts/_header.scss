@@ -1,6 +1,5 @@
 .page-header {
-  font-size: 2.5em;
-  line-height: 100%;
+  font-size: 1.2rem;
   font-family: var(--header-font);
 }
 
@@ -11,7 +10,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  font-size: 4em;
+  //font-size: 4em;
 }
 
 .centered-header span {
@@ -33,10 +32,11 @@ header .main {
   justify-content: space-between;
   align-items: flex-start;
   gap: 12px;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
 
   /* Otherwise header and menu is too close on small screens*/
   margin-bottom: 5px;
+
 }
 
 header .social img,
@@ -48,6 +48,7 @@ header #dark-mode-toggle img {
 header .socials {
   margin-bottom: 10px;
   /* Space between social icons and menu items */
+
 }
 
 #dark-mode-toggle {
@@ -86,6 +87,7 @@ header .socials {
   border-bottom: unset;
   background-image: unset;
   padding: 2px;
+
 }
 
 .social>img {
@@ -108,7 +110,7 @@ header .socials {
 }
 
 .meta {
-  margin-top: 16px;
+  margin-top: 8px;
   color: var(--text-1);
   display: flexbox;
   /* This changes the meta class to use flexbox, which ensures inline display */
@@ -132,7 +134,7 @@ h4,
 h5,
 h6 {
   font-weight: normal;
-  font-size: 1.2rem;
+  font-size: 1rem;
   margin-top: 1.2em;
   margin-left: -1em;
 }

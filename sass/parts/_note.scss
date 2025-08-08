@@ -22,7 +22,7 @@
   width: 100%;
   position: relative;
   outline: none;
-  font-size: 1.2em;
+  font-size: 1rem;
   transition: background-color 0.3s ease;
 
   p {
@@ -42,7 +42,8 @@
 
 .note-toggle {
   font-family: inherit;
-  padding: 10px 25px; /* Stop header intersecting with note-icon */
+  padding: 10px 25px;
+  /* Stop header intersecting with note-icon */
   cursor: pointer;
   position: relative;
 }
@@ -80,11 +81,11 @@
 }
 
 summary {
-    padding-left: 0.5em;
+  padding-left: 0.5em;
 
-    &:hover {
-        background-color: var(--primary-color);
-        color: var(--hover-color);
-        cursor: pointer;
-    }
+  &:hover {
+    background-color: var(--primary-color);
+    color: var(--hover-color);
+    cursor: pointer;
+  }
 }

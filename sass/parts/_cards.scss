@@ -34,7 +34,7 @@
 .card {
   height: 250px;
   background: var(--bg-1);
-  border: 2px solid rgba(0,0,0, 1.0);
+  border: 2px solid rgba(0, 0, 0, 1.0);
   //border-radius: 10px;
   overflow: hidden;
   transition: border-color 0.2s ease;
@@ -55,10 +55,17 @@
 
 .card-title {
   all: unset;
-  font-size: 1.2em;
+  color: var(--secondary-color);
+  //font-size: 1.2em;
   margin-top: 0.1em;
   margin-bottom: 0.5em;
   transition: color 0.2s ease;
+
+  h3 {
+    ::before {
+      content: "";
+    }
+  }
 }
 
 .card-image {
@@ -79,7 +86,8 @@
 }
 
 .card-description {
-  font-size: 0.8em;  
+  //font-size: 0.8em;
+  color: var(--text-1);
   overflow: hidden;
 }
 
@@ -88,18 +96,18 @@
     gap: 18px;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
   }
-  
+
   .card-link:hover {
     transform: translateY(-2px);
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   }
 
   .card {
-    height: 220px; 
+    height: 220px;
   }
 
   .card-image,
   .card-image-placeholder {
-    height: 70px; 
+    height: 70px;
   }
 }

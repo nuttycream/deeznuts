@@ -1,5 +1,5 @@
 base_url = "https://johnnacion.dev"
-title = "john nacion"
+title = "johnnacion"
 generate_feeds = true
 compile_sass = true
 minify_html = true
@@ -12,10 +12,6 @@ extra_syntaxes_and_themes = [
 ]
 highlight_code = true
 highlight_theme = "cyberdream"
-highlight_themes_css = [
-  { theme = "cyberdream", filename = "syntax-theme-dark.css" },
-  { theme = "cyberdream-light", filename = "syntax-theme-light.css" },
-]
 
 [extra]
 toc = true

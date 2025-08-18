@@ -6,18 +6,20 @@ console.log("This runs in your terminal, not the browser!");
 
 <html>
   <body>
-    <div class="prompt">Hello, World!</div>
+    <h1 class="prompt">Welcome...</h1>
   </body>
 </html>
 <style>
   body {
-    display: grid;
     background: black;
   }
 
   .prompt {
-    align-items: center;
-    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
     color: white;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
   }
 </style>

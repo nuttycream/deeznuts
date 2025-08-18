@@ -1,0 +1,17 @@
+[*.css]
+indent_size = 2
+tabstop = 2
+softtabstop = 2
+shiftwidth = 2
+
+[*.nix]
+indent_size = 2
+tabstop = 2
+softtabstop = 2
+shiftwidth = 2
+
+[*.astro]
+indent_size = 2
+tabstop = 2
+softtabstop = 2
+shiftwidth = 2

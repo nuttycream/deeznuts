@@ -14,7 +14,9 @@
       };
     in
       pkgs.mkShell {
+        name = "AAAAAAAAAH";
         packages = with pkgs; [
+          nodejs
           zola
         ];
       };

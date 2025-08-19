@@ -11,8 +11,14 @@ import "../styles/fonts.css";
       <h1>welcome</h1>
       <h3>choose carefully:</h3>
       <div class="options">
-        <a style="color: red;">this</a>
-        <a style="color: blue;">that</a>
+        <div class="option">
+          <a style="color: red;">this</a>
+          <p class="hide">Click here if you're a recruiter</p>
+        </div>
+        <div class="option">
+          <a style="color: blue;">that</a>
+          <p class="hide">Please DON'T CLICK here if you're a recruiter</p>
+        </div>
       </div>
     </div>
   </body>
@@ -37,9 +43,25 @@ import "../styles/fonts.css";
     display: flex;
     justify-content: space-evenly;
 
-    a {
-      font-weight: bold;
-      border-bottom: 1px solid white;
+    .option {
+      position: relative;
+
+      a {
+        font-weight: bold;
+        border-bottom: 1px solid white;
+      }
+    }
+
+    .hide {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .option:hover .hide {
+      display: block;
     }
   }
 </style>

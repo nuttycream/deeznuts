@@ -2,11 +2,19 @@
 // Welcome to Astro! Everything between these triple-dash code fences
 // is your "component frontmatter". It never runs in the browser.
 console.log("This runs in your terminal, not the browser!");
+import "../styles/fonts.css";
 ---
 
 <html>
   <body>
-    <h1 class="prompt">Welcome...</h1>
+    <div class="prompt">
+      <h1>welcome</h1>
+      <h3>choose carefully:</h3>
+      <div class="options">
+        <a style="color: red;">this</a>
+        <a style="color: blue;">that</a>
+      </div>
+    </div>
   </body>
 </html>
 <style>
@@ -15,11 +23,23 @@ console.log("This runs in your terminal, not the browser!");
   }
 
   .prompt {
+    font-family: "IBM Plex Mono";
+    text-align: center;
     position: absolute;
     left: 50%;
-    top: 50%;
-    color: white;
+    top: 45%;
+    color: green;
     -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-evenly;
+
+    a {
+      font-weight: bold;
+      border-bottom: 1px solid white;
+    }
   }
 </style>

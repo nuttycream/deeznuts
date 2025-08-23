@@ -11,8 +11,10 @@ const { frontmatter } = Astro.props;
     <title>{frontmatter.title}</title>
   </head>
   <body>
-    <div class="content">
-      <slot />
+    <div class="container">
+      <div class="content">
+        <slot />
+      </div>
     </div>
   </body>
 </html>
@@ -21,7 +23,7 @@ const { frontmatter } = Astro.props;
   body {
     background-color: black;
     color: white;
-    font-family: "IBM Plex Serif";
+    font-family: "IBM Plex Sans";
     margin: 0;
     padding: 20px;
     display: flex;
@@ -29,27 +31,38 @@ const { frontmatter } = Astro.props;
     align-items: flex-start;
   }
 
-  .content {
+  .container {
     max-width: 800px;
+    border-left: 1px solid transparent;
+    border-image: linear-gradient(limegreen, black) 1;
+  }
+
+  .content {
     width: 100%;
     padding: 40px;
     overflow: hidden;
-    border: 1px dashed green;
   }
 
   .content :global(h1),
   .content :global(h2),
   .content :global(h3) {
     font-size: 1.2rem;
+    margin-bottom: 10px;
     color: limegreen;
   }
 
   .content :global(p) {
-    line-height: 1.6;
+    line-height: 1.5rem;
+    margin-bottom: 0.7rem;
   }
 
   .content :global(a) {
-    text-decoration: none;
+    text-decoration: none !important;
+    border-bottom: 1px solid limegreen;
+  }
+
+  .content :global(a:hover) {
+    border-bottom: 1px solid lightcoral;
   }
 
   .content :global(a:hover) {
@@ -62,5 +75,25 @@ const { frontmatter } = Astro.props;
 
   .content :global(pre) {
     padding: 1px;
+  }
+
+  .content :global(ul) {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .content :global(li) {
+    display: flex;
+  }
+
+  .content :global(ul li::before) {
+    content: "↳ ";
+    opacity: 0.3;
+    flex-shrink: 0;
+  }
+
+  .content :global(ul p) {
+    margin-left: 0.5rem;
+    margin-bottom: 0.5rem;
   }
 </style>

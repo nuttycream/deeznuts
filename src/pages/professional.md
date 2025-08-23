@@ -1,11 +1,7 @@
 ---
-layout: ../layouts/Layout.astro
+layout: ../layouts/Professional.astro
 title: "professional"
 ---
-
-[resume](/resume.pdf)
-
-# To whom it may concern,
 
 My name is John Carter, and I am a programmer with a Bachelor's in Computer
 Science from San Francisco State University. I'm also a veteran of the US
@@ -17,7 +13,9 @@ Cpp. I mainly work on projects that are back-end, embedded, and low-level, with
 the occasional dab at web development with vanilla JS, Typescript, and
 frameworks such as Astro.
 
-My most recent and notable projects:
+In my freetime, I enjoy making projects that'll help suit my daily tasks, as
+well as, explore bleeding edge technologies. My most recent and notable
+projects:
 
 - [pipin](https://github.com/nuttycream/pipin)- A rust based portable
   application to control Raspberry Pi GPIO pins on the web browser. It uses
@@ -32,14 +30,16 @@ My most recent and notable projects:
   in obstacle avoidance and tracking. This also uses a custom DMA C library with
   low level implentations of embedded protocols such as I2C, and SPI.
 
-- [omniscient](https://github.com/nuttycream/omniscient) - A rust based wep app
-  to strictly observe the omnibot. It uses IPC, specifically shared memory to
-  read from the omnibot's C memory addresses which was a strict limitation as
-  Rust code was not allowed in the omnibot's codebase. It also uses ALSA
-  bindings to pipe audio at random intervals.
-
 - [nixxy](https://github.com/nuttycream/nixxy) - My NixOS system configuration
   that is purpose built for my use-case, preferences, and desired aesthetic.
   It's made with a nix flake that dynamically loads 'modules' based on the
   designated host system. Each host system is configured with unique settings
   that are made to be declarative and easily reproducible.
+
+In terms of my professional experience, I was in the military for 3 years as
+part of the Security Forces career field where I policed a large military base.
+I also worked at a Robotics Startup as a teleoperator where I oversaw robotic
+arms being used in a real life application.
+
+Thank you for stopping by,\
+John Carter

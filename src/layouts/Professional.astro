@@ -9,10 +9,23 @@ const { frontmatter } = Astro.props;
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta charset="utf-8" />
     <title>{frontmatter.title}</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="container">
       <div class="content">
+        <div class="header">
+          <h1>To whom it may concern,</h1>
+          <div class="links">
+            <a href="/feet.pdf"> <i class="fas fa-file-pdf"> </i> Resume</a>
+            <a href="https://github.com/nuttycream"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
         <slot />
       </div>
     </div>
@@ -34,7 +47,30 @@ const { frontmatter } = Astro.props;
   .container {
     max-width: 800px;
     border-left: 1px solid transparent;
-    border-image: linear-gradient(limegreen, black) 1;
+    border-image: linear-gradient(black 0%, limegreen 20%, black 100%) 1;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    align-items: baseline;
+
+    h1 {
+      font-size: 1.2rem;
+      color: limegreen;
+    }
+
+    a {
+      font-size: 0.9rem;
+      border-bottom: none !important;
+      color: limegreen;
+    }
+  }
+
+  .links {
+    display: flex;
+    gap: 10px;
   }
 
   .content {

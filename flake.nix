@@ -3,9 +3,14 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-24.11";
+    sussg.url = "github:nuttycream/sussg";
   };
 
-  outputs = {nixpkgs, ...}: let
+  outputs = {
+    nixpkgs,
+    sussg,
+    ...
+  }: let
     system = "x86_64-linux";
   in {
     devShells."${system}".default = let
@@ -18,6 +23,7 @@
         packages = with pkgs; [
           nodejs
           zola
+          sussg.packages.${system}.default
         ];
       };
   };

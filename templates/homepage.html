@@ -1,0 +1,61 @@
+<html>
+    <title>{{title}}</title>
+  <body>
+    <div class="prompt">
+      <h1>welcome</h1>
+      <h3>choose carefully:</h3>
+      <div class="options">
+        <div class="option">
+          <a href="/professional" style="color: red;">this</a>
+          <p class="hide">Click here if you're a recruiter</p>
+        </div>
+        <div class="option">
+          <a href="/nuttycream" style="color: blue;">that</a>
+          <p class="hide">Please DON'T CLICK here if you're a recruiter</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+<style>
+  body {
+    background: black;
+  }
+
+  .prompt {
+    font-family: "IBM Plex Mono";
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 45%;
+    color: green;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+  }
+
+  .options {
+    display: flex;
+    justify-content: space-evenly;
+
+    .option {
+      position: relative;
+
+      a {
+        font-weight: bold;
+        border-bottom: 1px solid white;
+      }
+    }
+
+    .hide {
+      display: none;
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      white-space: nowrap;
+    }
+
+    .option:hover .hide {
+      display: block;
+    }
+  }
+</style>

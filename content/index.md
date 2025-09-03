@@ -1,7 +1,6 @@
 ```toml
 # this is a frontmatter
 title = "johnnacion"
-styles = ["main"]
+styles = []
+template = "homepage"
 ```
-
-# testes

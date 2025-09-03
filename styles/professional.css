@@ -1,0 +1,99 @@
+body {
+  background-color: black;
+  color: white;
+  font-family: "IBM Plex Sans";
+  margin: 0;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.container {
+  max-width: 800px;
+  border-left: 1px solid transparent;
+  border-image: linear-gradient(black 0%, limegreen 20%, black 100%) 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  align-items: baseline;
+
+  h1 {
+    font-size: 1.2rem;
+    color: limegreen;
+  }
+
+  a {
+    font-size: 0.9rem;
+    border-bottom: none !important;
+    color: limegreen;
+  }
+}
+
+.links {
+  display: flex;
+  gap: 10px;
+}
+
+.content {
+  width: 100%;
+  padding: 40px;
+  overflow: hidden;
+}
+
+.content :global(h1),
+.content :global(h2),
+.content :global(h3) {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+  color: limegreen;
+}
+
+.content :global(p) {
+  line-height: 1.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.content :global(a) {
+  text-decoration: none !important;
+  border-bottom: 1px solid limegreen;
+}
+
+.content :global(a:hover) {
+  border-bottom: 1px solid lightcoral;
+}
+
+.content :global(a:hover) {
+  text-decoration: underline;
+}
+
+.content :global(code) {
+  background-color: darkgray;
+}
+
+.content :global(pre) {
+  padding: 1px;
+}
+
+.content :global(ul) {
+  list-style: none;
+  padding-left: 0;
+}
+
+.content :global(li) {
+  display: flex;
+}
+
+.content :global(ul li::before) {
+  content: "↳ ";
+  opacity: 0.3;
+  flex-shrink: 0;
+}
+
+.content :global(ul p) {
+  margin-left: 0.5rem;
+  margin-bottom: 0.5rem;
+}

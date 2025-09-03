@@ -44,56 +44,52 @@ body {
   overflow: hidden;
 }
 
-.content :global(h1),
-.content :global(h2),
-.content :global(h3) {
+.content h1,
+.content h2,
+.content h3 {
   font-size: 1.2rem;
   margin-bottom: 10px;
   color: limegreen;
 }
 
-.content :global(p) {
+.content p {
   line-height: 1.5rem;
   margin-bottom: 0.7rem;
 }
 
-.content :global(a) {
+.content a {
   text-decoration: none !important;
-  border-bottom: 1px solid limegreen;
+  color: limegreen;
 }
 
-.content :global(a:hover) {
+.content a:hover {
   border-bottom: 1px solid lightcoral;
 }
 
-.content :global(a:hover) {
-  text-decoration: underline;
-}
-
-.content :global(code) {
+.content code {
   background-color: darkgray;
 }
 
-.content :global(pre) {
+.content pre {
   padding: 1px;
 }
 
-.content :global(ul) {
+.content ul {
   list-style: none;
   padding-left: 0;
 }
 
-.content :global(li) {
+.content li {
   display: flex;
 }
 
-.content :global(ul li::before) {
+.content ul li::before {
   content: "↳ ";
   opacity: 0.3;
-  flex-shrink: 0;
 }
 
-.content :global(ul p) {
+.content ul p {
+  margin-top: 0;
   margin-left: 0.5rem;
   margin-bottom: 0.5rem;
 }

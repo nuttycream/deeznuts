@@ -31,6 +31,10 @@ body {
     border-bottom: none !important;
     color: limegreen;
   }
+
+  a:hover {
+    color: lightcoral;
+  }
 }
 
 .links {
@@ -63,7 +67,7 @@ body {
 }
 
 .content a:hover {
-  border-bottom: 1px solid lightcoral;
+  color: lightcoral;
 }
 
 .content code {

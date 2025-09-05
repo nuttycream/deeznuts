@@ -1,24 +1,23 @@
-```toml
-title = "professional"
-styles = ["professional"]
-template = "professional"
-```
+---
+title: John's Professional Summary
+styles: ["professional"]
+template: professional
+---
 
 My name is John Carter, and I am a programmer with a Bachelor's in Computer
 Science from San Francisco State University. I'm also a veteran of the US
 AirForce, where I served as a military policeman.
 
 I have been programming since I was 12 years old, starting with ActionScript 3
-for Adobe Flash games. Currently, I am proficient with Rust, C-sharp, C, and
-Cpp. I mainly work on projects that are back-end, embedded, and low-level, with
-the occasional dab at web development with vanilla JS, Typescript, and
-frameworks such as Astro.
+for Adobe Flash games. Currently, I work with Rust, C-sharp, C, and Cpp. I
+mainly work on projects that are back-end, embedded, and low-level, with the
+occasional dab at web development with vanilla JS and frameworks such as Astro.
 
 In my freetime, I enjoy making projects that'll help suit my daily tasks, as
 well as, explore bleeding edge technologies. My most recent and notable
 projects:
 
-- [pipin](https://github.com/nuttycream/pipin)- A rust based portable
+- [pipin](https://github.com/nuttycream/pipin) - A rust based portable
   application to control Raspberry Pi GPIO pins on the web browser. It uses
   Direct Memory Access to manipulate bits within the GPIO memory address. It was
   initially a custom DMA C library which I rewrote in Rust as part of a neat

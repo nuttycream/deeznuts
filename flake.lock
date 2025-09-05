@@ -97,11 +97,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1756892619,
-        "narHash": "sha256-CZhiLfdpya4Ly0AFuOzJXBCE6Q7d8ufy101o4D5Z0yo=",
+        "lastModified": 1757008783,
+        "narHash": "sha256-saaS++bB8CiPl15zN+k9pwK4vNc2idp7rVoe/k4EErM=",
         "owner": "nuttycream",
         "repo": "sussg",
-        "rev": "7f1e1a3564796d5b08c8375dff48b2e05fc9ec45",
+        "rev": "56b859318e9596d0b42ec8811b379e8ed49c1129",
         "type": "github"
       },
       "original": {

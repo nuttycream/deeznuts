@@ -1,4 +1,5 @@
 ---
 title: nuttycream
-styles: []
+styles: ["main", "nuttycream"]
+template: nuttycream
 ---

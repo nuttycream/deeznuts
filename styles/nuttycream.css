@@ -1,0 +1,26 @@
+.container {
+  max-width: 800px;
+  border-left: 1px solid transparent;
+}
+
+.scroll-thing {
+  width: 100%;
+  overflow: hidden;
+  color: green;
+  border: 1px solid limegreen;
+}
+.scroll-text {
+  white-space: nowrap;
+  animation: scroll 12s linear infinite;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}

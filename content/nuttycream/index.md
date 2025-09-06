@@ -1,5 +1,5 @@
 ---
 title: nuttycream
-styles: ["main", "nuttycream"]
+styles: ["main", "fonts", "nuttycream"]
 template: nuttycream
 ---

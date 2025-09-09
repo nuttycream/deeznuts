@@ -1,1 +1,3 @@
-test4testes
+[general]
+url = "https://johnnacion.dev"
+output_dir = "public"

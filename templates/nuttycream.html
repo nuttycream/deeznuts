@@ -8,7 +8,12 @@
         <h1>nuttycream</h1>
         <div class="scroll-thing">
           <div class="scroll-text">
-            {{most_recent}}
+            {{#most_recent}} 
+            <a href="{{url}}" 
+              style="text-decoration: none; color: limegreen">
+                {{title}}
+            </a> 
+            {{/most_recent}}
           </div>
         </div>
         <nav>

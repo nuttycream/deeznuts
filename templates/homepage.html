@@ -6,12 +6,12 @@
       <h3>choose carefully:</h3>
       <div class="options">
         <div class="option">
-          <a href="/professional" style="color: red;">this</a>
-          <p class="hide">Click here if you're a recruiter</p>
+          <a href="/professional" style="color: red;">Professional</a>
+          <p class="hide">Click here if you're a recruiter/employer</p>
         </div>
         <div class="option">
-          <a href="/nuttycream" style="color: blue;">that</a>
-          <p class="hide">Please DON'T CLICK here if you're a recruiter</p>
+          <a href="/nuttycream" style="color: blue;">Personal</a>
+          <p class="hide">Please DON'T CLICK here if you're a recruiter/employer</p>
         </div>
       </div>
     </div>
@@ -29,18 +29,19 @@
     left: 50%;
     top: 45%;
     color: green;
-    -webkit-transform: translate(-50%, -50%);
     transform: translate(-50%, -50%);
   }
 
   .options {
     display: flex;
     justify-content: space-evenly;
+    gap: 50px;
 
     .option {
       position: relative;
 
       a {
+        text-decoration: none;
         font-weight: bold;
         border-bottom: 1px solid white;
       }

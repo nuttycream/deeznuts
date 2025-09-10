@@ -1,3 +1,9 @@
 [general]
 url = "https://johnnacion.dev"
 output_dir = "public"
+
+[style]
+main = ["main"]
+
+[template]
+base = "base"

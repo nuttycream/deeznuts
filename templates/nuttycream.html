@@ -1,6 +1,6 @@
 <html lang="en">
   <head>
-    <title>{{title}}</title>
+    <title>{{ title }}</title>
   </head>
   <body>
     <div class="container">
@@ -8,12 +8,10 @@
         <h1>nuttycream</h1>
         <div class="scroll-thing">
           <div class="scroll-text">
-            {{#most_recent}} 
-            <a href="{{url}}" 
+            <a href="{{ most_recent.url }}" 
               style="text-decoration: none; color: limegreen">
-                {{title}}
+                {{ most_recent.title}}
             </a> 
-            {{/most_recent}}
           </div>
         </div>
         <nav>
@@ -23,7 +21,7 @@
         </nav>
       </div>
       <div class="content">
-        {{{content}}}
+        {{ content }}
       </div>
     </div>
   </body>

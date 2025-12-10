@@ -21,8 +21,9 @@
       pkgs.mkShell {
         name = "AAAAAAAAAH";
         packages = with pkgs; [
-          nodejs
-          zola
+            typst 
+            typst-fmt
+            typst-live
           sussg.packages.${system}.default
         ];
       };

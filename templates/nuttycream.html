@@ -1,7 +1,8 @@
 
 <!doctype html>
 <html lang="en">
-  <head><title>{% block title %}nuttycream{% endblock %}</title></head>
+  <head>
+    <title>{% block title %}nuttycream{% endblock %}</title></head>
   <body>
     <div class="container">
       <div class="header">
@@ -9,7 +10,7 @@
         <div class="scroll-thing">
           <div class="scroll-text">
             <a href="{{ most_recent.url }}" 
-               style="text-decoration: none; color: limegreen">
+              style="text-decoration: none; color: limegreen">
               Newest Post: {{ most_recent.title}}
             </a> 
           </div>

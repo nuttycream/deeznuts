@@ -3,10 +3,34 @@
 	<head>
 		<meta charset="UTF-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title></title>
-		<link href="css/style.css" rel="stylesheet">
+		<title>{{title}}</title>
 	</head>
 	<body>
-		Hello
+		<div class="container">
+			<nav>
+				<a href="{{ site_url }}"><h3>Home</h3></a>
+				<ul class="nav-list">
+					{% for post in posts %}
+					<li class="nav-item">
+						<a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
+						{% if post.headings %}
+						<ul>
+							{% for heading in post.headings %}
+							<li>
+								<a class="heading-link" href="{{ post.url }}#{{ heading.id }}">
+									{{ heading.text }}
+								</a>
+							</li>
+							{% endfor %}
+						</ul>
+						{% endif %}
+					</li>
+					{% endfor %}
+				</ul>
+			</nav>
+			<div class="content">
+				{{ content | safe }}
+			</div>
+		</div>
 	</body>
 </html>

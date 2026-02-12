@@ -1,5 +1,3 @@
 ---
-title: johnnacion
-styles: []
-template: homepage
+title: no
 ---

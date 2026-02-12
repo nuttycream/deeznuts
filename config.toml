@@ -1,5 +1,5 @@
 [general]
-url = "https://johnnacion.dev"
+url = "/"
 output_dir = "public"
 
 [style]

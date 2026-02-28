@@ -1,36 +1,37 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>{{title}}</title>
-	</head>
-	<body>
-		<div class="container">
-			<nav>
-				<a href="{{ site_url }}"><h3>Home</h3></a>
-				<ul class="nav-list">
-					{% for post in posts %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
-						{% if post.headings %}
-						<ul>
-							{% for heading in post.headings %}
-							<li>
-								<a class="heading-link" href="{{ post.url }}#{{ heading.id }}">
-									{{ heading.text }}
-								</a>
-							</li>
-							{% endfor %}
-						</ul>
-						{% endif %}
-					</li>
-					{% endfor %}
-				</ul>
-			</nav>
-			<div class="content">
-				{{ content | safe }}
-			</div>
-		</div>
-	</body>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ site_url }}favicon.ico">
+    <link rel="stylesheet" href="main.css">
+    <title>{{ title }}</title>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1 class="site-title">{{ title }}</h1>
+      </header>
+
+      <nav>
+        <ul class="nav-list">
+          {% for post in sections.posts %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
+            {% if post.description %}
+            <p class="post-description">{{ post.description }}</p>
+            {% endif %}
+            {% if post.date %}
+            <span class="post-date">{{ post.date }}</span>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="content">
+        {{ content | safe }}
+      </div>
+    </div>
+  </body>
 </html>

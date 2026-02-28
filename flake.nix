@@ -21,9 +21,10 @@
       pkgs.mkShell {
         name = "AAAAAAAAAH";
         packages = with pkgs; [
-            typst 
-            typst-fmt
-            typst-live
+          typst
+          typst-fmt
+          typst-live
+          prettierd
           sussg.packages.${system}.default
         ];
       };

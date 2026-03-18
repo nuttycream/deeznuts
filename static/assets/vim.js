@@ -1,16 +1,23 @@
+if (!window.matchMedia('(pointer: coarse)').matches) {
 (() => {
-    const STEP = 80;
-    const FAST = 400;
+    const cuh = 50;
+    const buh = 500;
 
     document.addEventListener('keydown', (e) => {
+
+        // pls dont steal input lulw
         const tag = document.activeElement.tagName;
-        if (tag === 'INPUT' || tag === 'TEXTAREA' || document.activeElement.isContentEditable) return;
+        if (tag === 'INPUT' 
+            || tag === 'TEXTAREA' 
+            || document.activeElement.isContentEditable) {
+            return
+        } ;
 
         switch (e.key) {
-            case 'j': window.scrollBy(0, STEP);  break;
-            case 'k': window.scrollBy(0, -STEP); break;
-            case '}': window.scrollBy(0, FAST);  break;
-            case '{': window.scrollBy(0, -FAST); break;
+            case 'j': window.scrollBy(0, cuh);  break;
+            case 'k': window.scrollBy(0, -cuh); break;
+            case '}': window.scrollBy(0, buh);  break;
+            case '{': window.scrollBy(0, -buh); break;
             case 'g': if (!e.repeat) window.scrollTo(0, 0); break;
             case 'G': window.scrollTo(0, document.body.scrollHeight); break;
         }
@@ -39,3 +46,5 @@
 
     document.body.appendChild(el);
 })();
+
+}

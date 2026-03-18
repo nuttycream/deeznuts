@@ -24,10 +24,10 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
     });
 
     const bindings = [
-        ['j','down'],
         ['k','up'],
-        ['}','half ↓'],
-        ['{','half ↑'],
+        ['j','down'],
+        ['{','jump up'],
+        ['}','jump down'],
         ['g','top'],
         ['G','bottom']
     ];

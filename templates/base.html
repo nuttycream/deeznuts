@@ -21,13 +21,12 @@
         <ul class="nav-list">
           {% for post in sections.posts %}
           <li class="nav-item">
-            <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
-            {% if post.description %}
-            <p class="post-description">{{ post.description }}</p>
-            {% endif %}
-            {% if post.date %}
-            <span class="post-date">{{ post.date }}</span>
-            {% endif %}
+            <div class="nav-row">
+              <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
+              {% if post.date %}
+              <span class="post-date">{{ post.date }}</span>
+              {% endif %}
+            </div>
           </li>
           {% endfor %}
         </ul>

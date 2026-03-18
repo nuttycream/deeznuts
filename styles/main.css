@@ -49,7 +49,7 @@ header {
 
 hr {
   width: 100%;
-  color: green;
+  color: var(--green);
 }
 
 .container {
@@ -68,10 +68,21 @@ hr {
   margin-bottom: 16px;
 }
 
+.nav-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 20px;
+}
+
 .nav-link {
-  font-weight: bold;
-  color: var(--blue);
-  text-decoration: none;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.post-date {
+  color: var(--orange);
 }
 
 .nav-item ul {
@@ -92,11 +103,8 @@ hr {
 
 a {
   color: var(--green);
-  text-decoration: none;
-}
-
-a:hover {
-  color: var(--cyan);
+  text-decoration: underline;
+  text-decoration-style: dashed;
 }
 
 pre {

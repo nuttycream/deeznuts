@@ -2,6 +2,8 @@
 title: "Creating an observer web application through shmem()"
 description: "IPC? I pee C as well, thank you very much. My first foray into IPC and shared memory to monitor a Raspberry Pi robot."
 date: "2025-06-05"
+
+template: post
 ---
 
 # Preface

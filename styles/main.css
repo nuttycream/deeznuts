@@ -110,3 +110,23 @@ code {
   font-size: 0.8rem;
   color: var(--orange);
 }
+
+#vim-help {
+  position: fixed;
+  bottom: 10px;
+  left: 10;
+  z-index: 676767;
+  background-color: var(--bg);
+  font-family: CommitMono;
+  font-size: 0.7rem;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 5px;
+}
+
+.vim-key  { 
+  color: var(--purple); 
+}
+.vim-desc { 
+  color: var(--fg); 
+}

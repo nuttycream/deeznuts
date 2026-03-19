@@ -75,11 +75,18 @@ hr {
 .post {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
 }
 
 .post-date {
   color: var(--orange);
+}
+
+.content {
+  img {
+    max-width: 100%;  
+    width: auto;
+    height: auto;
+  }
 }
 
 

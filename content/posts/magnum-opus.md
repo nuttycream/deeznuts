@@ -12,7 +12,7 @@ A Raspberry Pi-powered three-wheeled omnidirectional, line following, obstacle
 avoidance and obstacle tracking robot. Built with love and C.
 
 <p align="center">
-<img src="/images/chicken.jpg" alt="chicken" style="width: 50%;">
+<img src="/images/chicken.jpg" alt="chicken">
 </p>
 
 ## Meet the team

@@ -7,7 +7,7 @@ template: post
 ---
 
 <p align="center">
-<img src="https://camo.githubusercontent.com/c958fa2f4764a20326ef1a4ac8f6c825e1bb6def38cf3749a429c11014aba633/68747470733a2f2f692e696d6775722e636f6d2f414532314c704e2e706e67" alt="nixos" style="width: 75%;">
+<img src="/images/nixxy-screenie.png" alt="nixos">
 </p>
 
 # Background

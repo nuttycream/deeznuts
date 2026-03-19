@@ -11,7 +11,8 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
             || tag === 'TEXTAREA' 
             || document.activeElement.isContentEditable) {
             return
-        } ;
+        };
+
 
         switch (e.key) {
             case 'j': window.scrollBy(0, cuh);  break;
@@ -20,6 +21,12 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
             case '{': window.scrollBy(0, -buh); break;
             case 'g': if (!e.repeat) window.scrollTo(0, 0); break;
             case 'G': window.scrollTo(0, document.body.scrollHeight); break;
+            case 'o':
+                if (e.ctrlKey) {
+                    e.preventDefault();
+                    window.location.href = '/';
+                }
+                break;
         }
     });
 
@@ -29,7 +36,8 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
         ['{','jump up'],
         ['}','jump down'],
         ['g','top'],
-        ['G','bottom']
+        ['G','bottom'],
+        ['C-o', 'home'],
     ];
 
     const el = document.createElement('div');

@@ -13,6 +13,8 @@
   --pink:         #ff5ea0;
   --orange:       #ffbd5e;
   --purple:       #bd5eff;
+  --bg25: repeating-conic-gradient(var(--green) 0% 25%, transparent 0% 100%) 1px 0.5px / 2px 2px;
+  --bg75: repeating-conic-gradient(transparent 0% 25%, var(--fg) 0% 100%) 1px 0.5px / 2px 2px;
 }
 
 
@@ -56,6 +58,8 @@ hr {
   max-width: 520px;
   margin: auto;
   padding-top: 50px;
+  padding-left: 12px;
+  padding-right: 12px;
 }
 
 .nav-list {
@@ -68,36 +72,14 @@ hr {
   margin-bottom: 16px;
 }
 
-.nav-row {
+.post {
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  gap: 20px;
-}
-
-.nav-link {
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .post-date {
   color: var(--orange);
-}
-
-.nav-item ul {
-  list-style: none;
-  padding: 0;
-  margin: 4px 0 0 12px;
-}
-
-.heading-link {
-  color: var(--grey);
-  text-decoration: none;
-}
-
-.heading-link:hover {
-  color: var(--cyan);
 }
 
 
@@ -107,10 +89,27 @@ a {
   text-decoration-style: dashed;
 }
 
+a:hover,
+a:focus {
+  outline: none;
+  background: var(--bg25);
+  color: var(--green);
+  animation: flicker 50ms 2;
+}
+
+@keyframes flicker {
+  0%, 49% { opacity: 0; }
+  50%, 100% { opacity: 1; }
+}
+
 pre {
   background-color: var(--bg-alt);
   padding: 10px;
   overflow-x: auto;
+}
+
+blockquote {
+  color: var(--grey);
 }
 
 code {

@@ -9,14 +9,10 @@
   <body>
     <div class="container">
       <header>
-        <a class="nav-link" href="/">
-          <img src="{{ site_url }}assets/nutty.gif">
-        </a>
-        <img src="{{ site_url }}assets/nixos.gif">
-        <img src="{{ site_url }}assets/neovim.png">
-        <hr>
+        {% include "header" %}
       </header>
-
+      <a href="{{ site_url }}">~/</a>
+      
 
       <div class="content">
         {{ content | safe }}

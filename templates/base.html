@@ -9,28 +9,21 @@
   <body>
     <div class="container">
       <header>
-        <a class="nav-link" href="/">
-          <img src="{{ site_url }}assets/nutty.gif">
-        </a>
-        <img src="{{ site_url }}assets/nixos.gif">
-        <img src="{{ site_url }}assets/neovim.png">
-        <hr>
+        {% include "header" %}
       </header>
 
-      <nav>
-        <ul class="nav-list">
-          {% for post in sections.posts %}
-          <li class="nav-item">
-            <div class="nav-row">
-              <a class="nav-link" href="{{ post.url }}">{{ post.title }}</a>
-              {% if post.date %}
-              <span class="post-date">{{ post.date }}</span>
-              {% endif %}
-            </div>
-          </li>
-          {% endfor %}
-        </ul>
-      </nav>
+      {% for post in sections.posts %}
+      <li class="post">
+        <a class="post-title" href="{{ post.url }}" title="{{ post.title }}">
+          {{ post.title | truncate(length=30) }}
+        </a>
+        {% if post.date %}
+        <span class="post-date">
+          {{ post.date }}
+        </span>
+        {% endif %}
+      </li>
+      {% endfor %}
 
       <div class="content">
         {{ content | safe }}

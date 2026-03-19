@@ -17,8 +17,11 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Build with sussg
-        run: cargo run --release -- build
+      - name: Install sussg
+        run: cargo install --git https://github.com/nuttycream/sussg
+
+      - name: Build site
+        run: sussg build
 
       - name: Deploy
         uses: cloudflare/wrangler-action@v3

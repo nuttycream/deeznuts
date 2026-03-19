@@ -16,7 +16,7 @@
         {% include "header" %}
       </header>
 
-      {% for post in sections.posts %}
+      {% for post in sections.posts | sort(attribute="date",reverse=true) %}
       <li class="post">
         <a class="post-title" href="{{ post.url }}" title="{{ post.title }}">
           {{ post.title | truncate(length=30) }}

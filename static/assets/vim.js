@@ -15,9 +15,9 @@ if (!window.matchMedia('(pointer: coarse)').matches) {
 
 
         switch (e.key) {
-            case 'j': window.scrollBy(0, cuh);  break;
+            case 'j': window.scrollBy(0, cuh); break;
             case 'k': window.scrollBy(0, -cuh); break;
-            case '}': window.scrollBy(0, buh);  break;
+            case '}': window.scrollBy(0, buh); break;
             case '{': window.scrollBy(0, -buh); break;
             case 'g': if (!e.repeat) window.scrollTo(0, 0); break;
             case 'G': window.scrollTo(0, document.body.scrollHeight); break;

@@ -3,6 +3,13 @@ on:
   push:
     branches:
       - main
+      paths:
+      - .github/workflows/main.yml
+      - styles/**
+      - templates/**
+      - content/**
+      - static/**
+      - config.toml
 
 env:
   CARGO_TERM_COLOR: always
@@ -17,20 +24,8 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Cache
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.cargo/registry
-            ~/.cargo/git
-            ~/.cargo/bin/sussg
-            target
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
-          restore-keys: |
-            ${{ runner.os }}-cargo-
-
       - name: Install sussg
-        run: cargo install --git https://github.com/nuttycream/sussg
+        run: cargo install --git https://github.com/nuttycream/sussg 
 
       - name: Build site
         run: sussg build

@@ -40,10 +40,11 @@
 ==== R&D Operator - The Bot Company #h(1fr) Feb 2026 - Present
 - Operated robotic platforms across multiple field sites to capture ground-truth training data for early-stage AI systems.
 - Executed structured data collection protocols in varied, real-world environments to support iterative model development.
+- Consistently placed among the top operators across all daily collection metrics including data volume, accuracy, and throughput, in a highly competitive, performance-oriented environment.
 ==== Robotics TeleOperator - armstrong.ai #h(1fr) June 2025 - Jan 2026
 - Teleoperated multiple robots asynchronously using an advanced operations dashboard and command-line tools for deeper system-level control.
 - Diagnosed, triaged, and resolved day-to-day operational issues to maintain continuous 24/7 robot uptime.
-- Coordinated closely with on-site technicians to address customer questions, troubleshoot issues in real time, and ensure timely resolution of on-site operational concerns.
+- Coordinated closely with on-site technicians to resolve customer issues in real time and maintain uninterrupted field operations.
 
 ==== Security Forces - United States Air Force #h(1fr) Jun 2015 - Jun 2018
 - Entry Controller for the second largest non-nuclear joint installation within the Department of Defense.

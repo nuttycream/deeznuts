@@ -16,10 +16,18 @@
         {% include "header" %}
       </header>
 
+      <li class="post"> 
+        <a class="dir"> ../
+        </a>
+      </li>
+      <li class="post"> 
+        <a class="dir"> projects/
+        </a>
+      </li>
       {% for post in sections.posts | sort(attribute="date",reverse=true) %}
       <li class="post">
         <a class="post-title" href="{{ post.url }}" title="{{ post.title }}">
-          {{ post.title | truncate(length=30) }}
+          {{ post.title | truncate(length=45) }}
         </a>
         {% if post.date %}
         <span class="post-date">

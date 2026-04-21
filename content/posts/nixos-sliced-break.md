@@ -1,9 +1,9 @@
 ---
-title: "I use nix btw"
-description: "NixOS is the greatest thing since sliced bread"
-date: "2025-07-10"
+title="I use nix btw"
+description="NixOS is the greatest thing since sliced bread"
+date="2025-07-10"
 
-template: post
+template="post"
 ---
 
 <p align="center">

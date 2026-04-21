@@ -1,9 +1,9 @@
 ---
-title: "My Academic Magnum Opus"
-description: "Turning a simple school project into a minecraft chicken inspired robot."
-date: "2025-05-25"
+title="My Academic Magnum Opus"
+description="Turning a simple school project into a minecraft chicken inspired robot."
+date="2025-05-25"
 
-template: post
+template="post"
 ---
 
 ## [The Omni Chicken](https://github.com/nuttycream/omnibot)

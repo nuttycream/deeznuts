@@ -1,9 +1,9 @@
 ---
-title: "My First C to Rust Rewrite"
-description: "Rewrite it in Rust lives! My first Rust rewrite from a GPIO C DRA Library."
-date: "2025-06-01"
+title="My First C to Rust Rewrite"
+description="Rewrite it in Rust lives! My first Rust rewrite from a GPIO C DRA Library."
+date="2025-06-01"
 
-template: post
+template="post"
 ---
 
 # But why?

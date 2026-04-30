@@ -24,7 +24,15 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Cache sussg 
+        id: cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.cargo/bin/sussg
+          key: sussg-${{ runner.os }}
+
       - name: Install sussg
+        if: steps.cache.outputs.cache-hit != 'true'
         run: cargo install --git https://github.com/nuttycream/sussg 
 
       - name: Build site

@@ -4,6 +4,7 @@ title="Do you really need anything else?"
 date="2026-03-14"
 
 template="post"
+draft = true
 ```
 
 > This is more of a rant rather than anything tangible, so feel free to skip this read.

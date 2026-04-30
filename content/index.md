@@ -1,3 +1,4 @@
----
-title: johnnacion
----
+```sussg
+type = "frontmatter"
+title="johnnacion"
+```

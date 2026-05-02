@@ -21,9 +21,7 @@
   columns: (auto, 1fr),
   align: (left + horizon, right + top),
   gutter: 5pt,
-  [Bachelor of Science, Computer Science],
-  [San Francisco State University, 2025],
-
+  [Bachelor of Science, Computer Science], [San Francisco State University, 2025],
   [Associate of Science, Computer Science], [Diablo Valley College, 2022],
 )
 

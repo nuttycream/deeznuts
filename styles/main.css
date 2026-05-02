@@ -1,33 +1,34 @@
 :root {
-  --bg:           #000000;
-  --bg-alt:       #1e2124;
+  --bg: #000000;
+  --bg-alt: #1e2124;
   --bg-highlight: #3c4048;
-  --fg:           #ffffff;
-  --grey:         #7b8496;
-  --blue:         #5ea1ff;
-  --green:        #5eff6c;
-  --cyan:         #5ef1ff;
-  --red:          #ff6e5e;
-  --yellow:       #f1ff5e;
-  --magenta:      #ff5ef1;
-  --pink:         #ff5ea0;
-  --orange:       #ffbd5e;
-  --purple:       #bd5eff;
-  --bg25: repeating-conic-gradient(var(--green) 0% 25%, transparent 0% 100%) 1px 0.5px / 2px 2px;
-  --bg75: repeating-conic-gradient(transparent 0% 25%, var(--fg) 0% 100%) 1px 0.5px / 2px 2px;
+  --fg: #ffffff;
+  --grey: #7b8496;
+  --blue: #5ea1ff;
+  --green: #5eff6c;
+  --cyan: #5ef1ff;
+  --red: #ff6e5e;
+  --yellow: #f1ff5e;
+  --magenta: #ff5ef1;
+  --pink: #ff5ea0;
+  --orange: #ffbd5e;
+  --purple: #bd5eff;
+  --bg25: repeating-conic-gradient(var(--green) 0% 25%, transparent 0% 100%) 1px
+    0.5px / 2px 2px;
+  --bg75: repeating-conic-gradient(transparent 0% 25%, var(--fg) 0% 100%) 1px
+    0.5px / 2px 2px;
 }
 
-
 @font-face {
-  font-family: 'CommitMono';
-  src: url('./fonts/CommitMono-400.otf') format('opentype');
+  font-family: "CommitMono";
+  src: url("./fonts/CommitMono-400.otf") format("opentype");
   font-weight: 400;
   font-style: normal;
 }
 
 @font-face {
-  font-family: 'CommitMono';
-  src: url('./fonts/CommitMono-700.otf') format('opentype');
+  font-family: "CommitMono";
+  src: url("./fonts/CommitMono-700.otf") format("opentype");
   font-weight: 700;
   font-style: normal;
 }
@@ -83,12 +84,11 @@ hr {
 
 .content {
   img {
-    max-width: 100%;  
+    max-width: 100%;
     width: auto;
     height: auto;
   }
 }
-
 
 a {
   color: var(--green);
@@ -110,8 +110,14 @@ a:focus {
 }
 
 @keyframes flicker {
-  0%, 49% { opacity: 0; }
-  50%, 100% { opacity: 1; }
+  0%,
+  49% {
+    opacity: 0;
+  }
+  50%,
+  100% {
+    opacity: 1;
+  }
 }
 
 pre {
@@ -143,9 +149,9 @@ code {
   gap: 5px;
 }
 
-.vim-key  { 
-  color: var(--purple); 
+.vim-key {
+  color: var(--purple);
 }
-.vim-desc { 
-  color: var(--fg); 
+.vim-desc {
+  color: var(--fg);
 }

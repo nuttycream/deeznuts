@@ -1,28 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta property="og:title" content="johnnacion" />
     <meta property="og:url" content="http://johnnacion.dev" />
     <meta property="og:image" content="{{ site_url }}images/pfp.jpg" />
-    <meta property="og:description" content='if "okay but who asked" was a website'/>
-    <link rel="shortcut icon" type="image/x-icon" href="{{ site_url }}favicon.ico">
+    <meta
+      property="og:description"
+      content='if "okay but who asked" was a website'
+    />
+    <link
+      rel="shortcut icon"
+      type="image/x-icon"
+      href="{{ site_url }}favicon.ico"
+    />
     <title>{{ title }}</title>
   </head>
   <body>
     <div class="container">
-      <header>
-        {% include "header" %}
-      </header>
+      <header>{% include "header" %}</header>
 
-      <li class="post"> 
-        <a class="dir"> ../
-        </a>
+      <li class="post">
+        <a class="dir" href="https://tty.club"> ../ </a>
       </li>
-      <li class="post"> 
-        <a class="dir" href="/projects"> projects/
-        </a>
+      <li class="post">
+        <a class="dir" href="/projects"> projects/ </a>
       </li>
       {% for post in sections.posts | sort(attribute="date",reverse=true) %}
       <li class="post">
@@ -30,16 +33,12 @@
           {{ post.title | truncate(length=45) }}
         </a>
         {% if post.date %}
-        <span class="post-date">
-          {{ post.date }}
-        </span>
+        <span class="post-date"> {{ post.date }} </span>
         {% endif %}
       </li>
       {% endfor %}
 
-      <div class="content">
-        {{ content | safe }}
-      </div>
+      <div class="content">{{ content | safe }}</div>
     </div>
     <script src="{{ site_url }}assets/vim.js"></script>
   </body>

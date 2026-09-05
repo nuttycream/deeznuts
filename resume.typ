@@ -3,8 +3,8 @@
   size: 8pt,
 )
 
-#show heading.where(level: 2): set block(above: 1em, below: 1em)
-#show heading.where(level: 3): set block(above: 1em, below: 0.9em)
+#show heading.where(level: 2): set block(above: 0.5em, below: 0.5em)
+#show heading.where(level: 3): set block(above: 0.75em, below: 0.8em)
 
 #grid(
   columns: (auto, 1fr),
@@ -20,48 +20,61 @@
 #line(length: 100%)
 
 == Summary
-USAF veteran and now Test Engineer with a B.S. in Computer Science: automated test and Rust/C tooling on one side, cleanroom optics integration and non-conformance traceability on the other.
+USAF veteran and Test Engineer with a B.S. in Computer Science. Integrate and test precision optical and electro-mechanical sub-assemblies in a cleanroom, isolate faults across software, optics, and hardware using automated test frameworks and log analysis, and build embedded and systems tooling in Rust.
+
+#line(length: 100%)
 
 == Skills
 #grid(
   columns: (auto, auto),
   align: (left, left),
   gutter: 5pt,
-  [*Languages & Software:*], [Rust, C/C++, C\#, Python, Git, GNU/Linux, NixOS, Vim/Neovim, embedded GPIO/I2C/SPI, DMA],
+  [*Languages & Software:*],
+  [Rust, C/C++, C\#, Python, Bash, Git, GNU/Linux, embedded GPIO/I2C/SPI, DMA, memory-mapped I/O],
 
   [*Test Equipment:*],
-  [Oscilloscopes, DMM, accelerometers, electron and optical microscopes, electronic leak detectors, pressure gauges, calipers, torque and precision hand tools],
+  [Oscilloscopes, DMM, accelerometers (vibration measurement), electronic leak detectors (vacuum integrity), pressure gauges, optical and electron microscopes, calipers, torque and precision hand tools],
 
   [*Manufacturing & Quality:*],
-  [ISO 9001, Class 100/10K cleanroom, ESD, SOP/work-instruction compliance, non-conformance (NC) logging, test traceability, root-cause analysis],
+  [ISO 9001, Class 100/10K cleanroom, ESD, SOP/work-instruction compliance, non-conformance (NC) logging and escalation, test traceability, root-cause analysis],
 )
+
+#line(length: 100%)
 
 == Experience
 === Test Engineer II (Broadband Plasma Division, Illumination Group) - KLA #h(1fr) May 2026 - Present
-- Execute integration and acceptance testing on broadband-plasma wafer-inspection tools, running automated test scripts and analyzing output against engineering specs to disposition optical and electro-mechanical sub-assemblies.
-- Isolate defects that span software, optics, and hardware boundaries; characterize failures with oscilloscopes, accelerometers, and leak detectors, then drive rework and re-test until the assembly passes spec.
-- Log, triage, and escalate non-conformances through KLA's internal test/quality software; work directly with Mechanical Design Engineers to close root causes and make ship dates for fabs including TSMC, Samsung, SK Hynix, and Micron.
-- Capture test data, defects, and rework with full traceability, and surface recurring failure patterns to engineering for process improvement.
-- Assemble and align precision optical and mechanical components to arcsecond angular and micrometer-to-nanometer positional tolerances in an ISO 9001, Class 100/10K cleanroom under ESD controls.
+- Execute automated acceptance-test scripts using an internal Java/Jython test framework on broadband-plasma wafer-inspection tools; configure test parameters and flags per build, then analyze output against engineering specs to disposition optical and electro-mechanical sub-assemblies.
+- Debug test failures by tracing Jython/Java stack traces and application logs to the failing module, then determine whether the root cause is in the test software, the optics, or the hardware before escalating.
+- Characterize hardware faults with oscilloscopes, accelerometers, and leak detectors; drive rework and re-test until the assembly passes spec.
+- Log, triage, and escalate non-conformances in KLA's internal test/quality software; work directly with Mechanical Design Engineers to close root causes and hold ship dates for TSMC, Samsung, SK Hynix, and Micron.
+- Record test data, defects, and rework with full traceability; surface recurring failure patterns to engineering for process improvement.
+- Assemble and align precision optical and mechanical components to arcsecond angular and micrometer-to-nanometer positional tolerances under ESD controls.
+
 === R&D Operator II - The Bot Company #h(1fr) Feb 2026 - May 2026
-- Operated robotic platforms across multiple field sites, executing structured data-collection protocols to capture ground-truth training data for early-stage AI models.
-- Ranked among the top operators on every daily metric (data volume, accuracy, throughput) in a performance-driven environment.
-=== Robotics Operator - armstrong.ai #h(1fr) Jun 2025 - Jan 2026
-- Operated multiple robots asynchronously through a proprietary dashboard and command-line tools for system-level control.
-- Diagnosed and resolved day-to-day operational issues, coordinating with on-site technicians in real time to maintain continuous 24/7 uptime.
+- Executed structured data-collection protocols on robotic platforms across multiple field sites, producing ground-truth training data for early-stage AI models.
+- Top-ranked operator on every daily metric specifically for data volume, accuracy, and throughput.
+
+=== Robotics Systems Operator - armstrong.ai #h(1fr) Jun 2025 - Jan 2026
+- Controlled a fleet of robots asynchronously via a telemetry dashboard and command-line tools for system-level control.
+- Diagnosed hardware and software faults in real time with on-site technicians to maintain continuous 24/7 uptime.
+
 === Security Forces - United States Air Force #h(1fr) Jun 2015 - Jun 2018
-- Entry Controller for the second-largest non-nuclear joint installation in the Department of Defense; maintained security of the local SCIF and performed route clearance for visiting senior officials.
-- Responded to and investigated 100+ unannounced alarm activations, incidents, criminal offenses, and traffic incidents.
+- Entry Controller for the second-largest non-nuclear joint installation in the DoD; secured the local SCIF and performed route clearance for senior officials.
+- Responded to and investigated 100+ alarm activations, incidents, and criminal offenses.
+
+#line(length: 100%)
 
 == Projects
 === Rust GPIO Controller Web-Application #h(1fr) #link("https://github.com/nuttycream/pipin")[GitHub]
-- Maintain a GPIO controller web-app with a Rust backend on an async Tokio runtime. GPIO control is implemented through direct memory-mapped register access on the gpiomem device; built for Raspberry Pi but accepts any GPIO device with a valid base address.
+- Maintain a GPIO controller web-app with a Rust backend on an async Tokio runtime; GPIO control via direct memory-mapped register access on the gpiomem device. Built for Raspberry Pi, accepts any GPIO device with a valid base address.
 === Omnidirectional Robot with Obstacle Avoidance/Tracking #h(1fr) #link("https://johnnacion.dev/posts/my-academic-magnum-opus/")[Article]
-- Built a three-wheeled robot that autonomously follows multi-colored lines using omnidirectional movement. Written in C on a custom DMA library supporting GPIO, I2C, and SPI; ultrasonic sensors detect, track, and avoid obstacles along a dynamically computed path.
+- Built a three-wheeled robot that autonomously follows multi-colored lines. Written in C on a custom DMA library supporting GPIO, I2C, and SPI; ultrasonic sensors detect, track, and avoid obstacles along a dynamically computed path.
 === Cross-platform GUI to Modify Game Saves #h(1fr) #link("https://github.com/nuttycream/SH-Save-Editor")[GitHub]
-- Developed an open-source save editor for a popular PC game with 50k+ downloads across modding forums and GitHub. C\# with Avalonia; parses and modifies XML via System.Xml with XPath and dotNET's task-based async library.
+- Open-source save editor for a popular PC game, 50k+ downloads across forums and GitHub. Made in C\# with Avalonia; parses and modifies XML via System.Xml with XPath and dotNET's task-based async library.
 === Version Control Automation using Large Language Models #h(1fr) #link("https://github.com/cube-cult/gai")[GitHub]
-- Built a CLI that drives local and hosted LLM providers to generate commit messages from diffs using commit message conventions, plan rebases against a target branch, amend commits, and find commits via natural-language queries.
+- Built a CLI that uses local and hosted LLM providers to generate convention-compliant commit messages from diffs, plan rebases, amend commits, and find commits via natural-language queries.
+
+#line(length: 100%)
 
 == Education
 #grid(

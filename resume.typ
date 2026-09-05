@@ -3,6 +3,9 @@
   size: 8pt,
 )
 
+#show heading.where(level: 2): set block(above: 1em, below: 1em)
+#show heading.where(level: 3): set block(above: 1em, below: 0.9em)
+
 #grid(
   columns: (auto, 1fr),
   align: (left + horizon, right + top),
@@ -16,53 +19,54 @@
 
 #line(length: 100%)
 
-== Education
-#grid(
-  columns: (auto, 1fr),
-  align: (left + horizon, right + top),
-  gutter: 5pt,
-  [Bachelor of Science, Computer Science], [San Francisco State University, 2025],
-  [Associate of Science, Computer Science], [Diablo Valley College, 2022],
-)
+== Summary
+USAF veteran and now Test Engineer with a B.S. in Computer Science: automated test and Rust/C tooling on one side, cleanroom optics integration and non-conformance traceability on the other.
 
 == Skills
 #grid(
-  columns: (auto, 1fr),
-  align: (left + horizon, right + top),
+  columns: (auto, auto),
+  align: (left, left),
   gutter: 5pt,
-  [*Languages:*], [Rust, C, C++, C\#],
-  [*Tools:*], [Vim/Neovim, Git, GNU/Linux, NixOS],
+  [*Languages & Software:*], [Rust, C/C++, C\#, Python, Git, GNU/Linux, NixOS, Vim/Neovim, embedded GPIO/I2C/SPI, DMA],
+
+  [*Test Equipment:*],
+  [Oscilloscopes, DMM, accelerometers, electron and optical microscopes, electronic leak detectors, pressure gauges, calipers, torque and precision hand tools],
+
+  [*Manufacturing & Quality:*],
+  [ISO 9001, Class 100/10K cleanroom, ESD, SOP/work-instruction compliance, non-conformance (NC) logging, test traceability, root-cause analysis],
 )
 
 == Experience
-==== R&D Operator II - The Bot Company #h(1fr) Feb 2026 - Present
-- Operated robotic platforms across multiple field sites to capture ground-truth training data for early-stage AI systems.
-- Executed structured data collection protocols in varied, real-world environments to support iterative model development.
-- Consistently placed among the top operators across all daily collection metrics including data volume, accuracy, and throughput, in a highly competitive, performance-oriented environment.
-==== Robotics Teleoperator - armstrong.ai #h(1fr) June 2025 - Jan 2026
-- Teleoperated multiple robots asynchronously using an advanced operations dashboard and command-line tools for deeper system-level control.
-- Diagnosed, triaged, and resolved day-to-day operational issues to maintain continuous 24/7 robot uptime.
-- Coordinated closely with on-site technicians to resolve customer issues in real time and maintain uninterrupted field operations.
-
-==== Security Forces - United States Air Force #h(1fr) Jun 2015 - Jun 2018
-- Entry Controller for the second largest non-nuclear joint installation within the Department of Defense.
-- Maintained security of the local SCIF and performed route clearance for visiting high-ranking officials.
-- Responded to and investigated over 100 unannounced alarm activations, incidents, criminal offenses, and traffic incidents.
+=== Test Engineer II (Broadband Plasma Division, Illumination Group) - KLA #h(1fr) May 2026 - Present
+- Execute integration and acceptance testing on broadband-plasma wafer-inspection tools, running automated test scripts and analyzing output against engineering specs to disposition optical and electro-mechanical sub-assemblies.
+- Isolate defects that span software, optics, and hardware boundaries; characterize failures with oscilloscopes, accelerometers, and leak detectors, then drive rework and re-test until the assembly passes spec.
+- Log, triage, and escalate non-conformances through KLA's internal test/quality software; work directly with Mechanical Design Engineers to close root causes and make ship dates for fabs including TSMC, Samsung, SK Hynix, and Micron.
+- Capture test data, defects, and rework with full traceability, and surface recurring failure patterns to engineering for process improvement.
+- Assemble and align precision optical and mechanical components to arcsecond angular and micrometer-to-nanometer positional tolerances in an ISO 9001, Class 100/10K cleanroom under ESD controls.
+=== R&D Operator II - The Bot Company #h(1fr) Feb 2026 - May 2026
+- Operated robotic platforms across multiple field sites, executing structured data-collection protocols to capture ground-truth training data for early-stage AI models.
+- Ranked among the top operators on every daily metric (data volume, accuracy, throughput) in a performance-driven environment.
+=== Robotics Operator - armstrong.ai #h(1fr) Jun 2025 - Jan 2026
+- Operated multiple robots asynchronously through a proprietary dashboard and command-line tools for system-level control.
+- Diagnosed and resolved day-to-day operational issues, coordinating with on-site technicians in real time to maintain continuous 24/7 uptime.
+=== Security Forces - United States Air Force #h(1fr) Jun 2015 - Jun 2018
+- Entry Controller for the second-largest non-nuclear joint installation in the Department of Defense; maintained security of the local SCIF and performed route clearance for visiting senior officials.
+- Responded to and investigated 100+ unannounced alarm activations, incidents, criminal offenses, and traffic incidents.
 
 == Projects
-==== #link("https://github.com/cube-cult/gai")[Version Control using Large Language Models] #h(1fr) 2025 - Present
-- Developed a CLI program that communicates with local and popular LLM providers to: generate commits by analyzing diffs, creating a rebase plan by comparing HEAD to a specified branch, amend existing commits with LLM-generated messages, find commits via natural language queries, and intelligently sync with remotes using LLM based analysis.
+=== Rust GPIO Controller Web-Application #h(1fr) #link("https://github.com/nuttycream/pipin")[GitHub]
+- Maintain a GPIO controller web-app with a Rust backend on an async Tokio runtime. GPIO control is implemented through direct memory-mapped register access on the gpiomem device; built for Raspberry Pi but accepts any GPIO device with a valid base address.
+=== Omnidirectional Robot with Obstacle Avoidance/Tracking #h(1fr) #link("https://johnnacion.dev/posts/my-academic-magnum-opus/")[Article]
+- Built a three-wheeled robot that autonomously follows multi-colored lines using omnidirectional movement. Written in C on a custom DMA library supporting GPIO, I2C, and SPI; ultrasonic sensors detect, track, and avoid obstacles along a dynamically computed path.
+=== Cross-platform GUI to Modify Game Saves #h(1fr) #link("https://github.com/nuttycream/SH-Save-Editor")[GitHub]
+- Developed an open-source save editor for a popular PC game with 50k+ downloads across modding forums and GitHub. C\# with Avalonia; parses and modifies XML via System.Xml with XPath and dotNET's task-based async library.
+=== Version Control Automation using Large Language Models #h(1fr) #link("https://github.com/cube-cult/gai")[GitHub]
+- Built a CLI that drives local and hosted LLM providers to generate commit messages from diffs using commit message conventions, plan rebases against a target branch, amend commits, and find commits via natural-language queries.
 
-==== #link("https://github.com/cube-cult/sussg")[Static Site Generator] #h(1fr) 2025 - Present
-- A personalized static site generator that supports minijinja templates. It creates HTML pages out of Markdown files and includes frontmatter support. Built natively for Linux, it's a CLI that can initialize an entire static website, support live-reload edits, and build clean HTML and CSS.
-
-==== #link("https://github.com/nuttycream/pipin")[Rust GPIO Controller Web-Application] #h(1fr) 2025 - Present
-- Maintaining a GPIO controller web-app built on a Rust backend and an async Tokio runtime. The underlying GPIO controls are made with unsafe Direct Memory Address manipulation on the gpiomem device. Specifically built for Raspberry Pis, it can also accept any GPIO device with a valid address.
-
-==== #link("https://johnnacion.dev/posts/my-academic-magnum-opus/")[OmniDirectional Robot with Obstacle Avoidance/Tracking] #h(1fr) 2025
-- Built a three-wheeled self-propelled robot designed to autonomously follow lines with varied colors using omnidirectional movement. Built with C using a custom DMA library that supported GPIO, I2C, and SPI device interfaces. It used ultrasonic sound sensors to detect, track, and avoid obstacles using a dynamically calculated path.
-
-==== #link("https://github.com/nuttycream/SH-Save-Editor")[Cross-platform GUI to modify Game Saves] #h(1fr) 2020 - 2022
-- Developed a open-source save game editor for a popular PC video game and garnered over 50k downloads through various Game modding forums and GitHub.
-- Made with C\# using avalonia as the GUI framework. As well parsed and modified XML data using dotNET's built-in task-based asynchronous library, and the built-in System.XML namespace with XPath support.
-
+== Education
+#grid(
+  columns: (auto, 1fr),
+  align: (left, right),
+  gutter: 5pt,
+  [Bachelor of Science, Computer Science], [San Francisco State University, 2025],
+)

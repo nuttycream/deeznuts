@@ -3,8 +3,17 @@
   size: 8pt,
 )
 
+#set page(
+  footer: context [
+    #set align(center)
+    #set text(size: 7pt)
+    #link("https://github.com/nuttycream/deeznuts/blob/main/resume.typ")[\[Source\]]
+  ],
+)
+
 #show heading.where(level: 2): set block(above: 0.5em, below: 0.5em)
 #show heading.where(level: 3): set block(above: 0.75em, below: 0.8em)
+
 
 #grid(
   columns: (auto, 1fr),
@@ -83,3 +92,4 @@ USAF veteran and Test Engineer with a B.S. in Computer Science. Integrate and te
   gutter: 5pt,
   [Bachelor of Science, Computer Science], [San Francisco State University, 2025],
 )
+

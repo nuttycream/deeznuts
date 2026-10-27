@@ -38,8 +38,7 @@ USAF veteran and Test Engineer with a B.S. in Computer Science. Integrate and te
   columns: (auto, auto),
   align: (left, left),
   gutter: 5pt,
-  [*Languages & Software:*],
-  [Rust, C/C++, C\#, Python, Bash, Git, GNU/Linux, embedded GPIO/I2C/SPI, DMA, memory-mapped I/O],
+  [*Languages & Software:*], [Rust, C/C++, C\#, Python, Bash, Git, GNU/Linux, NixOS, embedded GPIO/I2C/SPI, DMA],
 
   [*Test Equipment:*],
   [Oscilloscopes, DMM, accelerometers (vibration measurement), electronic leak detectors (vacuum integrity), pressure gauges, optical and electron microscopes, calipers, torque and precision hand tools],
@@ -53,11 +52,15 @@ USAF veteran and Test Engineer with a B.S. in Computer Science. Integrate and te
 == Experience
 === Test Engineer II (Broadband Plasma Division, Illumination Group) - KLA #h(1fr) May 2026 - Present
 - Execute automated acceptance-test scripts using an internal Java/Jython test framework on broadband-plasma wafer-inspection tools; configure test parameters and flags per build, then analyze output against engineering specs to disposition optical and electro-mechanical sub-assemblies.
+- Log, triage, and escalate 50+ non-conformances KLA's internal test/quality software; work directly with Mechanical Design Engineers to close root causes and meet ship dates for TSMC, Samsung, SK Hynix, and Micron.
 - Debug test failures by tracing Jython/Java stack traces and application logs to the failing module, then determine whether the root cause is in the test software, the optics, or the hardware before escalating.
-- Characterize hardware faults with oscilloscopes, accelerometers, and leak detectors; drive rework and re-test until the assembly passes spec.
-- Log, triage, and escalate non-conformances in KLA's internal test/quality software; work directly with Mechanical Design Engineers to close root causes and hold ship dates for TSMC, Samsung, SK Hynix, and Micron.
-- Record test data, defects, and rework with full traceability; surface recurring failure patterns to engineering for process improvement.
-- Assemble and align precision optical and mechanical components to arcsecond angular and micrometer-to-nanometer positional tolerances under ESD controls.
+- Find hardware faults with oscilloscopes, accelerometers, and leak detectors; drive rework and re-test until the assembly passes spec.
+- Assemble and align precision optical and mechanical components within arcsecond angular and micrometer-to-nanometer positional tolerances under ESD controls.
+=== XML Simulation Configuration Editor - KLA
+- Developed a Python-based XML node and attribute editor for testing and simulation workflows using an internal Java/Jython framework.
+- Streamlined the process for fellow Test Engineers enabling for rapid creation, modification and validation on XML-based config files.
+- Implemented automatic validation and cross refrence checking against pre-existing XML datasets for error handling.
+- Overall reduced manual XML editing and improve reliability during simulations and testing.
 
 === R&D Operator II - The Bot Company #h(1fr) Feb 2026 - May 2026
 - Executed structured data-collection protocols on robotic platforms across multiple field sites, producing ground-truth training data for early-stage AI models.
@@ -79,7 +82,7 @@ USAF veteran and Test Engineer with a B.S. in Computer Science. Integrate and te
 === Omnidirectional Robot with Obstacle Avoidance/Tracking #h(1fr) #link("https://johnnacion.dev/posts/my-academic-magnum-opus/")[Article]
 - Built a three-wheeled robot that autonomously follows multi-colored lines. Written in C on a custom DMA library supporting GPIO, I2C, and SPI; ultrasonic sensors detect, track, and avoid obstacles along a dynamically computed path.
 === Cross-platform GUI to Modify Game Saves #h(1fr) #link("https://github.com/nuttycream/SH-Save-Editor")[GitHub]
-- Open-source save editor for a popular PC game, 50k+ downloads across forums and GitHub. Made in C\# with Avalonia; parses and modifies XML via System.Xml with XPath and dotNET's task-based async library.
+- Open-source save editor for a popular PC game, 75k+ downloads across forums and GitHub. Made in C\# with Avalonia; parses and modifies XML via System.Xml with XPath and dotNET's task-based async library.
 === Version Control Automation using Large Language Models #h(1fr) #link("https://github.com/cube-cult/gai")[GitHub]
 - Built a CLI that uses local and hosted LLM providers to generate convention-compliant commit messages from diffs, plan rebases, amend commits, and find commits via natural-language queries.
 
